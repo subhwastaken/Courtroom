@@ -22,21 +22,16 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-[#2d3442] bg-[#0c1017]/95 backdrop-blur-xl">
       <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
-        {/* Brand with ChatDev Logo */}
+        {/* Brand with Courtroom Judicial Logo */}
         <Link href="/" className="flex items-center gap-3 group">
-          <div className="relative w-7 h-7 flex-shrink-0 rounded-lg overflow-hidden border border-amber-500/40 bg-slate-900">
-            <Image
-              src="/chatdev/figures/ceo.png"
-              alt="Chief Justice"
-              fill
-              className="object-contain pixelated group-hover:scale-110 transition-transform"
-            />
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#3b2010] to-[#1a0e07] border border-[#d4af37]/60 flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.35)] group-hover:scale-105 transition-transform">
+            <Scale className="w-4 h-4 text-[#d4af37]" />
           </div>
           <div>
             <div className="font-mono text-xs font-black tracking-widest uppercase text-slate-100 flex items-center gap-1.5">
-              <span>Courtroom Mode</span>
+              <span>Courtroom</span>
               <span className="text-[9px] px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">
-                3D High Chamber
+                Pixel Chamber
               </span>
             </div>
             <div className="text-[10px] font-mono text-slate-400">

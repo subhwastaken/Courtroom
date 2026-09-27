@@ -1,10 +1,10 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { ChatDev3DCourtroom } from "@/components/chatdev/ChatDev3DCourtroom";
-import { ChatDevOffice2D } from "@/components/chatdev/ChatDevOffice2D";
-import { ChatDevDialogueStream } from "@/components/chatdev/ChatDevDialogueStream";
-import { ChatDevStatsTicker } from "@/components/chatdev/ChatDevStatsTicker";
+import { CourtroomChamber } from "@/components/courtroom/CourtroomChamber";
+import { CourtroomPlan2D } from "@/components/courtroom/CourtroomPlan2D";
+import { DialogueStream } from "@/components/courtroom/DialogueStream";
+import { CourtroomStatsTicker } from "@/components/courtroom/CourtroomStatsTicker";
 import { VerdictGavel } from "@/components/scene/VerdictGavel";
 import { DecisionInput } from "@/components/DecisionInput";
 import { VoiceCapture } from "@/components/VoiceCapture";
@@ -166,8 +166,8 @@ export default function CourtroomPage() {
         </div>
       </div>
 
-      {/* ChatDev Live Stats & Ticker Bar */}
-      <ChatDevStatsTicker
+      {/* Live Judicial Session Stats & Ticker Bar */}
+      <CourtroomStatsTicker
         phase={currentPhase}
         utterancesCount={activeTurn}
         citedCount={totalCitations}
@@ -184,7 +184,7 @@ export default function CourtroomPage() {
         {loading && (
           <div className="flex items-center justify-center p-6 rounded-xl bg-[#141824] border border-amber-500/40 text-amber-400 font-mono text-xs gap-3 animate-pulse shadow-xl">
             <Scale className="w-5 h-5 animate-spin" />
-            <span>Retrieving historical vector memories & initiating Lyzr multi-agent debate...</span>
+            <span>Retrieving historical vector memories & initiating multi-agent debate...</span>
           </div>
         )}
 
@@ -196,16 +196,16 @@ export default function CourtroomPage() {
 
         {/* 2-Column Split: Visual Stage (Left) & Dialogue Stream (Right) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-          {/* Left Column (7 cols): 3D Three.js Diorama or 2D ChatDev Office */}
+          {/* Left Column (7 cols): 16-bit Front Chamber or 2D Nintendo RPG Plan */}
           <div className="lg:col-span-7 flex flex-col gap-4">
             <div className="relative">
               {viewMode === "3d" ? (
-                <ChatDev3DCourtroom
+                <CourtroomChamber
                   activeTurnIndex={activeTurn}
                   turns={result?.turns || []}
                 />
               ) : (
-                <ChatDevOffice2D
+                <CourtroomPlan2D
                   activeTurnIndex={activeTurn}
                   turns={result?.turns || []}
                 />
@@ -221,12 +221,12 @@ export default function CourtroomPage() {
             )}
           </div>
 
-          {/* Right Column (5 cols): ChatDev Dialogue Box */}
+          {/* Right Column (5 cols): Judicial Dialogue Stream */}
           <div className="lg:col-span-5 flex flex-col gap-4">
             <div className="flex items-center justify-between border-b border-[#2d3442] pb-2 font-mono text-xs">
               <span className="text-slate-300 font-bold uppercase tracking-wider flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                Agent Collaboration Log
+                Judicial Deliberation Stream
               </span>
               <span className="text-slate-500 text-[11px]">
                 {activeTurn} / {result?.turns.length || 3} Turns
@@ -234,7 +234,7 @@ export default function CourtroomPage() {
             </div>
 
             <div className="max-h-[560px] overflow-y-auto pr-1">
-              <ChatDevDialogueStream
+              <DialogueStream
                 turns={result?.turns || []}
                 activeTurnIndex={activeTurn}
                 question={result?.question}
