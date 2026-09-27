@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import Image from "next/image";
 import { CourtroomChamber } from "@/components/courtroom/CourtroomChamber";
 import { CourtroomPlan2D } from "@/components/courtroom/CourtroomPlan2D";
 import { DialogueStream } from "@/components/courtroom/DialogueStream";
