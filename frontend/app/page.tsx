@@ -177,8 +177,8 @@ export default function LandingPage() {
             )}
 
             {/* Interactive Preview Dialogue Overlay */}
-            <div className="absolute bottom-4 left-4 right-4 bg-[#180d09]/95 border-3 border-black shadow-[6px_6px_0px_#000] p-3.5 sm:p-4 backdrop-blur flex items-start gap-3.5">
-              <div className="w-12 h-12 border-2 border-black overflow-hidden bg-black flex-shrink-0 shadow-[2px_2px_0px_#000]">
+            <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 bg-[#180d09]/95 border-2 sm:border-3 border-black shadow-[4px_4px_0px_#000] p-2.5 sm:p-3 backdrop-blur flex items-start gap-2.5 sm:gap-3">
+              <div className="w-10 h-10 sm:w-11 sm:h-11 border-2 border-black overflow-hidden bg-black flex-shrink-0 shadow-[2px_2px_0px_#000]">
                 <img
                   src={
                     activeSpeaker === "advocate"

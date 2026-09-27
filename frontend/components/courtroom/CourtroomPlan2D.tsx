@@ -311,10 +311,10 @@ export function CourtroomPlan2D({ activeTurnIndex, turns }: CourtroomPlan2DProps
         {/* ──────────────────────────────────────────────────────────
          *  AUTHENTIC POKÉMON / NINTENDO RPG DIALOGUE BOX (NEO-BRUTALIST PIXEL BOX)
          * ────────────────────────────────────────────────────────── */}
-        <div className="absolute bottom-3 left-4 right-4 z-20 pointer-events-none">
-          <div className="relative bg-[#180d09]/95 border-3 border-black shadow-[6px_6px_0px_#000] p-3 sm:p-4 backdrop-blur flex items-start gap-3.5">
+        <div className="absolute bottom-2.5 left-3 right-3 sm:left-4 sm:right-4 z-20 pointer-events-none">
+          <div className="relative bg-[#180d09]/95 border-2 sm:border-3 border-black shadow-[4px_4px_0px_#000] p-2.5 sm:p-3 backdrop-blur flex items-start gap-2.5 sm:gap-3">
             {/* Speaker Pixel Portrait Mugshot */}
-            <div className="relative w-12 h-12 sm:w-14 sm:h-14 border-2 border-black bg-black flex-shrink-0 overflow-hidden shadow-[2px_2px_0px_#000]">
+            <div className="relative w-10 h-10 sm:w-11 sm:h-11 border-2 border-black bg-black flex-shrink-0 overflow-hidden shadow-[2px_2px_0px_#000]">
               <img
                 src={
                   activeRole === "advocate"

@@ -593,37 +593,27 @@ export function CourtroomChamber({ activeTurnIndex, turns }: CourtroomChamberPro
           </div>
 
           {/* ──────────────────────────────────────────────────────────
-           *  SPEECH BUBBLE OVERLAYS (ANCHORED TO ACTIVE CHARACTER WITH PIXEL PORTRAITS)
+           *  SPEECH BUBBLE OVERLAYS (COMPACT COMIC BALLOONS SAFELY POSITIONED ABOVE FACES)
            * ────────────────────────────────────────────────────────── */}
           {activeRole === "advocate" && (
             <div
               className="absolute z-20 pointer-events-none transition-all duration-300"
-              style={{ left: "6%", top: "4%", maxWidth: "48%" }}
+              style={{ left: "3%", top: "2%", maxWidth: "28%" }}
             >
-              <div className="relative bg-[#0d2215]/95 border-3 border-black shadow-[6px_6px_0px_#05F196] p-3 text-[#FFF8E7] flex items-start gap-2.5">
-                <div className="w-9 h-9 border-2 border-black flex-shrink-0 overflow-hidden bg-black shadow-[2px_2px_0px_#000]">
-                  <img
-                    src="/pixel_advocate_portrait.jpg"
-                    alt="Advocate"
-                    className="w-full h-full object-cover"
-                    style={{ imageRendering: "pixelated" }}
-                  />
+              <div className="relative bg-[#0d2215]/95 border-2 border-black shadow-[3px_3px_0px_#05F196] px-2.5 py-1.5 text-[#FFF8E7] flex flex-col gap-1 max-w-[210px] sm:max-w-[240px]">
+                <div className="flex items-center justify-between pb-0.5 border-b border-neo-green/30">
+                  <span className="font-pixel text-[8px] font-black uppercase tracking-wider text-neo-green flex items-center gap-1">
+                    <Scale className="w-2.5 h-2.5 text-neo-green stroke-[2.5]" />
+                    THE ADVOCATE
+                  </span>
+                  <span className="w-1.5 h-1.5 bg-neo-green border border-black animate-ping" />
                 </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between pb-1 mb-1 border-b border-black">
-                    <span className="font-pixel text-[9px] font-black uppercase tracking-wider text-neo-green flex items-center gap-1.5">
-                      <Scale className="w-3 h-3 text-neo-green" />
-                      THE ADVOCATE
-                    </span>
-                    <span className="w-2 h-2 bg-neo-green border border-black animate-ping" />
-                  </div>
-                  <p className="font-sans text-xs leading-relaxed text-[#FFF8E7] line-clamp-4 font-bold">
-                    &ldquo;{displayedText}&rdquo;
-                  </p>
-                </div>
-                {/* Neo-brutalist Tail pointing down towards Advocate */}
+                <p className="font-sans text-[10px] sm:text-[11px] leading-tight text-[#FFF8E7] line-clamp-2 font-bold">
+                  &ldquo;{displayedText}&rdquo;
+                </p>
+                {/* Compact tail pointing down toward Advocate */}
                 <div
-                  className="absolute -bottom-2.5 left-16 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[10px] border-t-black"
+                  className="absolute -bottom-1.5 left-10 w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[6px] border-t-black"
                 />
               </div>
             </div>
@@ -632,32 +622,22 @@ export function CourtroomChamber({ activeTurnIndex, turns }: CourtroomChamberPro
           {activeRole === "skeptic" && (
             <div
               className="absolute z-20 pointer-events-none transition-all duration-300"
-              style={{ right: "6%", top: "4%", maxWidth: "48%" }}
+              style={{ right: "3%", top: "2%", maxWidth: "28%" }}
             >
-              <div className="relative bg-[#280c14]/95 border-3 border-black shadow-[6px_6px_0px_#E52521] p-3 text-[#FFF8E7] flex items-start gap-2.5">
-                <div className="w-9 h-9 border-2 border-black flex-shrink-0 overflow-hidden bg-black shadow-[2px_2px_0px_#000]">
-                  <img
-                    src="/pixel_skeptic_portrait.jpg"
-                    alt="Skeptic"
-                    className="w-full h-full object-cover"
-                    style={{ imageRendering: "pixelated" }}
-                  />
+              <div className="relative bg-[#280c14]/95 border-2 border-black shadow-[3px_3px_0px_#E52521] px-2.5 py-1.5 text-[#FFF8E7] flex flex-col gap-1 max-w-[210px] sm:max-w-[240px]">
+                <div className="flex items-center justify-between pb-0.5 border-b border-neo-red/30">
+                  <span className="font-pixel text-[8px] font-black uppercase tracking-wider text-neo-red flex items-center gap-1">
+                    <ShieldAlert className="w-2.5 h-2.5 text-neo-red stroke-[2.5]" />
+                    THE SKEPTIC
+                  </span>
+                  <span className="w-1.5 h-1.5 bg-neo-red border border-black animate-ping" />
                 </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between pb-1 mb-1 border-b border-black">
-                    <span className="font-pixel text-[9px] font-black uppercase tracking-wider text-neo-red flex items-center gap-1.5">
-                      <ShieldAlert className="w-3 h-3 text-neo-red" />
-                      THE SKEPTIC
-                    </span>
-                    <span className="w-2 h-2 bg-neo-red border border-black animate-ping" />
-                  </div>
-                  <p className="font-sans text-xs leading-relaxed text-[#FFF8E7] line-clamp-4 font-bold">
-                    &ldquo;{displayedText}&rdquo;
-                  </p>
-                </div>
-                {/* Neo-brutalist Tail pointing down towards Skeptic */}
+                <p className="font-sans text-[10px] sm:text-[11px] leading-tight text-[#FFF8E7] line-clamp-2 font-bold">
+                  &ldquo;{displayedText}&rdquo;
+                </p>
+                {/* Compact tail pointing down toward Skeptic */}
                 <div
-                  className="absolute -bottom-2.5 right-16 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[10px] border-t-black"
+                  className="absolute -bottom-1.5 right-10 w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[6px] border-t-black"
                 />
               </div>
             </div>
@@ -666,32 +646,22 @@ export function CourtroomChamber({ activeTurnIndex, turns }: CourtroomChamberPro
           {activeRole === "judge" && (
             <div
               className="absolute z-20 pointer-events-none transition-all duration-300 -translate-x-1/2"
-              style={{ left: "50%", top: "4%", maxWidth: "54%" }}
+              style={{ left: "50%", top: "1.5%", maxWidth: "30%" }}
             >
-              <div className="relative bg-[#1c1508]/95 border-3 border-black shadow-[6px_6px_0px_#FFE600] p-3 text-[#FFF8E7] flex items-start gap-2.5">
-                <div className="w-9 h-9 border-2 border-black flex-shrink-0 overflow-hidden bg-black shadow-[2px_2px_0px_#000]">
-                  <img
-                    src="/pixel_judge_portrait.jpg"
-                    alt="Chief Justice"
-                    className="w-full h-full object-cover"
-                    style={{ imageRendering: "pixelated" }}
-                  />
+              <div className="relative bg-[#1c1508]/95 border-2 border-black shadow-[3px_3px_0px_#FFE600] px-2.5 py-1.5 text-[#FFF8E7] flex flex-col gap-1 max-w-[220px] sm:max-w-[250px]">
+                <div className="flex items-center justify-between pb-0.5 border-b border-neo-yellow/30">
+                  <span className="font-pixel text-[8px] font-black uppercase tracking-wider text-neo-yellow flex items-center gap-1">
+                    <Gavel className="w-2.5 h-2.5 text-neo-yellow stroke-[2.5]" />
+                    CHIEF JUSTICE
+                  </span>
+                  <span className="w-1.5 h-1.5 bg-neo-yellow border border-black animate-ping" />
                 </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between pb-1 mb-1 border-b border-black">
-                    <span className="font-pixel text-[9px] font-black uppercase tracking-wider text-neo-yellow flex items-center gap-1.5">
-                      <Gavel className="w-3 h-3 text-neo-yellow" />
-                      CHIEF JUSTICE
-                    </span>
-                    <span className="w-2 h-2 bg-neo-yellow border border-black animate-ping" />
-                  </div>
-                  <p className="font-sans text-xs leading-relaxed text-[#FFF8E7] line-clamp-4 font-bold">
-                    &ldquo;{displayedText}&rdquo;
-                  </p>
-                </div>
-                {/* Neo-brutalist Tail pointing down towards Judge */}
+                <p className="font-sans text-[10px] sm:text-[11px] leading-tight text-[#FFF8E7] line-clamp-2 font-bold">
+                  &ldquo;{displayedText}&rdquo;
+                </p>
+                {/* Compact tail pointing down toward Judge */}
                 <div
-                  className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[10px] border-t-black"
+                  className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[6px] border-t-black"
                 />
               </div>
             </div>
