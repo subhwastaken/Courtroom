@@ -147,8 +147,8 @@ export default function CourtroomPage() {
                   : "text-amber-200/60 hover:text-white"
               }`}
             >
-              <Box className="w-3.5 h-3.5" />
-              <span>3D Courtroom Chamber</span>
+              <Scale className="w-3.5 h-3.5" />
+              <span>Courtroom Chamber</span>
             </button>
 
             <button
