@@ -36,11 +36,11 @@ export function Navbar() {
             <div className="font-mono text-xs font-black tracking-widest uppercase text-slate-100 flex items-center gap-1.5">
               <span>Courtroom Mode</span>
               <span className="text-[9px] px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">
-                ChatDev × 3D
+                3D High Chamber
               </span>
             </div>
             <div className="text-[10px] font-mono text-slate-400">
-              Autonomous Multi-Agent Arbiter
+              Autonomous Judicial Arbiter
             </div>
           </div>
         </Link>

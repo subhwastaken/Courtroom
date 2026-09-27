@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import { Copy, Check, Quote, Sparkles } from "lucide-react";
+import { Copy, Check, Quote, Scale, BookOpen, ShieldCheck, Sparkles } from "lucide-react";
 import { AgentTurn } from "@/lib/types";
 
 interface ChatDevDialogueStreamProps {
@@ -19,25 +19,28 @@ export function ChatDevDialogueStream({
 
   const roleMeta = {
     advocate: {
-      name: "Counselor (Advocate)",
+      name: "The Advocate",
       roleTitle: "Counsel for Opportunity",
-      avatar: "/chatdev/avatars/Counselor.png",
-      tagColor: "bg-emerald-950/70 border-emerald-500/40 text-emerald-300",
-      bubbleBorder: "border-l-4 border-l-emerald-500 border-[#2d3442] bg-[#1a202c]",
+      avatar: "/chatdev/figures/counselor.png?v=4",
+      tagColor: "bg-emerald-950/80 border-emerald-500/50 text-emerald-300",
+      bubbleBorder: "border-l-4 border-l-emerald-500 border-[#3d2415] bg-[#160f0a]",
+      glowColor: "shadow-[0_0_20px_rgba(16,185,129,0.15)]",
     },
     skeptic: {
-      name: "Code Reviewer (Skeptic)",
+      name: "The Skeptic",
       roleTitle: "Counsel for Caution",
-      avatar: "/chatdev/avatars/Code Reviewer.png",
-      tagColor: "bg-rose-950/70 border-rose-500/40 text-rose-300",
-      bubbleBorder: "border-l-4 border-l-rose-500 border-[#2d3442] bg-[#1a202c]",
+      avatar: "/chatdev/figures/reviewer.png?v=4",
+      tagColor: "bg-rose-950/80 border-rose-500/50 text-rose-300",
+      bubbleBorder: "border-l-4 border-l-rose-500 border-[#3d2415] bg-[#160f0a]",
+      glowColor: "shadow-[0_0_20px_rgba(244,63,94,0.15)]",
     },
     judge: {
-      name: "CEO (Chief Justice)",
-      roleTitle: "Arbiter of Personal History",
-      avatar: "/chatdev/avatars/Chief Executive Officer.png",
-      tagColor: "bg-amber-950/70 border-amber-500/40 text-amber-300",
-      bubbleBorder: "border-l-4 border-l-amber-500 border-[#2d3442] bg-[#1a202c]",
+      name: "The Chief Justice",
+      roleTitle: "Supreme Arbiter of History",
+      avatar: "/chatdev/figures/ceo.png?v=4",
+      tagColor: "bg-amber-950/80 border-amber-500/60 text-amber-300",
+      bubbleBorder: "border-l-4 border-l-amber-500 border-[#4a2e1c] bg-[#1a120b]",
+      glowColor: "shadow-[0_0_25px_rgba(245,158,11,0.2)]",
     },
   };
 
@@ -48,27 +51,22 @@ export function ChatDevDialogueStream({
   };
 
   return (
-    <div className="w-full flex flex-col space-y-4 font-mono">
-      {/* Question / Human Request Prompt Card */}
+    <div className="w-full flex flex-col space-y-4 font-mono select-none">
+      {/* Question / Docket Case Card */}
       {question && (
-        <div className="rounded-lg bg-[#141824] border border-[#2d3442] p-4 flex items-start gap-3 shadow-lg">
-          <div className="relative w-10 h-10 flex-shrink-0 rounded-lg overflow-hidden border border-amber-500/40 bg-slate-900">
-            <Image
-              src="/chatdev/avatars/User.png"
-              alt="User"
-              width={40}
-              height={40}
-              className="object-cover pixelated"
-            />
+        <div className="rounded-xl bg-[#170e08] border border-[#4a2a16] p-4 flex items-start gap-3.5 shadow-xl">
+          <div className="relative w-10 h-10 flex-shrink-0 rounded-lg overflow-hidden border border-amber-500/40 bg-slate-950 flex items-center justify-center">
+            <Scale className="w-6 h-6 text-amber-400" />
           </div>
           <div className="flex-1 min-w-0">
-            <div className="flex items-center justify-between text-xs text-slate-400 mb-1">
-              <span className="font-bold text-amber-400 uppercase tracking-wider">
-                Human Client [Case In Dilemma]
+            <div className="flex items-center justify-between text-xs text-amber-200/60 mb-1">
+              <span className="font-bold text-amber-400 uppercase tracking-widest text-[11px] flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                Case Docket [Sub judice]
               </span>
-              <span className="text-[10px] text-slate-500">Live Input</span>
+              <span className="text-[10px] text-amber-200/40 font-mono">Living Question</span>
             </div>
-            <p className="text-xs sm:text-sm text-slate-100 font-sans leading-relaxed">
+            <p className="text-xs sm:text-sm text-amber-100 font-sans leading-relaxed italic">
               "{question}"
             </p>
           </div>
@@ -84,72 +82,79 @@ export function ChatDevDialogueStream({
           return (
             <div
               key={idx}
-              className={`rounded-lg border p-4 transition-all duration-300 shadow-md ${
+              className={`rounded-xl border p-4.5 transition-all duration-300 shadow-xl ${
                 meta.bubbleBorder
-              } ${isLatest ? "ring-1 ring-amber-400/40" : ""}`}
+              } ${meta.glowColor} ${isLatest ? "ring-1 ring-amber-400/50" : ""}`}
             >
-              {/* Header row: Avatar + Name + Turn Tag */}
-              <div className="flex items-center justify-between gap-3 mb-2.5">
-                <div className="flex items-center gap-2.5">
-                  <div className="relative w-9 h-9 rounded overflow-hidden border border-slate-700 bg-slate-900 flex-shrink-0">
+              {/* Header row: Character + Title + Turn Tag */}
+              <div className="flex items-center justify-between gap-3 mb-3">
+                <div className="flex items-center gap-3">
+                  <div className="relative w-10 h-10 rounded-lg overflow-hidden border border-[#4a2a16] bg-slate-950 flex-shrink-0 p-0.5">
                     <Image
                       src={meta.avatar}
                       alt={meta.name}
-                      width={36}
-                      height={36}
-                      className="object-cover"
+                      width={40}
+                      height={40}
+                      className="object-contain pixelated"
                     />
                   </div>
                   <div>
-                    <div className="text-xs font-bold text-slate-200 uppercase tracking-wider">
-                      {meta.name}
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-bold text-slate-100 uppercase tracking-wider">
+                        {meta.name}
+                      </span>
+                      <span
+                        className={`text-[9px] px-2 py-0.5 rounded border uppercase tracking-wider font-bold ${meta.tagColor}`}
+                      >
+                        {meta.roleTitle}
+                      </span>
                     </div>
-                    <div className="text-[10px] text-slate-400">
-                      {meta.roleTitle}
+                    <div className="text-[10px] text-amber-200/50">
+                      Courtroom Stage {idx + 1} of 3
                     </div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2">
-                  <span
-                    className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border ${meta.tagColor}`}
-                  >
-                    Phase {idx + 1}: {turn.role}
-                  </span>
-                  <button
-                    onClick={() => copyToClipboard(turn.content, idx)}
-                    className="p-1 rounded text-slate-400 hover:text-white hover:bg-slate-800 transition-all"
-                    title="Copy dialogue"
-                  >
-                    {copiedIndex === idx ? (
-                      <Check className="w-3.5 h-3.5 text-emerald-400" />
-                    ) : (
-                      <Copy className="w-3.5 h-3.5" />
-                    )}
-                  </button>
-                </div>
+                {/* Copy Button */}
+                <button
+                  onClick={() => copyToClipboard(turn.content, idx)}
+                  className="text-amber-200/40 hover:text-amber-300 transition-colors p-1"
+                  title="Copy speech to clipboard"
+                >
+                  {copiedIndex === idx ? (
+                    <Check className="w-3.5 h-3.5 text-emerald-400" />
+                  ) : (
+                    <Copy className="w-3.5 h-3.5" />
+                  )}
+                </button>
               </div>
 
-              {/* Message Body */}
-              <div className="text-xs sm:text-sm text-slate-200 font-sans leading-relaxed whitespace-pre-line pl-11">
-                {turn.content}
+              {/* Main Spoken Legal Argument */}
+              <div className="pl-3 border-l-2 border-amber-500/20 my-2">
+                <p className="text-xs sm:text-sm text-slate-200 font-sans leading-relaxed">
+                  "{turn.content}"
+                </p>
               </div>
 
-              {/* Memory Citations Chips */}
+              {/* Grounded Evidence / Precedent Footnotes */}
               {turn.cited_memories && turn.cited_memories.length > 0 && (
-                <div className="mt-3 pt-2.5 border-t border-slate-800/80 pl-11 flex flex-wrap items-center gap-1.5">
-                  <span className="text-[10px] uppercase font-mono text-amber-400/80 flex items-center gap-1">
-                    <Quote className="w-3 h-3" />
-                    Grounding:
-                  </span>
-                  {turn.cited_memories.map((cite, cIdx) => (
-                    <span
-                      key={cIdx}
-                      className="px-2 py-0.5 rounded bg-slate-900 border border-slate-700 text-[10px] font-mono text-amber-200/90 leading-tight"
-                    >
-                      "{cite}"
-                    </span>
-                  ))}
+                <div className="mt-3 pt-2.5 border-t border-[#3d2415] flex flex-col gap-1.5">
+                  <div className="flex items-center gap-1.5 text-[10px] uppercase font-bold text-amber-300/80 tracking-wider">
+                    <BookOpen className="w-3 h-3 text-amber-400" />
+                    <span>Evidence Grounded in Your Personal History:</span>
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {turn.cited_memories.map((m, mIdx) => (
+                      <span
+                        key={mIdx}
+                        className="text-[10px] bg-[#24140b] text-amber-200/80 border border-[#522d1a] px-2 py-0.5 rounded flex items-center gap-1 max-w-full truncate"
+                        title={m}
+                      >
+                        <Quote className="w-2.5 h-2.5 text-amber-400 flex-shrink-0" />
+                        <span className="truncate">{m}</span>
+                      </span>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>

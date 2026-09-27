@@ -35,9 +35,9 @@ export default function LandingPage() {
       </h1>
 
       <p className="mt-4 max-w-2xl text-sm sm:text-base text-slate-300 font-sans leading-relaxed">
-        Pits the <span className="text-emerald-400 font-bold">Counselor (Advocate)</span> and{" "}
-        <span className="text-rose-400 font-bold">Code Reviewer (Skeptic)</span> against each other before the{" "}
-        <span className="text-amber-400 font-bold">CEO (Chief Justice)</span>, deliberating in an interactive 3D Three.js diorama and pixel-art office using your actual values, regrets, and vector memories.
+        Pits the <span className="text-emerald-400 font-bold">Advocate</span> and{" "}
+        <span className="text-rose-400 font-bold">Skeptic</span> against each other before the{" "}
+        <span className="text-amber-400 font-bold">Chief Justice</span>, deliberating in an interactive 3D judicial courtroom chamber using your actual values, regrets, and vector memories.
       </p>
 
       {/* CTA Buttons */}

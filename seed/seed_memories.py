@@ -13,13 +13,18 @@ def run_seed():
     qdrant_service.ensure_collection(vector_size=vector_size)
 
     seed_memories = [
-        ("I regret not negotiating my last salary", "regret"),
-        ("Financial security matters more to me than prestige", "value"),
-        ("I want to move closer to my family within the next two years", "value"),
-        ("I turned down a remote role for stability and regretted it", "decision_outcome"),
-        ("I took a pay cut once for better work-life balance and was satisfied", "decision_outcome"),
-        ("I don't want another job where I'm on call every weekend", "voice_statement"),
-        ("I described myself as cautious but tired of playing it safe", "value"),
+        ("I regret not negotiating my previous compensation package aggressively when I held all the leverage", "regret"),
+        ("I regret staying at a stagnant company 6 months longer than I should have purely out of comfort", "regret"),
+        ("I regret trading my physical workout routine and weekends for an arbitrary sprint deadline", "regret"),
+        ("Autonomy and intellectual freedom matter far more to me than corporate hierarchy", "value"),
+        ("Health, rest, and sleep are my primary assets; burnout is non-recoverable through mere financial compensation", "value"),
+        ("Financial growth and equity upside: I want high-leverage opportunities, not comfortable corporate mediocrity", "value"),
+        ("I have a firm commitment to move closer to my family within the next 2-year window", "value"),
+        ("Turned down an early-stage remote AI role for established corporate stability and felt trapped within 4 months", "decision_outcome"),
+        ("Accepted a pay cut in exchange for strictly protected 40-hour workweeks and felt deep satisfaction and clarity", "decision_outcome"),
+        ("I don't want another job where I'm constantly on call every single weekend. It destroys my peace", "voice_statement"),
+        ("I am tired of playing it safe and watching other builders take bold bets. I need to back myself when the opportunity is real", "voice_statement"),
+        ("Whenever I prioritize my sleep and health, my output is 10x higher. I can never sacrifice that again", "voice_statement"),
     ]
 
     print(f"[Seed] Seeding {len(seed_memories)} memories into Qdrant collection 'user_memories'...")

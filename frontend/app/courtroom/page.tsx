@@ -115,43 +115,40 @@ export default function CourtroomPage() {
     : "Chamber Standby";
 
   return (
-    <div className="relative min-h-[calc(100vh-3.5rem)] flex flex-col justify-between overflow-x-hidden pb-16 bg-[#0e121b]">
-      {/* Top ChatDev Header Banner */}
-      <div className="w-full bg-[#141824] border-b border-[#2d3442] px-4 py-3">
+    <div className="relative min-h-[calc(100vh-3.5rem)] flex flex-col justify-between overflow-x-hidden pb-16 bg-[#0c0806]">
+      {/* Top Courtroom Header Banner */}
+      <div className="w-full bg-[#160e09] border-b border-[#3d2112] px-4 py-3.5 shadow-lg">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
           {/* Logo & Subtitle */}
-          <div className="flex items-center gap-3">
-            <div className="relative w-36 h-10 flex-shrink-0">
-              <Image
-                src="/chatdev/figures/chatdev.png"
-                alt="ChatDev"
-                fill
-                className="object-contain pixelated"
-                priority
-              />
+          <div className="flex items-center gap-3.5">
+            <div className="w-10 h-10 rounded-xl bg-[#26150b] border-2 border-[#d4af37]/60 flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.3)]">
+              <Scale className="w-6 h-6 text-[#d4af37]" />
             </div>
-            <div className="hidden md:block pl-3 border-l border-slate-700">
-              <div className="font-mono text-xs font-bold uppercase tracking-wider text-amber-400">
-                Multi-Agent Courtroom Collaboration Engine
+            <div>
+              <div className="font-mono text-sm font-bold uppercase tracking-widest text-[#d4af37] flex items-center gap-2">
+                <span>Chamber of Personal Conscience</span>
+                <span className="text-[10px] px-2 py-0.5 rounded bg-[#3d2112] text-amber-200 border border-[#d4af37]/30">
+                  COURT IN SESSION
+                </span>
               </div>
-              <div className="text-[10px] font-mono text-slate-400">
-                Lyzr Agents × Qdrant Memory Bank × Omi Voice
+              <div className="text-[11px] font-mono text-amber-200/60">
+                Adversarial Deliberation Engine • Grounded in Living Personal History
               </div>
             </div>
           </div>
 
-          {/* View Mode Switcher: 3D Three.js Diorama vs 2D Pixel Office */}
-          <div className="flex items-center gap-2 bg-[#0a0e17] border border-[#2d3442] p-1 rounded-xl font-mono text-xs">
+          {/* View Mode Switcher: 3D Courtroom vs 2D Floor Plan */}
+          <div className="flex items-center gap-2 bg-[#100905] border border-[#3d2112] p-1 rounded-xl font-mono text-xs">
             <button
               onClick={() => setViewMode("3d")}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all ${
                 viewMode === "3d"
                   ? "bg-amber-500 text-slate-950 font-bold shadow-md"
-                  : "text-slate-400 hover:text-white"
+                  : "text-amber-200/60 hover:text-white"
               }`}
             >
               <Box className="w-3.5 h-3.5" />
-              <span>Three.js 3D Diorama</span>
+              <span>3D Courtroom Chamber</span>
             </button>
 
             <button
@@ -159,11 +156,11 @@ export default function CourtroomPage() {
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all ${
                 viewMode === "2d"
                   ? "bg-amber-500 text-slate-950 font-bold shadow-md"
-                  : "text-slate-400 hover:text-white"
+                  : "text-amber-200/60 hover:text-white"
               }`}
             >
               <Layers className="w-3.5 h-3.5" />
-              <span>2D ChatDev Office</span>
+              <span>2D Chamber Plan</span>
             </button>
           </div>
         </div>

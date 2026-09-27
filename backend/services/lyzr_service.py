@@ -38,30 +38,21 @@ async def call_lyzr_agent(agent_id: str, message: str, session_id: str = None) -
 
 def _generate_intelligent_mock_debate(question: str, context_blob: str) -> Dict[str, str]:
     """
-    Intelligent high-fidelity multi-agent debate simulation grounded in actual context_blob.
-    Used when Lyzr API keys are not provided or during offline demonstrations.
+    Punchy, high-intensity multi-agent courtroom debate grounded directly in personal history.
     """
     advocate = (
-        f"Your stated core value is 'Financial security > prestige' and you previously acknowledged being 'tired of playing it safe.' "
-        f"Regarding '{question}', seizing high-upside opportunities aligns with breaking past stagnation. "
-        f"Furthermore, remember your regret logged on 2025-03-02: 'I regret not negotiating my last salary' — taking proactive ownership of this choice directly remedies that hesitation. "
-        f"My definitive stance: You should proceed boldly with this decision."
+        f"Your stated ambition is 'tired of playing it safe,' and you deeply regret not negotiating your past compensation aggressively. "
+        f"Regarding '{question}', shrinking from this opportunity repeats your old cycle of fear—take the leap and claim your upside."
     )
     
     skeptic = (
-        f"The Advocate asks you to throw caution away, but completely ignores your explicit boundaries. "
-        f"First, on 2025-09-20 you stated: \"I don't want another job where I'm on call every weekend.\" If this move encroaches on your autonomy, it directly violates that pledge. "
-        f"Second, your past outcome on 2025-06-14 was 'Took a pay cut for better work-life balance -> satisfied.' "
-        f"Trading proven daily peace for unpredictable demands will repeat your past regret of sacrificing stability without guaranteed alignment. "
-        f"My definitive stance: Reject or renegotiate the terms before committing."
+        f"The Advocate is blinding you with greed and ignoring your explicit boundary: 'I don't want another job where I'm on call every weekend.' "
+        f"You already proved on 2025-06-14 that peace and sleep restore your energy 10x—trading your autonomy for chaos is a mistake you promised never to repeat."
     )
     
     judge = (
-        f"VERDICT: Negotiate the terms strictly or decline if balance cannot be preserved.\n"
-        f"REASONING: The court acknowledges the Advocate's reminder that you are 'tired of playing it safe' and regret salary under-negotiation. "
-        f"However, the Skeptic correctly elevates your recent firm declaration: \"I don't want another job where I'm on call every weekend.\" "
-        f"Given that you said 'Financial security > prestige' yet felt deeply satisfied when you prioritized work-life balance, "
-        f"accepting this unconditionally would betray your established personal history. Demand clear bounds before you sign."
+        f"VERDICT: Demand strict weekday-only terms or decline the proposal entirely.\n"
+        f"REASONING: While the Advocate rightly points out your regret over timid career moves, the Skeptic exposes a fatal violation of your non-negotiable health boundary. Your past record proves that burning out destroys your leverage; protect your foundation first."
     )
     
     return {
@@ -69,6 +60,39 @@ def _generate_intelligent_mock_debate(question: str, context_blob: str) -> Dict[
         "skeptic": skeptic,
         "judge": judge,
     }
+
+def clean_and_condense_turn(text: str, role: str) -> str:
+    if not text:
+        return text
+    import re
+    # If the LLM returned numbered points like "1. ... 2. ...":
+    points = re.split(r'\n+\s*\d+[\.\)]\s*', text.strip())
+    if len(points) > 1:
+        # Take the most impactful point and the conclusion if present
+        first = re.sub(r'\s+', ' ', points[1].strip())
+        sentences = re.split(r'(?<=[.!?])\s+', first)
+        main_arg = " ".join(sentences[:2])
+        # Check if there is a conclusion at the end (e.g. "Do not accept this promotion.")
+        last_chunk = points[-1].strip()
+        last_lines = last_chunk.split("\n")
+        conclusion = last_lines[-1].strip() if len(last_lines) > 1 else ""
+        if conclusion and not conclusion.startswith("http") and len(conclusion) < 100:
+            return f"{main_arg} {conclusion}"
+        return main_arg
+
+    # If it's standard text, ensure it doesn't exceed 2-3 punchy sentences
+    if role != "judge":
+        clean_text = re.sub(r'\s+', ' ', text.strip())
+        sentences = re.split(r'(?<=[.!?])\s+', clean_text)
+        return " ".join(sentences[:2]) if len(sentences) > 2 else clean_text
+    else:
+        if "REASONING:" in text:
+            parts = text.split("REASONING:")
+            verdict = parts[0].strip()
+            reasoning = re.sub(r'\s+', ' ', parts[1].strip())
+            r_sentences = re.split(r'(?<=[.!?])\s+', reasoning)
+            return f"{verdict}\n\nREASONING: {' '.join(r_sentences[:2])}"
+        return text.strip()
 
 async def run_debate(question: str, context_blob: str) -> Dict[str, str]:
     api_key = os.getenv("LYZR_API_KEY")
@@ -85,7 +109,7 @@ async def run_debate(question: str, context_blob: str) -> Dict[str, str]:
             advocate_prompt = (
                 f"CONTEXT FROM PERSONAL HISTORY:\n{context_blob}\n\n"
                 f"DECISION UNDER CONSIDERATION: {question}\n\n"
-                f"Please deliver your Advocate argument grounded strictly in the user's personal context and values."
+                f"INSTRUCTION: Deliver your Advocate argument FOR this move. Keep it to EXACTLY 2 short, powerful sentences citing a specific value or past regret. Plain text only."
             )
             print("[Lyzr] Calling Advocate Agent...")
             advocate_reply = await call_lyzr_agent(
@@ -97,8 +121,8 @@ async def run_debate(question: str, context_blob: str) -> Dict[str, str]:
             skeptic_prompt = (
                 f"CONTEXT FROM PERSONAL HISTORY:\n{context_blob}\n\n"
                 f"DECISION UNDER CONSIDERATION: {question}\n\n"
-                f"ADVOCATE ARGUMENT:\n{advocate_reply}\n\n"
-                f"Please deliver your Skeptic rebuttal directly counteracting the Advocate's points and citing user boundaries."
+                f"ADVOCATE JUST ARGUED: \"{advocate_reply}\"\n\n"
+                f"INSTRUCTION: Object and rebut the Advocate directly by name. Keep it to EXACTLY 2 biting, realistic sentences citing a personal boundary or past burnout from history. Plain text only."
             )
             print("[Lyzr] Calling Skeptic Agent...")
             skeptic_reply = await call_lyzr_agent(
@@ -110,9 +134,12 @@ async def run_debate(question: str, context_blob: str) -> Dict[str, str]:
             judge_prompt = (
                 f"CONTEXT FROM PERSONAL HISTORY:\n{context_blob}\n\n"
                 f"DECISION UNDER CONSIDERATION: {question}\n\n"
-                f"ADVOCATE ARGUMENT:\n{advocate_reply}\n\n"
-                f"SKEPTIC REBUTTAL:\n{skeptic_reply}\n\n"
-                f"Deliver your final binding VERDICT and REASONING citing specific memories from the user's personal context."
+                f"ADVOCATE ARGUMENT: \"{advocate_reply}\"\n\n"
+                f"SKEPTIC REBUTTAL: \"{skeptic_reply}\"\n\n"
+                f"INSTRUCTION: Deliver your binding verdict citing the clash between the two counsels against the user's history.\n"
+                f"Format strictly as:\n"
+                f"VERDICT: <One concise sentence>\n"
+                f"REASONING: <Two crisp sentences weighing arguments against user history>"
             )
             print("[Lyzr] Calling Chief Justice Agent...")
             judge_reply = await call_lyzr_agent(
@@ -122,9 +149,9 @@ async def run_debate(question: str, context_blob: str) -> Dict[str, str]:
             )
 
             return {
-                "advocate": advocate_reply,
-                "skeptic": skeptic_reply,
-                "judge": judge_reply
+                "advocate": clean_and_condense_turn(advocate_reply, "advocate"),
+                "skeptic": clean_and_condense_turn(skeptic_reply, "skeptic"),
+                "judge": clean_and_condense_turn(judge_reply, "judge")
             }
         except Exception as e:
             print(f"[Lyzr] Live call encountered error ({e}), utilizing grounded fallback debate")
