@@ -71,30 +71,30 @@ export function VoiceCapture({ onTranscript, disabled = false }: VoiceCapturePro
   };
 
   return (
-    <div className="flex flex-col items-center gap-1.5">
+    <div className="flex flex-col items-center gap-1.5 select-none">
       <button
         type="button"
         onClick={toggleListen}
         disabled={disabled || !supported}
         className={`
-          flex items-center gap-2 px-4 py-2 rounded-lg font-mono text-xs uppercase tracking-widest transition-all duration-200
+          neo-btn flex items-center gap-2 px-4 py-2 font-mono text-xs uppercase tracking-widest font-black border-2 border-black
           ${
             listening
-              ? "bg-rose-500 text-white shadow-glow-rose animate-pulse"
-              : "bg-slate-900/90 text-amber-400 border border-amber-500/40 hover:bg-amber-500/20 hover:border-amber-400"
+              ? "bg-neo-red text-white shadow-[3px_3px_0px_#000] animate-pulse"
+              : "bg-[#182337] text-neo-green shadow-[3px_3px_0px_#000] hover:bg-[#202e47]"
           }
-          ${disabled || !supported ? "opacity-50 cursor-not-allowed" : "cursor-pointer active:scale-95"}
+          ${disabled || !supported ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
         `}
-        title={supported ? "Voice Capture (Omi Mode)" : "Speech recognition not supported in this browser"}
+        title={supported ? "Voice Capture (Ambient Mic Mode)" : "Speech recognition not supported in this browser"}
       >
         {listening ? (
           <>
-            <Radio className="w-3.5 h-3.5 animate-spin" />
-            <span>Listening to Case...</span>
+            <Radio className="w-3.5 h-3.5 animate-spin text-white" />
+            <span>Recording Dilemma...</span>
           </>
         ) : (
           <>
-            <Mic className="w-3.5 h-3.5" />
+            <Mic className="w-3.5 h-3.5 text-neo-green stroke-[2.5]" />
             <span>Speak Your Case</span>
           </>
         )}
@@ -102,8 +102,8 @@ export function VoiceCapture({ onTranscript, disabled = false }: VoiceCapturePro
 
       {/* Interim live transcript feedback */}
       {listening && interimText && (
-        <div className="text-[11px] font-mono text-amber-300 bg-slate-950/90 px-3 py-1 rounded border border-amber-500/30 max-w-sm text-center truncate">
-          "{interimText}"
+        <div className="text-[11px] font-mono text-neo-yellow bg-black border-2 border-black shadow-[2px_2px_0px_#000] px-3 py-1 max-w-sm text-center truncate">
+          &ldquo;{interimText}&rdquo;
         </div>
       )}
     </div>

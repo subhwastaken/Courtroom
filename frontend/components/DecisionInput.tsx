@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, Scale } from "lucide-react";
 import { playClickSound } from "@/lib/sounds";
 
 interface DecisionInputProps {
@@ -9,10 +9,10 @@ interface DecisionInputProps {
 }
 
 const PRESET_CASES = [
-  "Should I take a new job that pays more but requires being on-call every weekend?",
-  "Should I move closer to my family within the next year or stay in the city?",
-  "Should I leave my stable corporate role to join an early-stage startup?",
+  "Should I leave my corporate tech job to build an AI startup?",
   "Should I negotiate for higher equity instead of base salary?",
+  "Should I move to another city for career opportunities or stay near family?",
+  "Should I buy real estate now or keep my net worth liquid in index funds?",
 ];
 
 export function DecisionInput({ onSubmit, disabled = false }: DecisionInputProps) {
@@ -32,7 +32,7 @@ export function DecisionInput({ onSubmit, disabled = false }: DecisionInputProps
   };
 
   return (
-    <div className="w-full max-w-2xl px-4 flex flex-col items-center gap-3">
+    <div className="w-full max-w-3xl px-4 flex flex-col items-center gap-3.5 select-none">
       {/* Main Decision Form */}
       <form onSubmit={handleSubmit} className="w-full relative flex items-center">
         <input
@@ -41,34 +41,34 @@ export function DecisionInput({ onSubmit, disabled = false }: DecisionInputProps
           onChange={(e) => setQuestion(e.target.value)}
           placeholder="State your dilemma for the court (e.g. Should I accept this new offer?)..."
           disabled={disabled}
-          className="w-full bg-slate-950/90 border border-amber-500/40 rounded-xl px-4 py-3.5 pr-28 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400 shadow-2xl backdrop-blur font-sans transition-all"
+          className="w-full bg-[#101726] border-3 border-black shadow-[5px_5px_0px_#000] px-4 py-3.5 pr-32 text-xs sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-neo-yellow focus:shadow-[6px_6px_0px_#FFE600] font-mono transition-all"
         />
         <button
           type="submit"
           disabled={disabled || !question.trim()}
-          className="absolute right-2 px-4 py-2 rounded-lg bg-gradient-to-r from-amber-500 to-amber-400 text-slate-950 font-mono text-xs font-bold uppercase tracking-wider hover:brightness-110 disabled:opacity-40 disabled:cursor-not-allowed transition-all flex items-center gap-1.5"
+          className="neo-btn absolute right-2 px-4 py-2 bg-neo-yellow text-black font-mono text-xs font-black uppercase tracking-wider border-2 border-black shadow-[3px_3px_0px_#000] hover:bg-amber-300 disabled:opacity-40 disabled:cursor-not-allowed transition-all flex items-center gap-1.5"
         >
+          <Scale className="w-3.5 h-3.5 stroke-[2.5]" />
           <span>Convene</span>
-          <ArrowRight className="w-3.5 h-3.5" />
+          <ArrowRight className="w-3.5 h-3.5 stroke-[2.5]" />
         </button>
       </form>
 
-      {/* Suggested Case Questions */}
-      <div className="flex flex-wrap items-center justify-center gap-1.5">
-        <span className="text-[10px] uppercase font-mono tracking-widest text-slate-400 flex items-center gap-1">
-          <Sparkles className="w-3 h-3 text-amber-400" />
-          <span>Preset Cases:</span>
+      {/* Suggested Preset Case Questions */}
+      <div className="flex flex-wrap items-center justify-center gap-1.5 font-mono text-[10px]">
+        <span className="uppercase tracking-widest text-neo-yellow font-bold flex items-center gap-1 mr-1">
+          <Sparkles className="w-3 h-3 text-neo-yellow" />
+          <span>Preset Dockets:</span>
         </span>
-        {PRESET_CASES.map((preset, i) => (
+        {PRESET_CASES.map((preset, idx) => (
           <button
-            key={i}
+            key={idx}
             type="button"
             onClick={() => handleSelectPreset(preset)}
             disabled={disabled}
-            className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-slate-900/80 border border-slate-800 text-slate-300 hover:border-amber-500/50 hover:text-amber-300 hover:bg-slate-850 transition-all max-w-[260px] truncate"
-            title={preset}
+            className="px-2.5 py-1 bg-[#162032] border-2 border-black shadow-[2px_2px_0px_#000] hover:bg-neo-yellow hover:text-black text-slate-200 transition-all text-[10px] active:translate-x-[1px] active:translate-y-[1px]"
           >
-            {preset}
+            {preset.slice(0, 42)}...
           </button>
         ))}
       </div>

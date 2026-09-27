@@ -11,6 +11,20 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        neo: {
+          yellow: "#FFE600",
+          gold: "#FFCC00",
+          green: "#05F196",
+          emerald: "#10B981",
+          red: "#FF3366",
+          rose: "#F43F5E",
+          blue: "#3366FF",
+          purple: "#9933FF",
+          dark: "#0E131F",
+          card: "#161B26",
+          border: "#000000",
+          paper: "#FFFDF2",
+        },
         court: {
           dark: "#030712",
           navy: "#0a1128",
@@ -24,27 +38,36 @@ const config: Config = {
         },
       },
       fontFamily: {
-        mono: ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "monospace"],
+        pixel: ["'Press Start 2P'", "monospace"],
+        mono: ["'Space Mono'", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
       },
       boxShadow: {
-        "glow-amber": "0 0 25px -3px rgba(245, 158, 11, 0.45)",
-        "glow-emerald": "0 0 25px -3px rgba(16, 185, 129, 0.45)",
-        "glow-rose": "0 0 25px -3px rgba(244, 63, 94, 0.45)",
-        "glow-cyan": "0 0 25px -3px rgba(6, 182, 212, 0.45)",
+        "neo": "4px 4px 0px #000000",
+        "neo-sm": "2px 2px 0px #000000",
+        "neo-lg": "8px 8px 0px #000000",
+        "neo-xl": "12px 12px 0px #000000",
+        "neo-gold": "5px 5px 0px #FFE600",
+        "neo-emerald": "5px 5px 0px #05F196",
+        "neo-rose": "5px 5px 0px #FF3366",
       },
       animation: {
+        "marquee": "marquee 22s linear infinite",
         "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
         "float": "float 4s ease-in-out infinite",
-        "scan": "scan 6s linear infinite",
+        "pixel-bounce": "pixelBounce 1s infinite ease-in-out",
       },
       keyframes: {
+        marquee: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
         float: {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-6px)" },
         },
-        scan: {
-          "0%": { backgroundPosition: "0% 0%" },
-          "100%": { backgroundPosition: "0% 100%" },
+        pixelBounce: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-4px)" },
         },
       },
     },

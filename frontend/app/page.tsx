@@ -1,167 +1,652 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { ArrowRight, Database, Sparkles, Layers, Cpu, Scale, Gavel, ShieldAlert } from "lucide-react";
+import {
+  Scale,
+  Gavel,
+  ShieldAlert,
+  ArrowRight,
+  Sparkles,
+  Database,
+  Flame,
+  Layers,
+  ChevronRight,
+  BookOpen,
+  CheckCircle2,
+  Terminal,
+  Volume2
+} from "lucide-react";
 
 export default function LandingPage() {
+  const [previewMode, setPreviewMode] = useState<"chamber" | "rpg">("chamber");
+  const [activeSpeaker, setActiveSpeaker] = useState<"advocate" | "judge" | "skeptic">("advocate");
+
   return (
-    <div className="relative flex-1 flex flex-col items-center justify-center px-4 py-12 text-center overflow-hidden bg-[#0a0e17]">
-      {/* Background glow effects */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-gradient-to-tr from-amber-500/10 via-cyan-500/10 to-indigo-500/10 blur-[130px] rounded-full pointer-events-none" />
+    <div className="relative flex-1 flex flex-col items-center overflow-x-hidden bg-[#0a0e17] text-slate-100 select-none pb-20">
+      <style jsx global>{`
+        @keyframes marqueeScroll {
+          0% { transform: translateX(0%); }
+          100% { transform: translateX(-50%); }
+        }
+        @keyframes stickerFloat {
+          0%, 100% { transform: translateY(0) rotate(-2deg); }
+          50% { transform: translateY(-4px) rotate(-1deg); }
+        }
+        @keyframes pixelPulse {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.03); }
+        }
+      `}</style>
 
-      {/* Courtroom Grand Judicial Title */}
-      <div className="flex flex-col items-center gap-2 mb-4 z-10">
-        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#3b2010] to-[#1a0e07] border-2 border-[#d4af37] flex items-center justify-center shadow-[0_0_35px_rgba(212,175,55,0.4)]">
-          <Scale className="w-9 h-9 text-[#d4af37]" />
-        </div>
-        <div className="font-mono text-4xl sm:text-6xl font-black uppercase tracking-widest text-[#d4af37] drop-shadow-[0_2px_15px_rgba(212,175,55,0.4)]">
-          COURTROOM
-        </div>
-        <div className="text-xs sm:text-sm font-mono uppercase tracking-widest text-amber-200/80">
-          Chamber of Personal Conscience • Autonomous Multi-Agent Deliberation
+      {/* ──────────────────────────────────────────────────────────
+       *  TOP NEO-BRUTALIST TICKER MARQUEE
+       * ────────────────────────────────────────────────────────── */}
+      <div className="w-full bg-neo-yellow border-b-4 border-black text-black py-2.5 overflow-hidden whitespace-nowrap shadow-[0_4px_0px_#000] z-20 font-mono text-xs sm:text-sm font-black uppercase tracking-widest">
+        <div className="inline-block animate-[marqueeScroll_20s_linear_infinite]">
+          <span className="mx-4">⚡ COURT IN SESSION ⚡</span>
+          <span className="mx-4">⚖️ ADVERSARIAL TRIAL FOR PERSONAL CHOICES</span>
+          <span className="mx-4">✦ 16-BIT RETRO BENCH</span>
+          <span className="mx-4">🎮 2D POKÉMON RPG CHAMBER PLAN</span>
+          <span className="mx-4">📜 GROUNDED IN YOUR ACTUAL LIVING MEMORIES</span>
+          <span className="mx-4">👨‍⚖️ 2 LAWYERS & 1 JUDGE</span>
+          <span className="mx-4">⚡ OBJECTION! BINDING PRECEDENT</span>
+          <span className="mx-4">⚡ COURT IN SESSION ⚡</span>
+          <span className="mx-4">⚖️ ADVERSARIAL TRIAL FOR PERSONAL CHOICES</span>
+          <span className="mx-4">✦ 16-BIT RETRO BENCH</span>
+          <span className="mx-4">🎮 2D POKÉMON RPG CHAMBER PLAN</span>
+          <span className="mx-4">📜 GROUNDED IN YOUR ACTUAL LIVING MEMORIES</span>
+          <span className="mx-4">👨‍⚖️ 2 LAWYERS & 1 JUDGE</span>
+          <span className="mx-4">⚡ OBJECTION! BINDING PRECEDENT</span>
         </div>
       </div>
 
-      <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#141824] border border-amber-500/30 text-amber-400 font-mono text-xs uppercase tracking-widest mb-6 shadow-xl">
-        <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-        <span>Court In Session: Multi-Agent Personal Decision Arbiter</span>
-      </div>
+      {/* ──────────────────────────────────────────────────────────
+       *  HERO SECTION (PIXEL NEO-BRUTALIST)
+       * ────────────────────────────────────────────────────────── */}
+      <section className="max-w-6xl mx-auto px-4 pt-12 sm:pt-16 pb-12 flex flex-col items-center text-center z-10 w-full">
+        {/* Top Badges & Stickers */}
+        <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
+          <div className="bg-neo-yellow text-black border-3 border-black px-3.5 py-1 text-[11px] font-mono font-black uppercase tracking-wider shadow-[3px_3px_0px_#000] animate-[stickerFloat_3s_infinite_ease-in-out]">
+            ⚖️ VERDICT ARBITER v2.0
+          </div>
+          <div className="bg-[#141d2e] text-neo-green border-3 border-black px-3 py-1 text-[11px] font-mono font-bold uppercase tracking-wider shadow-[3px_3px_0px_#000]">
+            ● 12 VECTOR MEMORIES SYNCED
+          </div>
+          <div className="bg-neo-red text-white border-3 border-black px-3 py-1 text-[11px] font-mono font-bold uppercase tracking-wider shadow-[3px_3px_0px_#000] rotate-1">
+            ⚡ 100% UNBIASED CLASH
+          </div>
+        </div>
 
-      {/* Main Headline */}
-      <h1 className="max-w-3xl text-3xl sm:text-5xl font-black tracking-tight text-white uppercase leading-tight font-sans">
-        ADVERSARIAL DELIBERATION <br />
-        <span className="bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 bg-clip-text text-transparent">
-          IN RETRO 16-BIT PIXEL ART
-        </span>
-      </h1>
+        {/* Big Neo-Brutalist Headline */}
+        <h1 className="max-w-4xl font-sans font-black text-4xl sm:text-6xl md:text-7xl uppercase tracking-tight text-white leading-[1.08] mb-6">
+          YOUR LIFE DECISIONS. <br className="hidden sm:inline" />
+          <span className="relative inline-block mt-2 sm:mt-1">
+            <span className="bg-neo-yellow text-black px-4 py-1.5 border-4 border-black shadow-[6px_6px_0px_#000] inline-block -rotate-1 font-pixel text-xl sm:text-3xl md:text-4xl">
+              PUT ON TRIAL.
+            </span>
+          </span>
+        </h1>
 
-      <p className="mt-4 max-w-2xl text-sm sm:text-base text-slate-300 font-sans leading-relaxed">
-        Pits the <span className="text-emerald-400 font-bold">Advocate</span> and{" "}
-        <span className="text-rose-400 font-bold">Skeptic</span> against each other before the{" "}
-        <span className="text-amber-400 font-bold">Chief Justice</span>, deliberating in an interactive pixel judicial courtroom chamber using your actual values, regrets, and vector memories.
-      </p>
+        {/* Subtitle Card */}
+        <div className="max-w-2xl bg-[#141b29] border-3 border-black p-5 shadow-[6px_6px_0px_#000] mb-8 text-left sm:text-center">
+          <p className="font-mono text-xs sm:text-sm text-slate-200 leading-relaxed">
+            Stop agonizing in circles. Submit your toughest dilemma to the{" "}
+            <span className="text-neo-yellow font-bold">Chamber of Personal Conscience</span>.
+            Watch the <span className="text-neo-green font-bold">Advocate</span> and{" "}
+            <span className="text-neo-red font-bold">Skeptic</span> fiercely cross-examine your case using your actual values, regrets, and vector memories before the{" "}
+            <span className="text-amber-300 font-bold">Chief Justice</span> slams the gavel with a binding verdict.
+          </p>
+        </div>
 
-      {/* CTA Buttons */}
-      <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 z-10 font-mono text-xs uppercase tracking-wider">
-        <Link
-          href="/courtroom"
-          className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 text-slate-950 font-bold shadow-lg shadow-amber-500/25 hover:brightness-110 transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
-        >
-          <Scale className="w-4 h-4 text-slate-950" />
-          <span>Launch Courtroom Chamber</span>
-          <ArrowRight className="w-4 h-4 text-slate-950" />
-        </Link>
+        {/* Tactile Neo-Brutalist CTA Buttons */}
+        <div className="flex flex-wrap items-center justify-center gap-4 font-mono text-xs sm:text-sm uppercase font-black tracking-wider">
+          <Link
+            href="/courtroom"
+            className="neo-btn bg-neo-yellow text-black px-8 py-4 flex items-center gap-3 text-sm sm:text-base border-3 border-black shadow-[6px_6px_0px_#000] hover:bg-amber-300 active:translate-x-[2px] active:translate-y-[2px]"
+          >
+            <Scale className="w-5 h-5 stroke-[2.5]" />
+            <span>Enter Courtroom Chamber</span>
+            <ArrowRight className="w-5 h-5 stroke-[2.5]" />
+          </Link>
 
-        <Link
-          href="/profile"
-          className="px-6 py-3.5 rounded-xl bg-[#141824] border border-[#2d3442] text-slate-200 hover:border-amber-500/50 hover:text-amber-300 transition-all flex items-center gap-2"
-        >
-          <Database className="w-4 h-4 text-amber-400" />
-          <span>Inspect Living Profile</span>
-        </Link>
-      </div>
+          <Link
+            href="/profile"
+            className="neo-btn bg-[#182236] text-white px-6 py-4 flex items-center gap-2.5 border-3 border-black shadow-[6px_6px_0px_#000] hover:bg-[#202d47] active:translate-x-[2px] active:translate-y-[2px]"
+          >
+            <Database className="w-4 h-4 text-neo-green" />
+            <span>Inspect Living Dossier</span>
+          </Link>
+        </div>
+      </section>
 
-      {/* 3 Judicial Characters Showcase */}
-      <div className="mt-14 w-full max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-5 text-left z-10">
-        {/* Counselor / Advocate */}
-        <div className="rounded-xl border border-emerald-500/30 bg-[#121622]/90 backdrop-blur-xl p-5 hover:border-emerald-400/60 transition-all group">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="relative w-12 h-14 flex-shrink-0">
-              <Image
-                src="/sprite_cutout_advocate.png"
-                alt="The Advocate"
-                fill
-                className="object-contain pixelated group-hover:scale-110 transition-transform"
-              />
+      {/* ──────────────────────────────────────────────────────────
+       *  INTERACTIVE COURTROOM PREVIEW (THE HERO VISUAL STAGE)
+       * ────────────────────────────────────────────────────────── */}
+      <section className="max-w-5xl mx-auto px-4 w-full mb-20 z-10">
+        <div className="bg-[#101624] border-4 border-black shadow-[10px_10px_0px_#000] rounded-none overflow-hidden">
+          {/* Window Title Bar */}
+          <div className="bg-neo-yellow border-b-4 border-black px-4 py-3 flex flex-wrap items-center justify-between gap-3 text-black">
+            <div className="flex items-center gap-2">
+              <span className="w-3.5 h-3.5 bg-neo-red border-2 border-black inline-block" />
+              <span className="w-3.5 h-3.5 bg-black inline-block" />
+              <span className="w-3.5 h-3.5 bg-neo-green border-2 border-black inline-block" />
+              <span className="font-pixel text-[11px] sm:text-xs font-black uppercase tracking-wider ml-2">
+                COURT_CHAMBER_DISPLAY.EXE
+              </span>
             </div>
-            <div>
-              <div className="text-xs uppercase font-mono tracking-widest font-bold text-emerald-400 flex items-center gap-1.5">
-                <Scale className="w-3.5 h-3.5" />
-                The Advocate
+
+            {/* View Mode Tabs */}
+            <div className="flex items-center gap-1.5 font-mono text-[11px] font-black uppercase">
+              <button
+                onClick={() => setPreviewMode("chamber")}
+                className={`px-3 py-1 border-2 border-black transition-all ${
+                  previewMode === "chamber"
+                    ? "bg-black text-neo-yellow shadow-[2px_2px_0px_#000]"
+                    : "bg-white text-black hover:bg-amber-100"
+                }`}
+              >
+                16-Bit Front Chamber
+              </button>
+              <button
+                onClick={() => setPreviewMode("rpg")}
+                className={`px-3 py-1 border-2 border-black transition-all ${
+                  previewMode === "rpg"
+                    ? "bg-black text-neo-green shadow-[2px_2px_0px_#000]"
+                    : "bg-white text-black hover:bg-emerald-100"
+                }`}
+              >
+                2D Nintendo RPG Map
+              </button>
+            </div>
+          </div>
+
+          {/* Main Visual Display */}
+          <div className="relative aspect-video w-full bg-black overflow-hidden group">
+            {previewMode === "chamber" ? (
+              <img
+                src="/courtroom_pixel_reference.jpg"
+                alt="16-Bit Pixel Courtroom"
+                className="w-full h-full object-cover pixelated"
+              />
+            ) : (
+              <img
+                src="/courtroom_2d_rpg_plan.jpg"
+                alt="2D Nintendo RPG Courtroom Map"
+                className="w-full h-full object-cover pixelated"
+              />
+            )}
+
+            {/* Interactive Preview Dialogue Overlay */}
+            <div className="absolute bottom-4 left-4 right-4 bg-[#0d1524]/95 border-3 border-black shadow-[6px_6px_0px_#000] p-3.5 sm:p-4 backdrop-blur">
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <div className="flex items-center gap-2">
+                  <span
+                    className={`font-pixel text-[10px] px-2 py-0.5 border-2 border-black font-black uppercase ${
+                      activeSpeaker === "advocate"
+                        ? "bg-neo-green text-black"
+                        : activeSpeaker === "skeptic"
+                        ? "bg-neo-red text-white"
+                        : "bg-neo-yellow text-black"
+                    }`}
+                  >
+                    {activeSpeaker === "advocate"
+                      ? "THE ADVOCATE"
+                      : activeSpeaker === "skeptic"
+                      ? "THE SKEPTIC"
+                      : "THE CHIEF JUSTICE"}
+                  </span>
+                  <span className="font-mono text-[10px] text-amber-200/60 uppercase hidden sm:inline">
+                    {activeSpeaker === "advocate"
+                      ? "Counsel for Opportunity"
+                      : activeSpeaker === "skeptic"
+                      ? "Counsel for Caution"
+                      : "Supreme Verdict"}
+                  </span>
+                </div>
+
+                {/* Speaker Switcher Pills */}
+                <div className="flex items-center gap-1 font-mono text-[9px] font-bold uppercase">
+                  <button
+                    onClick={() => setActiveSpeaker("advocate")}
+                    className={`px-2 py-0.5 border border-black ${
+                      activeSpeaker === "advocate"
+                        ? "bg-neo-green text-black"
+                        : "bg-[#1c263b] text-slate-300"
+                    }`}
+                  >
+                    Advocate
+                  </button>
+                  <button
+                    onClick={() => setActiveSpeaker("skeptic")}
+                    className={`px-2 py-0.5 border border-black ${
+                      activeSpeaker === "skeptic"
+                        ? "bg-neo-red text-white"
+                        : "bg-[#1c263b] text-slate-300"
+                    }`}
+                  >
+                    Skeptic
+                  </button>
+                  <button
+                    onClick={() => setActiveSpeaker("judge")}
+                    className={`px-2 py-0.5 border border-black ${
+                      activeSpeaker === "judge"
+                        ? "bg-neo-yellow text-black"
+                        : "bg-[#1c263b] text-slate-300"
+                    }`}
+                  >
+                    Judge
+                  </button>
+                </div>
               </div>
-              <div className="text-[10px] text-slate-400 font-mono">
+
+              <p className="font-sans text-xs sm:text-sm text-slate-100 leading-relaxed italic">
+                {activeSpeaker === "advocate" &&
+                  "“Inaction is the greatest liability. Citing your early startup memories, every major leap was preceded by fear. We move to take the offer!”"}
+                {activeSpeaker === "skeptic" &&
+                  "“Objection! The Advocate willfully ignores the runway crisis from 2022. Without a 12-month financial cushion, this leap invites catastrophic burnout!”"}
+                {activeSpeaker === "judge" &&
+                  "“Order in the court. The bench has examined the evidence in user.md. Judgment is rendered: Proceed with caution, provided milestone gates are met.”"}
+              </p>
+            </div>
+          </div>
+
+          {/* Bottom Action Footer */}
+          <div className="bg-[#151c2a] border-t-4 border-black px-4 py-3 flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
+            <div className="flex items-center gap-2 text-slate-300">
+              <span className="w-2.5 h-2.5 bg-neo-green border border-black inline-block animate-pulse" />
+              <span>Interactive 16-Bit Engine • Built with Web Audio & Vector Memory</span>
+            </div>
+            <Link
+              href="/courtroom"
+              className="neo-btn bg-neo-green text-black font-bold px-4 py-1.5 border-2 border-black shadow-[3px_3px_0px_#000] flex items-center gap-1.5 uppercase tracking-wider text-[11px]"
+            >
+              <span>Try Live in Chamber</span>
+              <ChevronRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ──────────────────────────────────────────────────────────
+       *  3 NEO-BRUTALIST AGENT DOSSIER CARDS
+       * ────────────────────────────────────────────────────────── */}
+      <section className="max-w-6xl mx-auto px-4 w-full mb-20 z-10">
+        <div className="text-center mb-10">
+          <div className="inline-block bg-neo-yellow text-black border-3 border-black px-3.5 py-1 text-xs font-mono font-black uppercase tracking-widest shadow-[3px_3px_0px_#000] -rotate-1 mb-3">
+            ⚖️ THE THREE TRIBUNAL AGENTS
+          </div>
+          <h2 className="font-sans text-3xl sm:text-5xl font-black uppercase tracking-tight text-white">
+            MEET YOUR PERSONAL COURT
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* 1. THE ADVOCATE */}
+          <div className="bg-[#121927] border-4 border-black shadow-[8px_8px_0px_#05F196] p-6 flex flex-col justify-between group hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all">
+            <div>
+              <div className="flex items-center justify-between border-b-3 border-black pb-4 mb-4">
+                <div className="bg-neo-green text-black font-pixel text-[10px] px-2.5 py-1 border-2 border-black font-black uppercase shadow-[2px_2px_0px_#000]">
+                  THE ADVOCATE
+                </div>
+                <div className="font-mono text-[10px] font-bold text-neo-green uppercase">
+                  Aggressive Action
+                </div>
+              </div>
+
+              {/* Pixel Avatar Box */}
+              <div className="w-24 h-28 mx-auto bg-[#1a253a] border-3 border-black p-1 shadow-[4px_4px_0px_#000] mb-5 flex items-center justify-center">
+                <img
+                  src="/sprite_cutout_advocate.png"
+                  alt="The Advocate"
+                  className="w-full h-full object-contain pixelated group-hover:scale-110 transition-transform"
+                />
+              </div>
+
+              <div className="font-mono text-xs uppercase font-bold text-neo-green mb-1">
                 Counsel for Opportunity
               </div>
+              <p className="font-sans text-xs text-slate-300 leading-relaxed mb-4">
+                Builds the offensive case FOR growth, risk, and career leaps. Scours your memory archive for past moments where hesitation cost you valuable momentum.
+              </p>
+
+              {/* Neo-brutalist Stat Bars */}
+              <div className="space-y-2 font-mono text-[10px] uppercase font-bold border-t-2 border-black pt-3">
+                <div className="flex justify-between text-slate-300">
+                  <span>Growth Bias</span>
+                  <span className="text-neo-green">98%</span>
+                </div>
+                <div className="w-full h-2.5 bg-black border border-black p-0.5">
+                  <div className="h-full bg-neo-green w-[98%]" />
+                </div>
+                <div className="flex justify-between text-slate-300">
+                  <span>Precedent Recall</span>
+                  <span className="text-neo-green">92%</span>
+                </div>
+                <div className="w-full h-2.5 bg-black border border-black p-0.5">
+                  <div className="h-full bg-neo-green w-[92%]" />
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6 pt-3 border-t-2 border-black/40 font-mono text-[10px] text-neo-green font-bold flex items-center gap-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5" />
+              <span>Quotes your core values as evidence</span>
             </div>
           </div>
-          <p className="text-xs text-slate-300 leading-relaxed font-sans">
-            Builds the aggressive case FOR action. Cites your core values and past regrets of inaction. Quotes your own history as evidence.
-          </p>
-        </div>
 
-        {/* Chief Justice */}
-        <div className="rounded-xl border border-amber-500/40 bg-[#121622]/90 backdrop-blur-xl p-5 hover:border-amber-400/70 transition-all group shadow-glow-amber/10">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="relative w-12 h-14 flex-shrink-0">
-              <Image
-                src="/sprite_cutout_judge.png"
-                alt="Chief Justice"
-                fill
-                className="object-contain pixelated group-hover:scale-110 transition-transform"
-              />
-            </div>
+          {/* 2. THE CHIEF JUSTICE */}
+          <div className="bg-[#121927] border-4 border-black shadow-[8px_8px_0px_#FFE600] p-6 flex flex-col justify-between group hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all">
             <div>
-              <div className="text-xs uppercase font-mono tracking-widest font-bold text-amber-400 flex items-center gap-1.5">
-                <Gavel className="w-3.5 h-3.5" />
-                The Chief Justice
+              <div className="flex items-center justify-between border-b-3 border-black pb-4 mb-4">
+                <div className="bg-neo-yellow text-black font-pixel text-[10px] px-2.5 py-1 border-2 border-black font-black uppercase shadow-[2px_2px_0px_#000]">
+                  CHIEF JUSTICE
+                </div>
+                <div className="font-mono text-[10px] font-bold text-neo-yellow uppercase">
+                  Supreme Ruling
+                </div>
               </div>
-              <div className="text-[10px] text-slate-400 font-mono">
-                Arbiter of History
+
+              {/* Pixel Avatar Box */}
+              <div className="w-24 h-28 mx-auto bg-[#1a253a] border-3 border-black p-1 shadow-[4px_4px_0px_#000] mb-5 flex items-center justify-center">
+                <img
+                  src="/sprite_cutout_judge.png"
+                  alt="Chief Justice"
+                  className="w-full h-full object-contain pixelated group-hover:scale-110 transition-transform"
+                />
               </div>
+
+              <div className="font-mono text-xs uppercase font-bold text-neo-yellow mb-1">
+                Supreme Arbiter of History
+              </div>
+              <p className="font-sans text-xs text-slate-300 leading-relaxed mb-4">
+                Weighs the passionate debate against your complete personal profile in <code className="text-neo-yellow font-mono">user.md</code>. Slams the gavel to issue a binding, clear verdict.
+              </p>
+
+              {/* Neo-brutalist Stat Bars */}
+              <div className="space-y-2 font-mono text-[10px] uppercase font-bold border-t-2 border-black pt-3">
+                <div className="flex justify-between text-slate-300">
+                  <span>Impartiality</span>
+                  <span className="text-neo-yellow">100%</span>
+                </div>
+                <div className="w-full h-2.5 bg-black border border-black p-0.5">
+                  <div className="h-full bg-neo-yellow w-[100%]" />
+                </div>
+                <div className="flex justify-between text-slate-300">
+                  <span>Gavel Authority</span>
+                  <span className="text-neo-yellow">MAX</span>
+                </div>
+                <div className="w-full h-2.5 bg-black border border-black p-0.5">
+                  <div className="h-full bg-neo-yellow w-[100%]" />
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6 pt-3 border-t-2 border-black/40 font-mono text-[10px] text-neo-yellow font-bold flex items-center gap-1.5">
+              <Gavel className="w-3.5 h-3.5" />
+              <span>Delivers definitive life rulings</span>
             </div>
           </div>
-          <p className="text-xs text-slate-300 leading-relaxed font-sans">
-            Weighs both arguments against your living profile in <code className="text-amber-300 font-mono">user.md</code>. Strikes the gavel and issues a definitive personal verdict.
-          </p>
-        </div>
 
-        {/* Skeptic */}
-        <div className="rounded-xl border border-rose-500/30 bg-[#121622]/90 backdrop-blur-xl p-5 hover:border-rose-400/60 transition-all group">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="relative w-12 h-14 flex-shrink-0">
-              <Image
-                src="/sprite_cutout_skeptic.png"
-                alt="The Skeptic"
-                fill
-                className="object-contain pixelated group-hover:scale-110 transition-transform"
-              />
-            </div>
+          {/* 3. THE SKEPTIC */}
+          <div className="bg-[#121927] border-4 border-black shadow-[8px_8px_0px_#FF3366] p-6 flex flex-col justify-between group hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all">
             <div>
-              <div className="text-xs uppercase font-mono tracking-widest font-bold text-rose-400 flex items-center gap-1.5">
-                <ShieldAlert className="w-3.5 h-3.5" />
-                The Skeptic
+              <div className="flex items-center justify-between border-b-3 border-black pb-4 mb-4">
+                <div className="bg-neo-red text-white font-pixel text-[10px] px-2.5 py-1 border-2 border-black font-black uppercase shadow-[2px_2px_0px_#000]">
+                  THE SKEPTIC
+                </div>
+                <div className="font-mono text-[10px] font-bold text-neo-red uppercase">
+                  Risk Defense
+                </div>
               </div>
-              <div className="text-[10px] text-slate-400 font-mono">
+
+              {/* Pixel Avatar Box */}
+              <div className="w-24 h-28 mx-auto bg-[#1a253a] border-3 border-black p-1 shadow-[4px_4px_0px_#000] mb-5 flex items-center justify-center">
+                <img
+                  src="/sprite_cutout_skeptic.png"
+                  alt="The Skeptic"
+                  className="w-full h-full object-contain pixelated group-hover:scale-110 transition-transform"
+                />
+              </div>
+
+              <div className="font-mono text-xs uppercase font-bold text-neo-red mb-1">
                 Counsel for Caution
               </div>
+              <p className="font-sans text-xs text-slate-300 leading-relaxed mb-4">
+                Fiercely objects to impulsive moves. Protects your financial runway, mental stability, and boundaries by recalling past failures caused by rushing in unprepared.
+              </p>
+
+              {/* Neo-brutalist Stat Bars */}
+              <div className="space-y-2 font-mono text-[10px] uppercase font-bold border-t-2 border-black pt-3">
+                <div className="flex justify-between text-slate-300">
+                  <span>Critical Scrutiny</span>
+                  <span className="text-neo-red">96%</span>
+                </div>
+                <div className="w-full h-2.5 bg-black border border-black p-0.5">
+                  <div className="h-full bg-neo-red w-[96%]" />
+                </div>
+                <div className="flex justify-between text-slate-300">
+                  <span>Burnout Shield</span>
+                  <span className="text-neo-red">99%</span>
+                </div>
+                <div className="w-full h-2.5 bg-black border border-black p-0.5">
+                  <div className="h-full bg-neo-red w-[99%]" />
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6 pt-3 border-t-2 border-black/40 font-mono text-[10px] text-neo-red font-bold flex items-center gap-1.5">
+              <ShieldAlert className="w-3.5 h-3.5" />
+              <span>Prevents reckless overcommitments</span>
             </div>
           </div>
-          <p className="text-xs text-slate-300 leading-relaxed font-sans">
-            Builds the counter-case. Directly rebuts the Advocate. Quotes past boundaries and hard-learned lessons about stress and balance.
-          </p>
         </div>
-      </div>
+      </section>
 
-      {/* Tech Stack Pillars */}
-      <div className="mt-12 pt-6 border-t border-slate-800/80 w-full max-w-4xl flex flex-wrap items-center justify-around gap-6 text-slate-400 font-mono text-xs">
-        <div className="flex items-center gap-2">
-          <Scale className="w-4 h-4 text-amber-400" />
-          <span>16-Bit Judicial Chamber</span>
+      {/* ──────────────────────────────────────────────────────────
+       *  4-STEP JUDICIAL TRIAL WORKFLOW (NEO-BRUTALIST TILES)
+       * ────────────────────────────────────────────────────────── */}
+      <section className="max-w-6xl mx-auto px-4 w-full mb-20 z-10">
+        <div className="bg-[#101625] border-4 border-black shadow-[10px_10px_0px_#000] p-6 sm:p-10">
+          <div className="text-left mb-8 border-b-4 border-black pb-6">
+            <span className="bg-neo-yellow text-black px-3 py-1 font-pixel text-xs font-black uppercase border-2 border-black shadow-[3px_3px_0px_#000] inline-block -rotate-1 mb-2">
+              HOW IT WORKS
+            </span>
+            <h2 className="font-sans text-2xl sm:text-4xl font-black uppercase text-white tracking-tight">
+              FROM RAW ANXIETY TO DEFINITIVE VERDICT
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {/* Step 1 */}
+            <div className="bg-[#182133] border-3 border-black p-5 shadow-[4px_4px_0px_#000] flex flex-col justify-between">
+              <div>
+                <div className="font-pixel text-2xl font-black text-neo-yellow mb-2">01</div>
+                <div className="font-mono text-xs font-bold uppercase text-white mb-2">
+                  Summon Dilemma
+                </div>
+                <p className="font-sans text-xs text-slate-300 leading-relaxed">
+                  Type or voice your internal conflict. Whether it's taking a seed round, quitting your job, or moving cities.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t-2 border-black font-mono text-[10px] text-neo-yellow uppercase font-bold">
+                Docket Initiated
+              </div>
+            </div>
+
+            {/* Step 2 */}
+            <div className="bg-[#182133] border-3 border-black p-5 shadow-[4px_4px_0px_#000] flex flex-col justify-between">
+              <div>
+                <div className="font-pixel text-2xl font-black text-neo-green mb-2">02</div>
+                <div className="font-mono text-xs font-bold uppercase text-white mb-2">
+                  Subpoena Records
+                </div>
+                <p className="font-sans text-xs text-slate-300 leading-relaxed">
+                  Qdrant semantic vector search retrieves your actual past journals, lessons, failures, and personal principles.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t-2 border-black font-mono text-[10px] text-neo-green uppercase font-bold">
+                No Hallucination
+              </div>
+            </div>
+
+            {/* Step 3 */}
+            <div className="bg-[#182133] border-3 border-black p-5 shadow-[4px_4px_0px_#000] flex flex-col justify-between">
+              <div>
+                <div className="font-pixel text-2xl font-black text-neo-red mb-2">03</div>
+                <div className="font-mono text-xs font-bold uppercase text-white mb-2">
+                  Adversarial Clash
+                </div>
+                <p className="font-sans text-xs text-slate-300 leading-relaxed">
+                  The Advocate and Skeptic enter the arena, quoting your own memories against each other in real-time cross-examination.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t-2 border-black font-mono text-[10px] text-neo-red uppercase font-bold">
+                Fierce Cross-Exam
+              </div>
+            </div>
+
+            {/* Step 4 */}
+            <div className="bg-[#182133] border-3 border-black p-5 shadow-[4px_4px_0px_#000] flex flex-col justify-between">
+              <div>
+                <div className="font-pixel text-2xl font-black text-neo-yellow mb-2">04</div>
+                <div className="font-mono text-xs font-bold uppercase text-white mb-2">
+                  Binding Verdict
+                </div>
+                <p className="font-sans text-xs text-slate-300 leading-relaxed">
+                  The Chief Justice issues a decisive ruling with specific conditionality and appends the outcome to your memory base.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t-2 border-black font-mono text-[10px] text-neo-yellow uppercase font-bold">
+                Gavel Slammed
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          <Layers className="w-4 h-4 text-cyan-400" />
-          <span>2D Pixel RPG Floor Plan</span>
+      </section>
+
+      {/* ──────────────────────────────────────────────────────────
+       *  SAMPLE CASE DOCKETS (NEO-BRUTALIST CASE FILES)
+       * ────────────────────────────────────────────────────────── */}
+      <section className="max-w-6xl mx-auto px-4 w-full mb-16 z-10">
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+          <div className="flex items-center gap-2">
+            <span className="bg-neo-yellow text-black px-3 py-1 font-pixel text-xs font-black uppercase border-2 border-black shadow-[2px_2px_0px_#000]">
+              CASE DOCKETS
+            </span>
+            <span className="font-mono text-xs text-slate-400 uppercase tracking-widest">
+              Ready for Deliberation
+            </span>
+          </div>
+          <Link
+            href="/courtroom"
+            className="font-mono text-xs text-neo-yellow font-bold hover:underline flex items-center gap-1"
+          >
+            <span>Open Custom Case</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
         </div>
-        <div className="flex items-center gap-2">
-          <Cpu className="w-4 h-4 text-emerald-400" />
-          <span>Lyzr Multi-Agent Deliberation</span>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {/* Case 1 */}
+          <div className="bg-[#141b29] border-3 border-black p-5 shadow-[5px_5px_0px_#000] flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between text-neo-yellow font-mono text-[10px] font-black uppercase mb-2">
+                <span>DOCKET #402</span>
+                <span className="px-1.5 py-0.2 bg-neo-yellow/20 border border-neo-yellow text-neo-yellow">
+                  CAREER
+                </span>
+              </div>
+              <h3 className="font-mono text-sm font-bold text-white mb-3">
+                “Should I quit my senior engineering role to build my AI startup full-time?”
+              </h3>
+              <p className="font-sans text-xs text-slate-300 leading-relaxed mb-4">
+                Advocate cites your 2021 regret of not launching earlier. Skeptic objects based on current mortgage and 6-month burn rate.
+              </p>
+            </div>
+            <Link
+              href="/courtroom"
+              className="neo-btn w-full bg-neo-yellow text-black font-mono font-bold text-xs uppercase py-2 text-center border-2 border-black shadow-[3px_3px_0px_#000] flex items-center justify-center gap-1.5"
+            >
+              <span>Argue This Case</span>
+              <ChevronRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+
+          {/* Case 2 */}
+          <div className="bg-[#141b29] border-3 border-black p-5 shadow-[5px_5px_0px_#000] flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between text-neo-green font-mono text-[10px] font-black uppercase mb-2">
+                <span>DOCKET #718</span>
+                <span className="px-1.5 py-0.2 bg-neo-green/20 border border-neo-green text-neo-green">
+                  FINANCE
+                </span>
+              </div>
+              <h3 className="font-mono text-sm font-bold text-white mb-3">
+                “Should I buy a property in Bangalore now or keep 100% of liquid assets in equity?”
+              </h3>
+              <p className="font-sans text-xs text-slate-300 leading-relaxed mb-4">
+                Advocate argues for family grounding and inflation hedge. Skeptic highlights liquidity constraints and high interest rates.
+              </p>
+            </div>
+            <Link
+              href="/courtroom"
+              className="neo-btn w-full bg-neo-green text-black font-mono font-bold text-xs uppercase py-2 text-center border-2 border-black shadow-[3px_3px_0px_#000] flex items-center justify-center gap-1.5"
+            >
+              <span>Argue This Case</span>
+              <ChevronRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+
+          {/* Case 3 */}
+          <div className="bg-[#141b29] border-3 border-black p-5 shadow-[5px_5px_0px_#000] flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between text-neo-red font-mono text-[10px] font-black uppercase mb-2">
+                <span>DOCKET #109</span>
+                <span className="px-1.5 py-0.2 bg-neo-red/20 border border-neo-red text-neo-red">
+                  PARTNERSHIP
+                </span>
+              </div>
+              <h3 className="font-mono text-sm font-bold text-white mb-3">
+                “Should I part ways with a non-technical cofounder who is lagging on execution?”
+              </h3>
+              <p className="font-sans text-xs text-slate-300 leading-relaxed mb-4">
+                Advocate argues that speed is the only startup moat. Skeptic recalls how legal dispute in 2020 almost destroyed the prior project.
+              </p>
+            </div>
+            <Link
+              href="/courtroom"
+              className="neo-btn w-full bg-neo-red text-white font-mono font-bold text-xs uppercase py-2 text-center border-2 border-black shadow-[3px_3px_0px_#000] flex items-center justify-center gap-1.5"
+            >
+              <span>Argue This Case</span>
+              <ChevronRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          <Database className="w-4 h-4 text-violet-400" />
-          <span>Qdrant Vector Retrieval</span>
+      </section>
+
+      {/* ──────────────────────────────────────────────────────────
+       *  BOTTOM CALLOUT BANNER (NEO-BRUTALIST GOLD TILE)
+       * ────────────────────────────────────────────────────────── */}
+      <section className="max-w-4xl mx-auto px-4 w-full z-10">
+        <div className="bg-neo-yellow text-black border-4 border-black p-8 sm:p-10 shadow-[8px_8px_0px_#000] text-center flex flex-col items-center gap-4">
+          <div className="w-12 h-12 bg-black text-neo-yellow border-2 border-black flex items-center justify-center shadow-[3px_3px_0px_#000]">
+            <Gavel className="w-7 h-7 stroke-[2.5]" />
+          </div>
+          <h2 className="font-sans text-2xl sm:text-4xl font-black uppercase tracking-tight">
+            STOP OVERTHINKING ALONE.
+          </h2>
+          <p className="font-mono text-xs sm:text-sm max-w-lg leading-relaxed font-bold">
+            Let your living memories speak. Bring your question before the bench and get an adversarial, transparent resolution.
+          </p>
+          <Link
+            href="/courtroom"
+            className="neo-btn bg-black text-neo-yellow px-8 py-3.5 font-mono text-sm uppercase font-black tracking-wider border-3 border-black shadow-[4px_4px_0px_#fff] hover:bg-slate-900 active:translate-x-[2px] active:translate-y-[2px] transition-all flex items-center gap-2"
+          >
+            <span>Open Court Docket</span>
+            <ArrowRight className="w-4 h-4 stroke-[2.5]" />
+          </Link>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

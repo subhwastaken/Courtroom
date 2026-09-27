@@ -115,52 +115,52 @@ export default function CourtroomPage() {
     : "Chamber Standby";
 
   return (
-    <div className="relative min-h-[calc(100vh-3.5rem)] flex flex-col justify-between overflow-x-hidden pb-16 bg-[#0c0806]">
+    <div className="relative min-h-[calc(100vh-3.5rem)] flex flex-col justify-between overflow-x-hidden pb-16 bg-[#090d16]">
       {/* Top Courtroom Header Banner */}
-      <div className="w-full bg-[#160e09] border-b border-[#3d2112] px-4 py-3.5 shadow-lg">
+      <div className="w-full bg-[#0d131f] border-b-4 border-black px-4 py-3 shadow-[0_4px_0px_#000]">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
           {/* Logo & Subtitle */}
           <div className="flex items-center gap-3.5">
-            <div className="w-10 h-10 rounded-xl bg-[#26150b] border-2 border-[#d4af37]/60 flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.3)]">
-              <Scale className="w-6 h-6 text-[#d4af37]" />
+            <div className="w-10 h-10 bg-neo-yellow border-3 border-black flex items-center justify-center shadow-[3px_3px_0px_#000]">
+              <Scale className="w-6 h-6 text-black stroke-[2.5]" />
             </div>
             <div>
-              <div className="font-mono text-sm font-bold uppercase tracking-widest text-[#d4af37] flex items-center gap-2">
+              <div className="font-mono text-sm font-black uppercase tracking-widest text-white flex items-center gap-2">
                 <span>Chamber of Personal Conscience</span>
-                <span className="text-[10px] px-2 py-0.5 rounded bg-[#3d2112] text-amber-200 border border-[#d4af37]/30">
+                <span className="text-[10px] px-2 py-0.5 bg-neo-yellow text-black border-2 border-black font-bold shadow-[2px_2px_0px_#000] -rotate-1">
                   COURT IN SESSION
                 </span>
               </div>
-              <div className="text-[11px] font-mono text-amber-200/60">
+              <div className="text-[11px] font-mono text-amber-200/70">
                 Adversarial Deliberation Engine • Grounded in Living Personal History
               </div>
             </div>
           </div>
 
-          {/* View Mode Switcher: 3D Courtroom vs 2D Floor Plan */}
-          <div className="flex items-center gap-2 bg-[#100905] border border-[#3d2112] p-1 rounded-xl font-mono text-xs">
+          {/* View Mode Switcher: 16-Bit Chamber vs 2D RPG Floor Plan */}
+          <div className="flex items-center gap-1.5 bg-[#131b29] border-3 border-black p-1 shadow-[3px_3px_0px_#000] font-mono text-xs">
             <button
               onClick={() => setViewMode("3d")}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 border-2 border-black font-black uppercase transition-all ${
                 viewMode === "3d"
-                  ? "bg-amber-500 text-slate-950 font-bold shadow-md"
-                  : "text-amber-200/60 hover:text-white"
+                  ? "bg-neo-yellow text-black shadow-[2px_2px_0px_#000] translate-x-[-1px] translate-y-[-1px]"
+                  : "bg-transparent text-slate-300 hover:text-white"
               }`}
             >
               <Scale className="w-3.5 h-3.5" />
-              <span>Courtroom Chamber</span>
+              <span>16-Bit Chamber</span>
             </button>
 
             <button
               onClick={() => setViewMode("2d")}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 border-2 border-black font-black uppercase transition-all ${
                 viewMode === "2d"
-                  ? "bg-amber-500 text-slate-950 font-bold shadow-md"
-                  : "text-amber-200/60 hover:text-white"
+                  ? "bg-neo-green text-black shadow-[2px_2px_0px_#000] translate-x-[-1px] translate-y-[-1px]"
+                  : "bg-transparent text-slate-300 hover:text-white"
               }`}
             >
               <Layers className="w-3.5 h-3.5" />
-              <span>2D Chamber Plan</span>
+              <span>2D RPG Plan</span>
             </button>
           </div>
         </div>

@@ -1,15 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Scale, User, Volume2, VolumeX, Sparkles, Box } from "lucide-react";
+import { Scale, User, Box, Sparkles, Terminal, Flame } from "lucide-react";
 import { fetchHealth } from "@/lib/api";
 
 export function Navbar() {
   const pathname = usePathname();
-  const [memoriesCount, setMemoriesCount] = useState<number>(8);
-  const [soundEnabled, setSoundEnabled] = useState(true);
+  const [memoriesCount, setMemoriesCount] = useState<number>(12);
 
   useEffect(() => {
     fetchHealth()
@@ -20,71 +18,71 @@ export function Navbar() {
   }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-[#2d3442] bg-[#0c1017]/95 backdrop-blur-xl">
-      <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
-        {/* Brand with Courtroom Judicial Logo */}
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#3b2010] to-[#1a0e07] border border-[#d4af37]/60 flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.35)] group-hover:scale-105 transition-transform">
-            <Scale className="w-4 h-4 text-[#d4af37]" />
+    <header className="sticky top-0 z-50 w-full border-b-4 border-black bg-[#0e131f] shadow-[0_4px_0px_#000]">
+      <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
+        {/* Brand with Neo-Brutalist Pixel Badge */}
+        <Link href="/" className="flex items-center gap-3 group select-none">
+          <div className="w-10 h-10 bg-neo-yellow border-3 border-black flex items-center justify-center shadow-[3px_3px_0px_#000] group-hover:translate-x-[-1px] group-hover:translate-y-[-1px] group-hover:shadow-[4px_4px_0px_#000] transition-all">
+            <Scale className="w-6 h-6 text-black stroke-[2.5]" />
           </div>
           <div>
-            <div className="font-mono text-xs font-black tracking-widest uppercase text-slate-100 flex items-center gap-1.5">
-              <span>Courtroom</span>
-              <span className="text-[9px] px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">
-                Pixel Chamber
+            <div className="flex items-center gap-2">
+              <span className="font-pixel text-xs sm:text-sm font-black tracking-wider text-white uppercase drop-shadow-[2px_2px_0px_#000]">
+                COURTROOM
+              </span>
+              <span className="hidden sm:inline-block font-mono text-[9px] font-black uppercase px-1.5 py-0.2 bg-neo-green text-black border-2 border-black shadow-[2px_2px_0px_#000] -rotate-2">
+                16-BIT BENCH
               </span>
             </div>
-            <div className="text-[10px] font-mono text-slate-400">
-              Autonomous Judicial Arbiter
+            <div className="font-mono text-[10px] text-amber-200/60 uppercase tracking-widest hidden sm:block">
+              Autonomous Life-Decision Engine
             </div>
           </div>
         </Link>
 
-        {/* Center Nav */}
-        <nav className="flex items-center gap-1.5 sm:gap-3">
+        {/* Center Nav: Chunky Neo-brutalist Pills */}
+        <nav className="flex items-center gap-2 sm:gap-3">
           <Link
             href="/courtroom"
-            className={`px-3 py-1.5 rounded-lg font-mono text-xs uppercase tracking-wider transition-all flex items-center gap-1.5 ${
+            className={`px-3 sm:px-4 py-1.5 font-mono text-xs uppercase tracking-wider font-bold transition-all border-2 border-black flex items-center gap-1.5 ${
               pathname === "/courtroom"
-                ? "bg-amber-500 text-slate-950 font-bold shadow-md"
-                : "text-slate-300 hover:text-white hover:bg-[#1a2130]"
+                ? "bg-neo-yellow text-black shadow-[3px_3px_0px_#000] translate-x-[-1px] translate-y-[-1px]"
+                : "bg-[#182030] text-slate-200 shadow-[2px_2px_0px_#000] hover:bg-[#202b40] hover:text-white"
             }`}
           >
-            <Box className="w-3.5 h-3.5" />
+            <Scale className="w-3.5 h-3.5" />
             <span>Chamber</span>
           </Link>
 
           <Link
             href="/profile"
-            className={`px-3 py-1.5 rounded-lg font-mono text-xs uppercase tracking-wider transition-all flex items-center gap-1.5 ${
+            className={`px-3 sm:px-4 py-1.5 font-mono text-xs uppercase tracking-wider font-bold transition-all border-2 border-black flex items-center gap-1.5 ${
               pathname === "/profile"
-                ? "bg-amber-500 text-slate-950 font-bold shadow-md"
-                : "text-slate-300 hover:text-white hover:bg-[#1a2130]"
+                ? "bg-neo-green text-black shadow-[3px_3px_0px_#000] translate-x-[-1px] translate-y-[-1px]"
+                : "bg-[#182030] text-slate-200 shadow-[2px_2px_0px_#000] hover:bg-[#202b40] hover:text-white"
             }`}
           >
             <User className="w-3.5 h-3.5" />
-            <span>Profile & Memories</span>
+            <span className="hidden sm:inline">Living</span>
+            <span>Dossier</span>
           </Link>
         </nav>
 
-        {/* Right Status Indicator */}
-        <div className="flex items-center gap-3">
-          <div className="hidden sm:flex items-center gap-2 px-3 py-1 rounded-lg bg-[#141824] border border-[#2d3442] font-mono text-[11px] text-slate-300">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>Qdrant: {memoriesCount} Synced</span>
+        {/* Right Status Indicator: Neo-brutalist Memory Pill */}
+        <div className="flex items-center gap-2.5">
+          <div className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-[#141a27] border-2 border-black shadow-[3px_3px_0px_#000] text-slate-200 font-mono text-xs">
+            <span className="w-2.5 h-2.5 bg-neo-green border border-black animate-pulse" />
+            <span className="font-bold text-white">{memoriesCount}</span>
+            <span className="text-slate-400 text-[11px]">Memories</span>
           </div>
 
-          <button
-            onClick={() => setSoundEnabled(!soundEnabled)}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-amber-400 hover:bg-[#1a2130] transition-all border border-transparent hover:border-amber-500/20"
-            title={soundEnabled ? "Audio FX Active" : "Audio FX Muted"}
+          <Link
+            href="/courtroom"
+            className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-neo-yellow text-black font-mono font-bold text-xs uppercase tracking-wider border-2 border-black shadow-[3px_3px_0px_#000] hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[4px_4px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_#000] transition-all"
           >
-            {soundEnabled ? (
-              <Volume2 className="w-4 h-4 text-amber-400" />
-            ) : (
-              <VolumeX className="w-4 h-4" />
-            )}
-          </button>
+            <Flame className="w-3.5 h-3.5 fill-black" />
+            <span>Try Dilemma</span>
+          </Link>
         </div>
       </div>
     </header>
