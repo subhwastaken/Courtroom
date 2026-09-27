@@ -389,10 +389,10 @@ export function CourtroomChamber({ activeTurnIndex, turns }: CourtroomChamberPro
       `}</style>
 
       {/* ──────────────────────────────────────────────────────────
-       *  MAIN RETRO COURTROOM FRAME
+       *  MAIN RETRO COURTROOM FRAME (NEO-BRUTALIST PIXEL BOX)
        * ────────────────────────────────────────────────────────── */}
       <div
-        className={`relative w-full aspect-video rounded-2xl overflow-hidden bg-[#180e07] border-2 border-[#5c3823] shadow-[0_16px_50px_rgba(0,0,0,0.85)] select-none ${
+        className={`relative w-full aspect-video rounded-none overflow-hidden bg-black border-4 border-black shadow-[8px_8px_0px_#000] select-none ${
           isShaking ? "animate-[gavelShakeAnim_0.5s_ease-in-out]" : ""
         }`}
       >
@@ -593,27 +593,37 @@ export function CourtroomChamber({ activeTurnIndex, turns }: CourtroomChamberPro
           </div>
 
           {/* ──────────────────────────────────────────────────────────
-           *  SPEECH BUBBLE OVERLAYS (ANCHORED TO ACTIVE CHARACTER)
+           *  SPEECH BUBBLE OVERLAYS (ANCHORED TO ACTIVE CHARACTER WITH PIXEL PORTRAITS)
            * ────────────────────────────────────────────────────────── */}
           {activeRole === "advocate" && (
             <div
               className="absolute z-20 pointer-events-none transition-all duration-300"
-              style={{ left: "6%", top: "4%", maxWidth: "46%" }}
+              style={{ left: "6%", top: "4%", maxWidth: "48%" }}
             >
-              <div className="relative bg-[#0d2818]/95 border-2 border-[#34d399] rounded-xl p-3 shadow-[0_8px_25px_rgba(0,0,0,0.85)] text-slate-100 backdrop-blur-sm">
-                <div className="flex items-center justify-between pb-1 mb-1.5 border-b border-emerald-400/30">
-                  <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-emerald-300 flex items-center gap-1.5">
-                    <Scale className="w-3.5 h-3.5 text-emerald-400" />
-                    Advocate • Counsel for Opportunity
-                  </span>
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+              <div className="relative bg-[#0d2215]/95 border-3 border-black shadow-[6px_6px_0px_#05F196] p-3 text-[#FFF8E7] flex items-start gap-2.5">
+                <div className="w-9 h-9 border-2 border-black flex-shrink-0 overflow-hidden bg-black shadow-[2px_2px_0px_#000]">
+                  <img
+                    src="/pixel_advocate_portrait.jpg"
+                    alt="Advocate"
+                    className="w-full h-full object-cover"
+                    style={{ imageRendering: "pixelated" }}
+                  />
                 </div>
-                <p className="font-sans text-xs leading-relaxed text-emerald-50 line-clamp-4">
-                  &ldquo;{displayedText}&rdquo;
-                </p>
-                {/* Tail pointing down towards Advocate */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between pb-1 mb-1 border-b border-black">
+                    <span className="font-pixel text-[9px] font-black uppercase tracking-wider text-neo-green flex items-center gap-1.5">
+                      <Scale className="w-3 h-3 text-neo-green" />
+                      THE ADVOCATE
+                    </span>
+                    <span className="w-2 h-2 bg-neo-green border border-black animate-ping" />
+                  </div>
+                  <p className="font-sans text-xs leading-relaxed text-[#FFF8E7] line-clamp-4 font-bold">
+                    &ldquo;{displayedText}&rdquo;
+                  </p>
+                </div>
+                {/* Neo-brutalist Tail pointing down towards Advocate */}
                 <div
-                  className="absolute -bottom-2.5 left-16 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[10px] border-t-[#34d399]"
+                  className="absolute -bottom-2.5 left-16 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[10px] border-t-black"
                 />
               </div>
             </div>
@@ -622,22 +632,32 @@ export function CourtroomChamber({ activeTurnIndex, turns }: CourtroomChamberPro
           {activeRole === "skeptic" && (
             <div
               className="absolute z-20 pointer-events-none transition-all duration-300"
-              style={{ right: "6%", top: "4%", maxWidth: "46%" }}
+              style={{ right: "6%", top: "4%", maxWidth: "48%" }}
             >
-              <div className="relative bg-[#2d0e14]/95 border-2 border-[#f43f5e] rounded-xl p-3 shadow-[0_8px_25px_rgba(0,0,0,0.85)] text-slate-100 backdrop-blur-sm">
-                <div className="flex items-center justify-between pb-1 mb-1.5 border-b border-rose-400/30">
-                  <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-rose-300 flex items-center gap-1.5">
-                    <ShieldAlert className="w-3.5 h-3.5 text-rose-400" />
-                    Skeptic • Counsel for Caution
-                  </span>
-                  <span className="w-2 h-2 rounded-full bg-rose-400 animate-ping" />
+              <div className="relative bg-[#280c14]/95 border-3 border-black shadow-[6px_6px_0px_#E52521] p-3 text-[#FFF8E7] flex items-start gap-2.5">
+                <div className="w-9 h-9 border-2 border-black flex-shrink-0 overflow-hidden bg-black shadow-[2px_2px_0px_#000]">
+                  <img
+                    src="/pixel_skeptic_portrait.jpg"
+                    alt="Skeptic"
+                    className="w-full h-full object-cover"
+                    style={{ imageRendering: "pixelated" }}
+                  />
                 </div>
-                <p className="font-sans text-xs leading-relaxed text-rose-50 line-clamp-4">
-                  &ldquo;{displayedText}&rdquo;
-                </p>
-                {/* Tail pointing down towards Skeptic */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between pb-1 mb-1 border-b border-black">
+                    <span className="font-pixel text-[9px] font-black uppercase tracking-wider text-neo-red flex items-center gap-1.5">
+                      <ShieldAlert className="w-3 h-3 text-neo-red" />
+                      THE SKEPTIC
+                    </span>
+                    <span className="w-2 h-2 bg-neo-red border border-black animate-ping" />
+                  </div>
+                  <p className="font-sans text-xs leading-relaxed text-[#FFF8E7] line-clamp-4 font-bold">
+                    &ldquo;{displayedText}&rdquo;
+                  </p>
+                </div>
+                {/* Neo-brutalist Tail pointing down towards Skeptic */}
                 <div
-                  className="absolute -bottom-2.5 right-16 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[10px] border-t-[#f43f5e]"
+                  className="absolute -bottom-2.5 right-16 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[10px] border-t-black"
                 />
               </div>
             </div>
@@ -646,22 +666,32 @@ export function CourtroomChamber({ activeTurnIndex, turns }: CourtroomChamberPro
           {activeRole === "judge" && (
             <div
               className="absolute z-20 pointer-events-none transition-all duration-300 -translate-x-1/2"
-              style={{ left: "50%", top: "4%", maxWidth: "52%" }}
+              style={{ left: "50%", top: "4%", maxWidth: "54%" }}
             >
-              <div className="relative bg-[#261508]/95 border-2 border-[#eab308] rounded-xl p-3 shadow-[0_10px_30px_rgba(0,0,0,0.9)] text-slate-100 backdrop-blur-sm">
-                <div className="flex items-center justify-between pb-1 mb-1.5 border-b border-amber-400/30">
-                  <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-amber-300 flex items-center gap-1.5">
-                    <Gavel className="w-3.5 h-3.5 text-amber-400" />
-                    Chief Justice • Final Verdict
-                  </span>
-                  <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
+              <div className="relative bg-[#1c1508]/95 border-3 border-black shadow-[6px_6px_0px_#FFE600] p-3 text-[#FFF8E7] flex items-start gap-2.5">
+                <div className="w-9 h-9 border-2 border-black flex-shrink-0 overflow-hidden bg-black shadow-[2px_2px_0px_#000]">
+                  <img
+                    src="/pixel_judge_portrait.jpg"
+                    alt="Chief Justice"
+                    className="w-full h-full object-cover"
+                    style={{ imageRendering: "pixelated" }}
+                  />
                 </div>
-                <p className="font-sans text-xs leading-relaxed text-amber-100 line-clamp-4">
-                  &ldquo;{displayedText}&rdquo;
-                </p>
-                {/* Tail pointing down towards Judge */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between pb-1 mb-1 border-b border-black">
+                    <span className="font-pixel text-[9px] font-black uppercase tracking-wider text-neo-yellow flex items-center gap-1.5">
+                      <Gavel className="w-3 h-3 text-neo-yellow" />
+                      CHIEF JUSTICE
+                    </span>
+                    <span className="w-2 h-2 bg-neo-yellow border border-black animate-ping" />
+                  </div>
+                  <p className="font-sans text-xs leading-relaxed text-[#FFF8E7] line-clamp-4 font-bold">
+                    &ldquo;{displayedText}&rdquo;
+                  </p>
+                </div>
+                {/* Neo-brutalist Tail pointing down towards Judge */}
                 <div
-                  className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[10px] border-t-[#eab308]"
+                  className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[10px] border-t-black"
                 />
               </div>
             </div>
@@ -669,10 +699,10 @@ export function CourtroomChamber({ activeTurnIndex, turns }: CourtroomChamberPro
 
           {/* Ambient idle notice when waiting for deliberation */}
           {!activeRole && (
-            <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-[#1a0f08]/90 border border-amber-500/40 px-3.5 py-1.5 rounded-full shadow-lg backdrop-blur-sm flex items-center gap-2 pointer-events-none">
-              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-              <span className="font-mono text-[11px] text-amber-200/90 font-bold uppercase tracking-widest">
-                Chamber in Session • 2 Advocates & 1 Judge Ready
+            <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-[#180d09]/95 border-3 border-black px-4 py-1.5 shadow-[4px_4px_0px_#000] flex items-center gap-2 pointer-events-none">
+              <span className="w-2.5 h-2.5 bg-neo-yellow border border-black animate-pulse" />
+              <span className="font-pixel text-[9px] text-[#FFF8E7] font-black uppercase tracking-widest">
+                CHAMBER ASSEMBLED • 2 ADVOCATES & 1 BENCH JUDGE
               </span>
             </div>
           )}
@@ -684,18 +714,18 @@ export function CourtroomChamber({ activeTurnIndex, turns }: CourtroomChamberPro
         {activeBanner && (
           <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 z-30 pointer-events-none flex justify-center overflow-hidden">
             <div
-              className={`px-8 py-3.5 border-y-4 shadow-[0_0_35px_rgba(0,0,0,0.95)] animate-[bannerSlideIn_1.1s_cubic-bezier(0.16,1,0.3,1)_forwards] ${
+              className={`px-8 py-3.5 border-4 border-black shadow-[8px_8px_0px_#000] animate-[bannerSlideIn_1.1s_cubic-bezier(0.16,1,0.3,1)_forwards] ${
                 activeBanner.role === "advocate"
-                  ? "bg-[#0b2816]/95 border-emerald-400 text-emerald-100"
+                  ? "bg-neo-green text-black"
                   : activeBanner.role === "skeptic"
-                  ? "bg-[#330c13]/95 border-rose-500 text-rose-100"
-                  : "bg-[#2d1b09]/95 border-amber-400 text-amber-100"
+                  ? "bg-neo-red text-white"
+                  : "bg-neo-yellow text-black"
               }`}
             >
-              <div className="font-mono text-base sm:text-xl font-black uppercase tracking-widest text-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+              <div className="font-pixel text-sm sm:text-lg font-black uppercase tracking-wider text-center drop-shadow-[2px_2px_0px_rgba(0,0,0,0.5)]">
                 {activeBanner.title}
               </div>
-              <div className="font-mono text-[10px] sm:text-xs text-center opacity-90 mt-0.5 tracking-wider">
+              <div className="font-mono text-[10px] sm:text-xs font-bold text-center mt-1 tracking-wider uppercase">
                 {activeBanner.subtitle}
               </div>
             </div>
@@ -703,12 +733,12 @@ export function CourtroomChamber({ activeTurnIndex, turns }: CourtroomChamberPro
         )}
 
         {/* ──────────────────────────────────────────────────────────
-         *  TOP HUD: CAMERA PRESETS, GAVEL, SOUND TOGGLE
+         *  TOP HUD: CAMERA PRESETS, GAVEL, SOUND TOGGLE (NEO-BRUTALIST PIXEL)
          * ────────────────────────────────────────────────────────── */}
         <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none z-20">
           {/* Camera View Switcher */}
-          <div className="flex items-center gap-1 bg-[#1a0f08]/90 border border-[#5c3823] p-1 rounded-xl font-mono text-[10px] text-amber-200/90 backdrop-blur pointer-events-auto shadow-lg">
-            <span className="text-amber-400 font-bold px-1.5 flex items-center gap-1">
+          <div className="flex items-center gap-1 bg-[#180d09]/95 border-2 sm:border-3 border-black p-1 font-mono text-[10px] text-white pointer-events-auto shadow-[4px_4px_0px_#000]">
+            <span className="text-neo-yellow font-black px-1.5 flex items-center gap-1 uppercase">
               <Camera className="w-3 h-3" />
               Focus:
             </span>
@@ -717,10 +747,10 @@ export function CourtroomChamber({ activeTurnIndex, turns }: CourtroomChamberPro
                 setCameraView("wide");
                 setAutoTrack(false);
               }}
-              className={`px-2 py-0.5 rounded transition-all ${
+              className={`px-2 py-0.5 border border-black font-black uppercase transition-all ${
                 cameraView === "wide"
-                  ? "bg-amber-600 text-slate-950 font-bold shadow"
-                  : "text-amber-200/80 hover:text-white hover:bg-amber-950/60"
+                  ? "bg-neo-yellow text-black shadow-[2px_2px_0px_#000]"
+                  : "text-[#FFF8E7] hover:text-black hover:bg-neo-yellow"
               }`}
             >
               Chamber
@@ -731,10 +761,10 @@ export function CourtroomChamber({ activeTurnIndex, turns }: CourtroomChamberPro
                 setAutoTrack(false);
                 playSound("argument");
               }}
-              className={`px-2 py-0.5 rounded transition-all ${
+              className={`px-2 py-0.5 border border-black font-black uppercase transition-all ${
                 cameraView === "advocate"
-                  ? "bg-emerald-500 text-slate-950 font-bold shadow"
-                  : "text-emerald-300/80 hover:text-white hover:bg-emerald-950/60"
+                  ? "bg-neo-green text-black shadow-[2px_2px_0px_#000]"
+                  : "text-emerald-300 hover:text-black hover:bg-neo-green"
               }`}
             >
               Advocate
@@ -745,10 +775,10 @@ export function CourtroomChamber({ activeTurnIndex, turns }: CourtroomChamberPro
                 setAutoTrack(false);
                 triggerGavel();
               }}
-              className={`px-2 py-0.5 rounded transition-all ${
+              className={`px-2 py-0.5 border border-black font-black uppercase transition-all ${
                 cameraView === "judge"
-                  ? "bg-amber-400 text-slate-950 font-bold shadow"
-                  : "text-amber-300/80 hover:text-white hover:bg-amber-950/60"
+                  ? "bg-neo-yellow text-black shadow-[2px_2px_0px_#000]"
+                  : "text-[#FFE885] hover:text-black hover:bg-amber-300"
               }`}
             >
               Chief Justice
@@ -759,10 +789,10 @@ export function CourtroomChamber({ activeTurnIndex, turns }: CourtroomChamberPro
                 setAutoTrack(false);
                 playSound("objection");
               }}
-              className={`px-2 py-0.5 rounded transition-all ${
+              className={`px-2 py-0.5 border border-black font-black uppercase transition-all ${
                 cameraView === "skeptic"
-                  ? "bg-rose-500 text-slate-950 font-bold shadow"
-                  : "text-rose-300/80 hover:text-white hover:bg-rose-950/60"
+                  ? "bg-neo-red text-white shadow-[2px_2px_0px_#000]"
+                  : "text-rose-300 hover:text-white hover:bg-neo-red"
               }`}
             >
               Skeptic
@@ -770,24 +800,24 @@ export function CourtroomChamber({ activeTurnIndex, turns }: CourtroomChamberPro
           </div>
 
           {/* Quick Action Controls: Gavel & Sound */}
-          <div className="flex items-center gap-1.5 bg-[#1a0f08]/90 border border-[#5c3823] p-1 rounded-xl font-mono text-[10px] backdrop-blur pointer-events-auto shadow-lg">
+          <div className="flex items-center gap-1.5 bg-[#180d09]/95 border-2 sm:border-3 border-black p-1 font-mono text-[10px] pointer-events-auto shadow-[4px_4px_0px_#000]">
             {/* Strike Gavel Button */}
             <button
               onClick={triggerGavel}
-              className="flex items-center gap-1 px-2.5 py-1 rounded bg-[#3b2214] hover:bg-amber-700/80 text-amber-200 hover:text-white transition-all border border-amber-600/40 active:scale-95"
+              className="neo-btn flex items-center gap-1 px-2.5 py-1 bg-neo-yellow text-black font-black uppercase border border-black shadow-[2px_2px_0px_#000] hover:bg-amber-300 transition-all active:translate-x-[1px] active:translate-y-[1px]"
               title="Strike Gavel (Calls Court to Order)"
             >
-              <Gavel className="w-3.5 h-3.5 text-amber-400" />
-              <span className="font-bold">Gavel</span>
+              <Gavel className="w-3.5 h-3.5 text-black stroke-[2.5]" />
+              <span>Gavel</span>
             </button>
 
             {/* Auto Track Toggle */}
             <button
               onClick={() => setAutoTrack(!autoTrack)}
-              className={`flex items-center gap-1 px-2 py-1 rounded transition-all border ${
+              className={`flex items-center gap-1 px-2 py-1 font-bold uppercase transition-all border border-black ${
                 autoTrack
-                  ? "bg-amber-500/20 text-amber-300 border-amber-500/50"
-                  : "text-slate-400 border-slate-700 hover:text-white"
+                  ? "bg-neo-green text-black shadow-[1px_1px_0px_#000]"
+                  : "text-[#FFE885] bg-[#26150F] hover:text-white"
               }`}
               title="Toggle Auto Camera Following Speaker"
             >
@@ -798,44 +828,44 @@ export function CourtroomChamber({ activeTurnIndex, turns }: CourtroomChamberPro
             {/* Sound Toggle */}
             <button
               onClick={() => setSoundEnabled(!soundEnabled)}
-              className={`p-1 rounded transition-all border ${
+              className={`p-1 transition-all border border-black ${
                 soundEnabled
-                  ? "text-amber-300 border-amber-500/40 hover:bg-amber-900/40"
-                  : "text-slate-500 border-slate-700 hover:text-slate-300"
+                  ? "bg-[#26150F] text-neo-yellow hover:bg-[#382017]"
+                  : "text-[#FFE885]/60 bg-[#26150F] hover:text-white"
               }`}
               title={soundEnabled ? "Mute Retro Audio" : "Enable Retro Audio"}
             >
               {soundEnabled ? (
                 <Volume2 className="w-3.5 h-3.5" />
               ) : (
-                <VolumeX className="w-3.5 h-3.5 text-slate-500" />
+                <VolumeX className="w-3.5 h-3.5 text-[#FFE885]/60" />
               )}
             </button>
           </div>
         </div>
 
         {/* ──────────────────────────────────────────────────────────
-         *  BOTTOM HUD: COURT STATUS & SPEAKER DOSSIER BAR
+         *  BOTTOM HUD: COURT STATUS & SPEAKER DOSSIER BAR (NEO-BRUTALIST PIXEL)
          * ────────────────────────────────────────────────────────── */}
         <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between pointer-events-none z-20">
           {/* Counsel Stance Indicator */}
-          <div className="flex items-center gap-2 bg-[#1a0f08]/90 border border-[#5c3823] px-3 py-1.5 rounded-xl font-mono text-[10px] text-amber-200/90 pointer-events-auto backdrop-blur shadow-lg">
-            <Scale className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
+          <div className="flex items-center gap-2 bg-[#180d09]/95 border-2 sm:border-3 border-black px-3.5 py-1.5 font-mono text-[10px] text-white pointer-events-auto shadow-[4px_4px_0px_#000]">
+            <Scale className="w-3.5 h-3.5 text-neo-yellow flex-shrink-0 stroke-[2.5]" />
             <div className="truncate max-w-[280px] sm:max-w-md">
               {activeRole === "advocate" ? (
-                <span className="text-emerald-300 font-bold">
+                <span className="text-neo-green font-bold">
                   Advocate argues in favor • Seizing opportunity
                 </span>
               ) : activeRole === "skeptic" ? (
-                <span className="text-rose-300 font-bold">
+                <span className="text-neo-red font-bold">
                   Skeptic cautions against risk • Preserving stability
                 </span>
               ) : activeRole === "judge" ? (
-                <span className="text-amber-300 font-bold">
+                <span className="text-neo-yellow font-bold">
                   Chief Justice weighing historical precedent & decisive ruling
                 </span>
               ) : (
-                <span className="text-amber-200/70">
+                <span className="text-[#FFF8E7]">
                   Chamber awaiting deliberation • 2 Lawyers & 1 Judge on bench
                 </span>
               )}
@@ -849,9 +879,9 @@ export function CourtroomChamber({ activeTurnIndex, turns }: CourtroomChamberPro
                 setCameraView("wide");
                 setAutoTrack(true);
               }}
-              className="pointer-events-auto flex items-center gap-1 bg-[#1a0f08]/90 border border-[#5c3823] px-2.5 py-1.5 rounded-xl font-mono text-[10px] text-amber-400 hover:text-amber-300 hover:bg-[#2b180d] transition-all shadow-lg"
+              className="neo-btn pointer-events-auto flex items-center gap-1.5 bg-neo-yellow text-black border-2 border-black px-3 py-1 font-mono text-[10px] font-black uppercase shadow-[2px_2px_0px_#000] hover:bg-amber-300 transition-all"
             >
-              <RotateCcw className="w-3 h-3" />
+              <RotateCcw className="w-3 h-3 stroke-[2.5]" />
               <span>Full Chamber</span>
             </button>
           )}

@@ -24,31 +24,31 @@ export function CourtroomStatsTicker({
   isReplaying = false,
 }: CourtroomStatsTickerProps) {
   return (
-    <div className="w-full bg-[#0e1320] border-b-4 border-black px-4 py-2.5 font-mono text-xs select-none shadow-[0_4px_0px_#000] z-10">
+    <div className="w-full bg-[#180d09] border-b-4 border-black px-4 py-2.5 font-mono text-xs select-none shadow-[0_4px_0px_#000] z-10">
       <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
         {/* Left: Courtroom Dossier Badges */}
         <div className="flex flex-wrap items-center gap-2 sm:gap-3 overflow-x-auto text-[11px]">
-          <div className="flex items-center gap-1.5 px-3 py-1 bg-[#162032] border-2 border-black text-neo-yellow shadow-[2px_2px_0px_#000]">
+          <div className="flex items-center gap-1.5 px-3 py-1 bg-[#26150F] border-2 border-black text-neo-yellow shadow-[2px_2px_0px_#000]">
             <Scale className="w-3.5 h-3.5 text-neo-yellow" />
-            <span className="text-amber-200/60 uppercase tracking-wider text-[10px]">Session:</span>
+            <span className="text-[#FFE885] uppercase tracking-wider text-[10px] font-bold">Session:</span>
             <span className="text-white font-black">{phase}</span>
           </div>
 
-          <div className="flex items-center gap-1.5 px-3 py-1 bg-[#162032] border-2 border-black text-cyan-300 shadow-[2px_2px_0px_#000]">
-            <MessageSquare className="w-3.5 h-3.5 text-cyan-400" />
-            <span className="text-cyan-200/60 uppercase tracking-wider text-[10px]">Arguments:</span>
+          <div className="flex items-center gap-1.5 px-3 py-1 bg-[#26150F] border-2 border-black text-[#FFE600] shadow-[2px_2px_0px_#000]">
+            <MessageSquare className="w-3.5 h-3.5 text-neo-yellow" />
+            <span className="text-[#FFE885] uppercase tracking-wider text-[10px] font-bold">Arguments:</span>
             <span className="text-white font-black">{utterancesCount} / 3</span>
           </div>
 
-          <div className="flex items-center gap-1.5 px-3 py-1 bg-[#162032] border-2 border-black text-neo-green shadow-[2px_2px_0px_#000]">
+          <div className="flex items-center gap-1.5 px-3 py-1 bg-[#26150F] border-2 border-black text-neo-green shadow-[2px_2px_0px_#000]">
             <BookOpen className="w-3.5 h-3.5 text-neo-green" />
-            <span className="text-emerald-200/60 uppercase tracking-wider text-[10px]">Precedents:</span>
+            <span className="text-[#FFE885] uppercase tracking-wider text-[10px] font-bold">Precedents:</span>
             <span className="text-white font-black">{citedCount} Cited</span>
           </div>
 
-          <div className="flex items-center gap-1.5 px-3 py-1 bg-[#162032] border-2 border-black text-amber-300 shadow-[2px_2px_0px_#000]">
+          <div className="flex items-center gap-1.5 px-3 py-1 bg-[#26150F] border-2 border-black text-neo-yellow shadow-[2px_2px_0px_#000]">
             <Database className="w-3.5 h-3.5 text-neo-yellow" />
-            <span className="text-amber-200/60 uppercase tracking-wider text-[10px]">Memories:</span>
+            <span className="text-[#FFE885] uppercase tracking-wider text-[10px] font-bold">Memories:</span>
             <span className="text-white font-black">{syncedCount} Synced</span>
           </div>
         </div>
@@ -67,8 +67,8 @@ export function CourtroomStatsTicker({
             </button>
           )}
 
-          <div className="flex items-center gap-2 bg-[#162032] border-2 border-black px-3 py-1 text-[11px] shadow-[2px_2px_0px_#000]">
-            <span className="text-amber-200/70 flex items-center gap-1">
+          <div className="flex items-center gap-2 bg-[#26150F] border-2 border-black px-3 py-1 text-[11px] shadow-[2px_2px_0px_#000]">
+            <span className="text-[#FFE885] flex items-center gap-1 font-bold">
               <FastForward className="w-3 h-3 text-neo-yellow" />
               Pace:
             </span>

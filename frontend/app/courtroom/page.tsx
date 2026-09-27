@@ -115,14 +115,19 @@ export default function CourtroomPage() {
     : "Chamber Standby";
 
   return (
-    <div className="relative min-h-[calc(100vh-3.5rem)] flex flex-col justify-between overflow-x-hidden pb-16 bg-[#090d16]">
+    <div className="relative min-h-[calc(100vh-3.5rem)] flex flex-col justify-between overflow-x-hidden pb-16 bg-[#120907]">
       {/* Top Courtroom Header Banner */}
-      <div className="w-full bg-[#0d131f] border-b-4 border-black px-4 py-3 shadow-[0_4px_0px_#000]">
+      <div className="w-full bg-[#180d09] border-b-4 border-black px-4 py-3 shadow-[0_4px_0px_#000]">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
           {/* Logo & Subtitle */}
           <div className="flex items-center gap-3.5">
-            <div className="w-10 h-10 bg-neo-yellow border-3 border-black flex items-center justify-center shadow-[3px_3px_0px_#000]">
-              <Scale className="w-6 h-6 text-black stroke-[2.5]" />
+            <div className="w-11 h-11 border-3 border-black overflow-hidden bg-black shadow-[3px_3px_0px_#000] flex-shrink-0">
+              <img
+                src="/pixel_court_badge.jpg"
+                alt="Courtroom Seal"
+                className="w-full h-full object-cover"
+                style={{ imageRendering: "pixelated" }}
+              />
             </div>
             <div>
               <div className="font-mono text-sm font-black uppercase tracking-widest text-white flex items-center gap-2">
@@ -131,20 +136,20 @@ export default function CourtroomPage() {
                   COURT IN SESSION
                 </span>
               </div>
-              <div className="text-[11px] font-mono text-amber-200/70">
+              <div className="text-[11px] font-mono text-[#FFE885] font-bold">
                 Adversarial Deliberation Engine • Grounded in Living Personal History
               </div>
             </div>
           </div>
 
           {/* View Mode Switcher: 16-Bit Chamber vs 2D RPG Floor Plan */}
-          <div className="flex items-center gap-1.5 bg-[#131b29] border-3 border-black p-1 shadow-[3px_3px_0px_#000] font-mono text-xs">
+          <div className="flex items-center gap-1.5 bg-[#26150F] border-3 border-black p-1 shadow-[3px_3px_0px_#000] font-mono text-xs">
             <button
               onClick={() => setViewMode("3d")}
               className={`flex items-center gap-1.5 px-3 py-1.5 border-2 border-black font-black uppercase transition-all ${
                 viewMode === "3d"
                   ? "bg-neo-yellow text-black shadow-[2px_2px_0px_#000] translate-x-[-1px] translate-y-[-1px]"
-                  : "bg-transparent text-slate-300 hover:text-white"
+                  : "bg-transparent text-[#FFF8E7] hover:text-neo-yellow"
               }`}
             >
               <Scale className="w-3.5 h-3.5" />
@@ -156,7 +161,7 @@ export default function CourtroomPage() {
               className={`flex items-center gap-1.5 px-3 py-1.5 border-2 border-black font-black uppercase transition-all ${
                 viewMode === "2d"
                   ? "bg-neo-green text-black shadow-[2px_2px_0px_#000] translate-x-[-1px] translate-y-[-1px]"
-                  : "bg-transparent text-slate-300 hover:text-white"
+                  : "bg-transparent text-[#FFF8E7] hover:text-neo-green"
               }`}
             >
               <Layers className="w-3.5 h-3.5" />
@@ -182,14 +187,16 @@ export default function CourtroomPage() {
       <div className="max-w-7xl mx-auto px-4 py-6 w-full flex-1 flex flex-col gap-6">
         {/* Loading Overlay */}
         {loading && (
-          <div className="flex items-center justify-center p-6 rounded-xl bg-[#141824] border border-amber-500/40 text-amber-400 font-mono text-xs gap-3 animate-pulse shadow-xl">
-            <Scale className="w-5 h-5 animate-spin" />
-            <span>Retrieving historical vector memories & initiating multi-agent debate...</span>
+          <div className="flex items-center justify-center p-6 bg-[#1C100B] border-3 border-black shadow-[6px_6px_0px_#FFE600] text-neo-yellow font-mono text-xs gap-3 select-none">
+            <Scale className="w-5 h-5 animate-spin text-neo-yellow" />
+            <span className="font-bold uppercase tracking-wider">
+              Retrieving historical vector memories & initiating multi-agent debate...
+            </span>
           </div>
         )}
 
         {error && (
-          <div className="p-3.5 rounded-lg bg-rose-950/80 border border-rose-500/50 text-rose-300 font-mono text-xs text-center">
+          <div className="p-4 bg-[#260E0E] border-3 border-black shadow-[6px_6px_0px_#E52521] text-neo-red font-mono text-xs text-center font-bold uppercase tracking-wider">
             {error}
           </div>
         )}
@@ -223,12 +230,12 @@ export default function CourtroomPage() {
 
           {/* Right Column (5 cols): Judicial Dialogue Stream */}
           <div className="lg:col-span-5 flex flex-col gap-4">
-            <div className="flex items-center justify-between border-b border-[#2d3442] pb-2 font-mono text-xs">
-              <span className="text-slate-300 font-bold uppercase tracking-wider flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+            <div className="flex items-center justify-between border-b-2 border-black pb-2 font-mono text-xs">
+              <span className="text-white font-bold uppercase tracking-wider flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-neo-yellow" />
                 Judicial Deliberation Stream
               </span>
-              <span className="text-slate-500 text-[11px]">
+              <span className="text-[#FFE885] text-[11px] font-mono font-bold">
                 {activeTurn} / {result?.turns.length || 3} Turns
               </span>
             </div>
@@ -240,9 +247,19 @@ export default function CourtroomPage() {
                 question={result?.question}
               />
               {!result && !loading && (
-                <div className="rounded-xl border border-dashed border-[#2d3442] p-8 text-center text-slate-500 font-mono text-xs space-y-2">
-                  <p>Awaiting case submission.</p>
-                  <p className="text-[11px] text-slate-600">
+                <div className="bg-[#1C100B] border-3 border-black p-8 text-center text-[#FFF8E7] font-mono text-xs space-y-3 shadow-[5px_5px_0px_#000]">
+                  <div className="w-14 h-14 mx-auto border-3 border-black overflow-hidden bg-black shadow-[3px_3px_0px_#000]">
+                    <img
+                      src="/pixel_court_badge.jpg"
+                      alt="Awaiting Docket"
+                      className="w-full h-full object-cover"
+                      style={{ imageRendering: "pixelated" }}
+                    />
+                  </div>
+                  <p className="font-pixel text-[10px] text-neo-yellow uppercase font-black tracking-wider">
+                    Awaiting Case Submission
+                  </p>
+                  <p className="text-[11px] text-[#FFF8E7] leading-relaxed font-mono">
                     Type a life dilemma or speak via microphone below to watch the Advocate, Skeptic, and Chief Justice deliberate in real-time.
                   </p>
                 </div>
@@ -252,7 +269,7 @@ export default function CourtroomPage() {
         </div>
 
         {/* Input Dock: Text Query + Preset Pills + Voice Capture */}
-        <div className="mt-4 pt-6 border-t border-[#2d3442] flex flex-col items-center gap-4">
+        <div className="mt-4 pt-6 border-t-3 border-black flex flex-col items-center gap-4">
           <DecisionInput onSubmit={handleAsk} disabled={loading} />
           <VoiceCapture onTranscript={handleAsk} disabled={loading} />
         </div>

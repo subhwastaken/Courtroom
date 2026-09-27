@@ -181,9 +181,9 @@ export function CourtroomPlan2D({ activeTurnIndex, turns }: CourtroomPlan2DProps
       `}</style>
 
       {/* ──────────────────────────────────────────────────────────
-       *  MAIN 2D POKÉMON / NINTENDO RPG COURTROOM FRAME
+       *  MAIN 2D POKÉMON / NINTENDO RPG COURTROOM FRAME (NEO-BRUTALIST PIXEL BOX)
        * ────────────────────────────────────────────────────────── */}
-      <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-[#0c0805] border-2 border-[#5c3823] shadow-[0_16px_50px_rgba(0,0,0,0.85)]">
+      <div className="relative w-full aspect-video rounded-none overflow-hidden bg-black border-4 border-black shadow-[8px_8px_0px_#000] select-none">
         {/* VIEWPORT WITH SMOOTH RPG CAMERA PAN & ZOOM */}
         <div
           className="absolute inset-0 w-full h-full transition-transform duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)]"
@@ -216,13 +216,13 @@ export function CourtroomPlan2D({ activeTurnIndex, turns }: CourtroomPlan2DProps
           >
             {/* Active Turn Reticle / Spotlight */}
             {activeRole === "judge" && (
-              <div className="absolute inset-0 border-2 border-amber-400 bg-amber-400/20 rounded-xl shadow-[0_0_20px_rgba(234,179,8,0.7)] animate-pulse" />
+              <div className="absolute inset-0 border-2 border-black bg-neo-yellow/25 shadow-[4px_4px_0px_#FFE600] animate-pulse" />
             )}
 
             {/* RPG Exclamation Balloon */}
             {activeRole === "judge" && (
-              <div className="absolute -top-6 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded bg-amber-400 text-slate-950 font-mono text-[9px] font-black uppercase tracking-wider shadow-lg animate-[rpgIconBob_1.2s_infinite_ease-in-out] flex items-center gap-1">
-                <Gavel className="w-2.5 h-2.5" />
+              <div className="absolute -top-7 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-neo-yellow text-black border-2 border-black font-pixel text-[8px] font-black uppercase tracking-wider shadow-[2px_2px_0px_#000] animate-[rpgIconBob_1.2s_infinite_ease-in-out] flex items-center gap-1">
+                <Gavel className="w-2.5 h-2.5 stroke-[2.5]" />
                 <span>RULING</span>
               </div>
             )}
@@ -247,13 +247,13 @@ export function CourtroomPlan2D({ activeTurnIndex, turns }: CourtroomPlan2DProps
           >
             {/* Active Turn Reticle / Spotlight */}
             {activeRole === "advocate" && (
-              <div className="absolute inset-0 border-2 border-emerald-400 bg-emerald-500/25 rounded-xl shadow-[0_0_20px_rgba(16,185,129,0.7)] animate-pulse" />
+              <div className="absolute inset-0 border-2 border-black bg-neo-green/25 shadow-[4px_4px_0px_#05F196] animate-pulse" />
             )}
 
             {/* RPG Exclamation Balloon */}
             {activeRole === "advocate" && (
-              <div className="absolute -top-6 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded bg-emerald-400 text-slate-950 font-mono text-[9px] font-black uppercase tracking-wider shadow-lg animate-[rpgIconBob_1.2s_infinite_ease-in-out] flex items-center gap-1">
-                <Scale className="w-2.5 h-2.5" />
+              <div className="absolute -top-7 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-neo-green text-black border-2 border-black font-pixel text-[8px] font-black uppercase tracking-wider shadow-[2px_2px_0px_#000] animate-[rpgIconBob_1.2s_infinite_ease-in-out] flex items-center gap-1">
+                <Scale className="w-2.5 h-2.5 stroke-[2.5]" />
                 <span>ARGUES</span>
               </div>
             )}
@@ -278,13 +278,13 @@ export function CourtroomPlan2D({ activeTurnIndex, turns }: CourtroomPlan2DProps
           >
             {/* Active Turn Reticle / Spotlight */}
             {activeRole === "skeptic" && (
-              <div className="absolute inset-0 border-2 border-rose-400 bg-rose-500/25 rounded-xl shadow-[0_0_20px_rgba(244,63,94,0.7)] animate-pulse" />
+              <div className="absolute inset-0 border-2 border-black bg-neo-red/25 shadow-[4px_4px_0px_#FF3366] animate-pulse" />
             )}
 
             {/* RPG Exclamation Balloon */}
             {activeRole === "skeptic" && (
-              <div className="absolute -top-6 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded bg-rose-400 text-slate-950 font-mono text-[9px] font-black uppercase tracking-wider shadow-lg animate-[rpgIconBob_1.2s_infinite_ease-in-out] flex items-center gap-1">
-                <ShieldAlert className="w-2.5 h-2.5" />
+              <div className="absolute -top-7 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-neo-red text-white border-2 border-black font-pixel text-[8px] font-black uppercase tracking-wider shadow-[2px_2px_0px_#000] animate-[rpgIconBob_1.2s_infinite_ease-in-out] flex items-center gap-1">
+                <ShieldAlert className="w-2.5 h-2.5 stroke-[2.5]" />
                 <span>OBJECTS</span>
               </div>
             )}
@@ -309,24 +309,24 @@ export function CourtroomPlan2D({ activeTurnIndex, turns }: CourtroomPlan2DProps
         </div>
 
         {/* ──────────────────────────────────────────────────────────
-         *  AUTHENTIC POKÉMON / NINTENDO RPG DIALOGUE BOX (BOTTOM)
+         *  AUTHENTIC POKÉMON / NINTENDO RPG DIALOGUE BOX (NEO-BRUTALIST PIXEL BOX)
          * ────────────────────────────────────────────────────────── */}
         <div className="absolute bottom-3 left-4 right-4 z-20 pointer-events-none">
-          <div className="relative bg-[#0d1627]/95 border-4 border-[#e8d28a] rounded-xl p-3 sm:p-4 shadow-[0_12px_40px_rgba(0,0,0,0.95)] backdrop-blur flex items-start gap-3.5">
-            {/* Speaker Pixel Portrait Thumbnail */}
-            <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-lg overflow-hidden border-2 border-[#e8d28a] bg-[#1a253b] flex-shrink-0 p-0.5 shadow-inner">
+          <div className="relative bg-[#180d09]/95 border-3 border-black shadow-[6px_6px_0px_#000] p-3 sm:p-4 backdrop-blur flex items-start gap-3.5">
+            {/* Speaker Pixel Portrait Mugshot */}
+            <div className="relative w-12 h-12 sm:w-14 sm:h-14 border-2 border-black bg-black flex-shrink-0 overflow-hidden shadow-[2px_2px_0px_#000]">
               <img
                 src={
                   activeRole === "advocate"
-                    ? "/sprite_cutout_advocate.png"
+                    ? "/pixel_advocate_portrait.jpg"
                     : activeRole === "skeptic"
-                    ? "/sprite_cutout_skeptic.png"
+                    ? "/pixel_skeptic_portrait.jpg"
                     : activeRole === "judge"
-                    ? "/sprite_cutout_judge.png"
-                    : "/sprite_cutout_judge.png"
+                    ? "/pixel_judge_portrait.jpg"
+                    : "/pixel_judge_portrait.jpg"
                 }
-                alt="Speaker"
-                className="w-full h-full object-contain pointer-events-none"
+                alt="Speaker Portrait"
+                className="w-full h-full object-cover pointer-events-none"
                 style={{ imageRendering: "pixelated" }}
               />
             </div>
@@ -336,14 +336,14 @@ export function CourtroomPlan2D({ activeTurnIndex, turns }: CourtroomPlan2DProps
               {/* Speaker Name Tag */}
               <div className="flex items-center gap-2 mb-1">
                 <span
-                  className={`font-mono text-[10px] sm:text-xs font-black uppercase tracking-widest px-2 py-0.5 rounded shadow ${
+                  className={`font-pixel text-[9px] sm:text-[10px] font-black uppercase tracking-wider px-2 py-0.5 border border-black shadow-[2px_2px_0px_#000] ${
                     activeRole === "advocate"
-                      ? "bg-emerald-600 text-white"
+                      ? "bg-neo-green text-black"
                       : activeRole === "skeptic"
-                      ? "bg-rose-600 text-white"
+                      ? "bg-neo-red text-white"
                       : activeRole === "judge"
-                      ? "bg-amber-500 text-slate-950"
-                      : "bg-[#253655] text-amber-200"
+                      ? "bg-neo-yellow text-black"
+                      : "bg-[#26150F] text-neo-yellow"
                   }`}
                 >
                   {activeRole === "advocate"
@@ -352,9 +352,9 @@ export function CourtroomPlan2D({ activeTurnIndex, turns }: CourtroomPlan2DProps
                     ? "SKEPTIC"
                     : activeRole === "judge"
                     ? "CHIEF JUSTICE"
-                    : "COURTROOM CLERK"}
+                    : "COURT CLERK"}
                 </span>
-                <span className="font-mono text-[10px] text-amber-200/50 uppercase tracking-wider hidden sm:inline">
+                <span className="font-mono text-[10px] text-[#FFE885] uppercase tracking-wider hidden sm:inline font-bold">
                   {activeRole === "advocate"
                     ? "Counsel for Opportunity"
                     : activeRole === "skeptic"
@@ -366,7 +366,7 @@ export function CourtroomPlan2D({ activeTurnIndex, turns }: CourtroomPlan2DProps
               </div>
 
               {/* Dialogue Text */}
-              <p className="font-sans text-xs sm:text-sm text-slate-100 leading-relaxed line-clamp-3">
+              <p className="font-sans text-xs sm:text-sm text-[#FFF8E7] leading-relaxed line-clamp-3">
                 {displayedDialogue
                   ? `“${displayedDialogue}”`
                   : "The judicial chamber is assembled. Enter a case dilemma to initiate multi-agent adversarial debate."}
@@ -374,19 +374,19 @@ export function CourtroomPlan2D({ activeTurnIndex, turns }: CourtroomPlan2DProps
             </div>
 
             {/* Blinking Nintendo RPG Prompt Arrow (▼) */}
-            <div className="absolute bottom-2.5 right-3 text-amber-400 font-mono text-xs sm:text-sm animate-[rgpBounceArrow_0.8s_infinite_ease-in-out]">
+            <div className="absolute bottom-2.5 right-3 text-neo-yellow font-pixel text-xs sm:text-sm animate-[rgpBounceArrow_0.8s_infinite_ease-in-out]">
               ▼
             </div>
           </div>
         </div>
 
         {/* ──────────────────────────────────────────────────────────
-         *  TOP HUD CONTROLS
+         *  TOP HUD CONTROLS (PIXEL NEO-BRUTALIST)
          * ────────────────────────────────────────────────────────── */}
         <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none z-20">
           {/* Camera View Switcher */}
-          <div className="flex items-center gap-1 bg-[#0d1627]/90 border-2 border-[#e8d28a]/60 p-1 rounded-xl font-mono text-[10px] text-amber-200 backdrop-blur pointer-events-auto shadow-lg">
-            <span className="text-amber-400 font-bold px-1.5 flex items-center gap-1">
+          <div className="flex items-center gap-1 bg-[#180d09]/95 border-2 sm:border-3 border-black p-1 font-mono text-[10px] text-white pointer-events-auto shadow-[4px_4px_0px_#000]">
+            <span className="text-neo-yellow font-black px-1.5 flex items-center gap-1 uppercase">
               <Camera className="w-3 h-3" />
               View:
             </span>
@@ -395,10 +395,10 @@ export function CourtroomPlan2D({ activeTurnIndex, turns }: CourtroomPlan2DProps
                 setCameraView("full");
                 setAutoCam(false);
               }}
-              className={`px-2 py-0.5 rounded transition-all ${
+              className={`px-2 py-0.5 border border-black font-black uppercase transition-all ${
                 cameraView === "full"
-                  ? "bg-amber-500 text-slate-950 font-bold shadow"
-                  : "text-amber-200/80 hover:text-white"
+                  ? "bg-neo-yellow text-black shadow-[2px_2px_0px_#000]"
+                  : "text-[#FFF8E7] hover:text-black hover:bg-neo-yellow"
               }`}
             >
               Full Chamber
@@ -409,10 +409,10 @@ export function CourtroomPlan2D({ activeTurnIndex, turns }: CourtroomPlan2DProps
                 setAutoCam(false);
                 playRetroSound("gavel");
               }}
-              className={`px-2 py-0.5 rounded transition-all ${
+              className={`px-2 py-0.5 border border-black font-black uppercase transition-all ${
                 cameraView === "bench"
-                  ? "bg-amber-400 text-slate-950 font-bold shadow"
-                  : "text-amber-300/80 hover:text-white"
+                  ? "bg-neo-yellow text-black shadow-[2px_2px_0px_#000]"
+                  : "text-[#FFE885] hover:text-black hover:bg-amber-300"
               }`}
             >
               Bench
@@ -423,10 +423,10 @@ export function CourtroomPlan2D({ activeTurnIndex, turns }: CourtroomPlan2DProps
                 setAutoCam(false);
                 playRetroSound("chime");
               }}
-              className={`px-2 py-0.5 rounded transition-all ${
+              className={`px-2 py-0.5 border border-black font-black uppercase transition-all ${
                 cameraView === "advocate"
-                  ? "bg-emerald-500 text-slate-950 font-bold shadow"
-                  : "text-emerald-300/80 hover:text-white"
+                  ? "bg-neo-green text-black shadow-[2px_2px_0px_#000]"
+                  : "text-emerald-300 hover:text-black hover:bg-neo-green"
               }`}
             >
               Advocate
@@ -437,10 +437,10 @@ export function CourtroomPlan2D({ activeTurnIndex, turns }: CourtroomPlan2DProps
                 setAutoCam(false);
                 playRetroSound("chime");
               }}
-              className={`px-2 py-0.5 rounded transition-all ${
+              className={`px-2 py-0.5 border border-black font-black uppercase transition-all ${
                 cameraView === "skeptic"
-                  ? "bg-rose-500 text-slate-950 font-bold shadow"
-                  : "text-rose-300/80 hover:text-white"
+                  ? "bg-neo-red text-white shadow-[2px_2px_0px_#000]"
+                  : "text-rose-300 hover:text-white hover:bg-neo-red"
               }`}
             >
               Skeptic
@@ -448,13 +448,13 @@ export function CourtroomPlan2D({ activeTurnIndex, turns }: CourtroomPlan2DProps
           </div>
 
           {/* Audio & Auto-Cam Controls */}
-          <div className="flex items-center gap-1.5 bg-[#0d1627]/90 border-2 border-[#e8d28a]/60 p-1 rounded-xl font-mono text-[10px] backdrop-blur pointer-events-auto shadow-lg">
+          <div className="flex items-center gap-1.5 bg-[#180d09]/95 border-2 sm:border-3 border-black p-1 font-mono text-[10px] pointer-events-auto shadow-[4px_4px_0px_#000]">
             <button
               onClick={() => setAutoCam(!autoCam)}
-              className={`flex items-center gap-1 px-2 py-1 rounded transition-all border ${
+              className={`flex items-center gap-1 px-2 py-1 font-bold uppercase transition-all border border-black ${
                 autoCam
-                  ? "bg-amber-500/20 text-amber-300 border-amber-500/50"
-                  : "text-slate-400 border-slate-700 hover:text-white"
+                  ? "bg-neo-green text-black shadow-[1px_1px_0px_#000]"
+                  : "text-[#FFE885] bg-[#26150F] hover:text-white"
               }`}
               title="Toggle Auto Camera"
             >
@@ -464,17 +464,17 @@ export function CourtroomPlan2D({ activeTurnIndex, turns }: CourtroomPlan2DProps
 
             <button
               onClick={() => setSoundEnabled(!soundEnabled)}
-              className={`p-1 rounded transition-all border ${
+              className={`p-1 transition-all border border-black ${
                 soundEnabled
-                  ? "text-amber-300 border-amber-500/40 hover:bg-amber-900/40"
-                  : "text-slate-500 border-slate-700 hover:text-slate-300"
+                  ? "bg-[#26150F] text-neo-yellow hover:bg-[#382017]"
+                  : "text-[#FFE885]/60 bg-[#26150F] hover:text-white"
               }`}
               title={soundEnabled ? "Mute Retro Audio" : "Enable Retro Audio"}
             >
               {soundEnabled ? (
                 <Volume2 className="w-3.5 h-3.5" />
               ) : (
-                <VolumeX className="w-3.5 h-3.5 text-slate-500" />
+                <VolumeX className="w-3.5 h-3.5 text-[#FFE885]/60" />
               )}
             </button>
           </div>

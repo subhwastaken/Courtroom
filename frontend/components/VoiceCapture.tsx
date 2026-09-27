@@ -81,7 +81,7 @@ export function VoiceCapture({ onTranscript, disabled = false }: VoiceCapturePro
           ${
             listening
               ? "bg-neo-red text-white shadow-[3px_3px_0px_#000] animate-pulse"
-              : "bg-[#182337] text-neo-green shadow-[3px_3px_0px_#000] hover:bg-[#202e47]"
+              : "bg-[#26150F] text-neo-green shadow-[3px_3px_0px_#000] hover:bg-[#382017]"
           }
           ${disabled || !supported ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
         `}

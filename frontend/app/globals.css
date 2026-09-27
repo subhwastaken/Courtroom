@@ -5,8 +5,8 @@
 @tailwind utilities;
 
 :root {
-  --background: #090d16;
-  --foreground: #f8fafc;
+  --background: #120907;
+  --foreground: #FFF8E7;
 }
 
 body {
@@ -16,27 +16,33 @@ body {
   overflow-x: hidden;
   font-family: 'Space Mono', monospace;
   background-image: 
-    radial-gradient(circle at 50% 15%, rgba(255, 230, 0, 0.04) 0%, transparent 60%),
-    linear-gradient(#141a29 1px, transparent 1px),
-    linear-gradient(90deg, #141a29 1px, transparent 1px);
-  background-size: 100% 100%, 32px 32px, 32px 32px;
+    radial-gradient(circle at 50% 12%, rgba(229, 37, 33, 0.08) 0%, transparent 60%),
+    radial-gradient(circle at 85% 30%, rgba(255, 230, 0, 0.05) 0%, transparent 40%),
+    linear-gradient(#26150F 1px, transparent 1px),
+    linear-gradient(90deg, #26150F 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 32px 32px, 32px 32px;
+}
+
+::selection {
+  background: #FFE600;
+  color: #000000;
 }
 
 /* Custom Scrollbars */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
 }
 ::-webkit-scrollbar-track {
-  background: #090d16;
+  background: #120907;
   border-left: 2px solid #000;
 }
 ::-webkit-scrollbar-thumb {
-  background: #ffe600;
+  background: #FFE600;
   border: 2px solid #000;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #05f196;
+  background: #E52521;
 }
 
 /* Neo-brutalist helper utilities */

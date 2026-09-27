@@ -20,25 +20,25 @@ export function DialogueStream({
     advocate: {
       name: "The Advocate",
       roleTitle: "Counsel for Opportunity",
-      avatar: "/sprite_cutout_advocate.png",
+      avatar: "/pixel_advocate_portrait.jpg",
       tagColor: "bg-neo-green text-black border-2 border-black shadow-[2px_2px_0px_#000]",
-      bubbleBorder: "border-3 border-black bg-[#111827]",
+      bubbleBorder: "border-3 border-black bg-[#1C100B]",
       glowColor: "shadow-[6px_6px_0px_#05F196]",
     },
     skeptic: {
       name: "The Skeptic",
       roleTitle: "Counsel for Caution",
-      avatar: "/sprite_cutout_skeptic.png",
+      avatar: "/pixel_skeptic_portrait.jpg",
       tagColor: "bg-neo-red text-white border-2 border-black shadow-[2px_2px_0px_#000]",
-      bubbleBorder: "border-3 border-black bg-[#111827]",
-      glowColor: "shadow-[6px_6px_0px_#FF3366]",
+      bubbleBorder: "border-3 border-black bg-[#1C100B]",
+      glowColor: "shadow-[6px_6px_0px_#E52521]",
     },
     judge: {
       name: "The Chief Justice",
       roleTitle: "Supreme Arbiter of History",
-      avatar: "/sprite_cutout_judge.png",
+      avatar: "/pixel_judge_portrait.jpg",
       tagColor: "bg-neo-yellow text-black border-2 border-black shadow-[2px_2px_0px_#000]",
-      bubbleBorder: "border-3 border-black bg-[#111827]",
+      bubbleBorder: "border-3 border-black bg-[#1C100B]",
       glowColor: "shadow-[6px_6px_0px_#FFE600]",
     },
   };
@@ -53,9 +53,14 @@ export function DialogueStream({
     <div className="w-full flex flex-col space-y-4 font-mono select-none">
       {/* Question / Docket Case Card */}
       {question && (
-        <div className="bg-[#121927] border-3 border-black p-4 flex items-start gap-3.5 shadow-[5px_5px_0px_#000]">
-          <div className="w-10 h-10 flex-shrink-0 bg-neo-yellow border-2 border-black flex items-center justify-center shadow-[2px_2px_0px_#000]">
-            <Scale className="w-6 h-6 text-black stroke-[2.5]" />
+        <div className="bg-[#1C100B] border-3 border-black p-4 flex items-start gap-3.5 shadow-[5px_5px_0px_#000]">
+          <div className="w-10 h-10 flex-shrink-0 border-2 border-black overflow-hidden bg-black shadow-[2px_2px_0px_#000]">
+            <img
+              src="/pixel_court_badge.jpg"
+              alt="Docket Seal"
+              className="w-full h-full object-cover"
+              style={{ imageRendering: "pixelated" }}
+            />
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between text-xs mb-1">
@@ -63,9 +68,9 @@ export function DialogueStream({
                 <span className="w-2 h-2 bg-neo-green border border-black animate-pulse" />
                 Case Docket #2024
               </span>
-              <span className="text-[10px] text-slate-400 font-mono uppercase">Sub Judice</span>
+              <span className="text-[10px] text-[#FFE885] font-mono uppercase font-bold">Sub Judice</span>
             </div>
-            <p className="text-xs sm:text-sm text-slate-100 font-mono leading-relaxed font-bold">
+            <p className="text-xs sm:text-sm text-[#FFF8E7] font-mono leading-relaxed font-bold">
               &ldquo;{question}&rdquo;
             </p>
           </div>
@@ -88,11 +93,12 @@ export function DialogueStream({
               {/* Header row: Character + Title + Turn Tag */}
               <div className="flex items-center justify-between gap-3 mb-3 border-b-2 border-black pb-2.5">
                 <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 bg-[#1a2334] border-2 border-black flex-shrink-0 p-0.5 shadow-[2px_2px_0px_#000]">
+                  <div className="w-12 h-12 bg-black border-2 border-black flex-shrink-0 overflow-hidden shadow-[2px_2px_0px_#000]">
                     <img
                       src={meta.avatar}
                       alt={meta.name}
-                      className="w-full h-full object-contain pixelated"
+                      className="w-full h-full object-cover"
+                      style={{ imageRendering: "pixelated" }}
                     />
                   </div>
                   <div>
@@ -106,7 +112,7 @@ export function DialogueStream({
                         {meta.roleTitle}
                       </span>
                     </div>
-                    <div className="text-[10px] text-slate-400 font-mono mt-0.5">
+                    <div className="text-[10px] text-[#FFE885] font-mono mt-0.5 font-bold">
                       Courtroom Stage {idx + 1} of 3
                     </div>
                   </div>
@@ -115,7 +121,7 @@ export function DialogueStream({
                 {/* Copy Button */}
                 <button
                   onClick={() => copyToClipboard(turn.content, idx)}
-                  className="neo-btn bg-[#1e293b] text-slate-300 hover:text-white hover:bg-slate-700 p-1.5 border-2 border-black shadow-[2px_2px_0px_#000]"
+                  className="neo-btn bg-[#26150F] text-[#FFF8E7] hover:text-black hover:bg-neo-yellow p-1.5 border-2 border-black shadow-[2px_2px_0px_#000]"
                   title="Copy speech to clipboard"
                 >
                   {copiedIndex === idx ? (
@@ -128,7 +134,7 @@ export function DialogueStream({
 
               {/* Main Spoken Legal Argument */}
               <div className="my-2">
-                <p className="text-xs sm:text-sm text-slate-100 font-sans leading-relaxed">
+                <p className="text-xs sm:text-sm text-[#FFF8E7] font-sans leading-relaxed">
                   &ldquo;{turn.content}&rdquo;
                 </p>
               </div>
@@ -144,7 +150,7 @@ export function DialogueStream({
                     {turn.cited_memories.map((m, mIdx) => (
                       <span
                         key={mIdx}
-                        className="text-[10px] bg-[#1a2336] text-amber-200 border-2 border-black shadow-[2px_2px_0px_#000] px-2 py-0.5 flex items-center gap-1 max-w-full truncate font-mono"
+                        className="text-[10px] bg-[#26150F] text-[#FFE885] border-2 border-black shadow-[2px_2px_0px_#000] px-2 py-0.5 flex items-center gap-1 max-w-full truncate font-mono"
                         title={m}
                       >
                         <Quote className="w-2.5 h-2.5 text-neo-yellow flex-shrink-0" />

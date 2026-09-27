@@ -41,7 +41,7 @@ export function DecisionInput({ onSubmit, disabled = false }: DecisionInputProps
           onChange={(e) => setQuestion(e.target.value)}
           placeholder="State your dilemma for the court (e.g. Should I accept this new offer?)..."
           disabled={disabled}
-          className="w-full bg-[#101726] border-3 border-black shadow-[5px_5px_0px_#000] px-4 py-3.5 pr-32 text-xs sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-neo-yellow focus:shadow-[6px_6px_0px_#FFE600] font-mono transition-all"
+          className="w-full bg-[#1C100B] border-3 border-black shadow-[5px_5px_0px_#000] px-4 py-3.5 pr-32 text-xs sm:text-sm text-[#FFF8E7] placeholder-[#FFE885]/60 focus:outline-none focus:border-neo-yellow focus:shadow-[6px_6px_0px_#FFE600] font-mono transition-all"
         />
         <button
           type="submit"
@@ -66,7 +66,7 @@ export function DecisionInput({ onSubmit, disabled = false }: DecisionInputProps
             type="button"
             onClick={() => handleSelectPreset(preset)}
             disabled={disabled}
-            className="px-2.5 py-1 bg-[#162032] border-2 border-black shadow-[2px_2px_0px_#000] hover:bg-neo-yellow hover:text-black text-slate-200 transition-all text-[10px] active:translate-x-[1px] active:translate-y-[1px]"
+            className="px-2.5 py-1 bg-[#26150F] border-2 border-black shadow-[2px_2px_0px_#000] hover:bg-neo-yellow hover:text-black text-[#FFF8E7] transition-all text-[10px] active:translate-x-[1px] active:translate-y-[1px]"
           >
             {preset.slice(0, 42)}...
           </button>
