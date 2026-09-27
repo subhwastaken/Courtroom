@@ -14,7 +14,12 @@ import {
   BookOpen,
   CheckCircle2,
   Terminal,
-  Volume2
+  Volume2,
+  Zap,
+  Brain,
+  Scroll,
+  Gamepad2,
+  Network
 } from "lucide-react";
 
 export default function LandingPage() {
@@ -39,41 +44,54 @@ export default function LandingPage() {
       `}</style>
 
       {/* ──────────────────────────────────────────────────────────
-       *  TOP NEO-BRUTALIST TICKER MARQUEE
+       *  TOP NEO-BRUTALIST TICKER MARQUEE (100% LUCIDE SHADCN ICONS, ZERO EMOJIS)
        * ────────────────────────────────────────────────────────── */}
       <div className="w-full bg-neo-yellow border-b-4 border-black text-black py-2.5 overflow-hidden whitespace-nowrap shadow-[0_4px_0px_#000] z-20 font-mono text-xs sm:text-sm font-black uppercase tracking-widest">
-        <div className="inline-block animate-[marqueeScroll_20s_linear_infinite]">
-          <span className="mx-4">⚡ COURT IN SESSION ⚡</span>
-          <span className="mx-4">⚖️ ADVERSARIAL TRIAL FOR PERSONAL CHOICES</span>
-          <span className="mx-4">✦ 16-BIT RETRO BENCH</span>
-          <span className="mx-4">🎮 2D POKÉMON RPG CHAMBER PLAN</span>
-          <span className="mx-4">📜 GROUNDED IN YOUR ACTUAL LIVING MEMORIES</span>
-          <span className="mx-4">👨‍⚖️ 2 LAWYERS & 1 JUDGE</span>
-          <span className="mx-4">⚡ OBJECTION! BINDING PRECEDENT</span>
-          <span className="mx-4">⚡ COURT IN SESSION ⚡</span>
-          <span className="mx-4">⚖️ ADVERSARIAL TRIAL FOR PERSONAL CHOICES</span>
-          <span className="mx-4">✦ 16-BIT RETRO BENCH</span>
-          <span className="mx-4">🎮 2D POKÉMON RPG CHAMBER PLAN</span>
-          <span className="mx-4">📜 GROUNDED IN YOUR ACTUAL LIVING MEMORIES</span>
-          <span className="mx-4">👨‍⚖️ 2 LAWYERS & 1 JUDGE</span>
-          <span className="mx-4">⚡ OBJECTION! BINDING PRECEDENT</span>
+        <div className="inline-block animate-[marqueeScroll_25s_linear_infinite]">
+          <span className="mx-4 inline-flex items-center gap-1.5"><Zap className="w-3.5 h-3.5 fill-black" /> COURT IN SESSION <Zap className="w-3.5 h-3.5 fill-black" /></span>
+          <span className="mx-4 inline-flex items-center gap-1.5"><Scale className="w-3.5 h-3.5 stroke-[2.5]" /> ADVERSARIAL TRIAL FOR PERSONAL CHOICES</span>
+          <span className="mx-4 inline-flex items-center gap-1.5"><Sparkles className="w-3.5 h-3.5 fill-black" /> 16-BIT RETRO BENCH</span>
+          <span className="mx-4 inline-flex items-center gap-1.5"><Gamepad2 className="w-3.5 h-3.5" /> 2D RPG CHAMBER PLAN</span>
+          <span className="mx-4 inline-flex items-center gap-1.5"><Brain className="w-3.5 h-3.5 stroke-[2.5]" /> GROUNDED IN YOUR ACTUAL LIVING MEMORIES</span>
+          <span className="mx-4 inline-flex items-center gap-1.5"><Gavel className="w-3.5 h-3.5 stroke-[2.5]" /> 2 LAWYERS & 1 CHIEF JUSTICE</span>
+          <span className="mx-4 inline-flex items-center gap-1.5"><ShieldAlert className="w-3.5 h-3.5 stroke-[2.5]" /> BINDING PRECEDENT ARBITRATION</span>
+          <span className="mx-4 inline-flex items-center gap-1.5"><Zap className="w-3.5 h-3.5 fill-black" /> COURT IN SESSION <Zap className="w-3.5 h-3.5 fill-black" /></span>
+          <span className="mx-4 inline-flex items-center gap-1.5"><Scale className="w-3.5 h-3.5 stroke-[2.5]" /> ADVERSARIAL TRIAL FOR PERSONAL CHOICES</span>
+          <span className="mx-4 inline-flex items-center gap-1.5"><Sparkles className="w-3.5 h-3.5 fill-black" /> 16-BIT RETRO BENCH</span>
+          <span className="mx-4 inline-flex items-center gap-1.5"><Gamepad2 className="w-3.5 h-3.5" /> 2D RPG CHAMBER PLAN</span>
+          <span className="mx-4 inline-flex items-center gap-1.5"><Brain className="w-3.5 h-3.5 stroke-[2.5]" /> GROUNDED IN YOUR ACTUAL LIVING MEMORIES</span>
+          <span className="mx-4 inline-flex items-center gap-1.5"><Gavel className="w-3.5 h-3.5 stroke-[2.5]" /> 2 LAWYERS & 1 CHIEF JUSTICE</span>
+          <span className="mx-4 inline-flex items-center gap-1.5"><ShieldAlert className="w-3.5 h-3.5 stroke-[2.5]" /> BINDING PRECEDENT ARBITRATION</span>
         </div>
       </div>
 
       {/* ──────────────────────────────────────────────────────────
        *  HERO SECTION (PIXEL NEO-BRUTALIST)
        * ────────────────────────────────────────────────────────── */}
-      <section className="max-w-6xl mx-auto px-4 pt-12 sm:pt-16 pb-12 flex flex-col items-center text-center z-10 w-full">
+      <section className="max-w-6xl mx-auto px-4 pt-10 sm:pt-14 pb-12 flex flex-col items-center text-center z-10 w-full">
+        {/* Official 16-Bit Brand Logo Crest */}
+        <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-5 border-4 border-black shadow-[6px_6px_0px_#000] overflow-hidden bg-black animate-[stickerFloat_4s_infinite_ease-in-out] flex-shrink-0 hover:scale-105 transition-transform">
+          <img
+            src="/courtroom_brand_logo.jpg"
+            alt="Courtroom Official Crest"
+            className="w-full h-full object-cover"
+            style={{ imageRendering: "pixelated" }}
+          />
+        </div>
+
         {/* Top Badges & Stickers */}
         <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
-          <div className="bg-neo-yellow text-black border-3 border-black px-3.5 py-1 text-[11px] font-mono font-black uppercase tracking-wider shadow-[3px_3px_0px_#000] animate-[stickerFloat_3s_infinite_ease-in-out]">
-            ⚖️ VERDICT ARBITER v2.0
+          <div className="bg-neo-yellow text-black border-3 border-black px-3.5 py-1 text-[11px] font-mono font-black uppercase tracking-wider shadow-[3px_3px_0px_#000] animate-[stickerFloat_3s_infinite_ease-in-out] flex items-center gap-1.5">
+            <Scale className="w-3.5 h-3.5 stroke-[2.5]" />
+            <span>VERDICT ARBITER v2.0</span>
           </div>
-          <div className="bg-[#26150F] text-neo-green border-3 border-black px-3 py-1 text-[11px] font-mono font-bold uppercase tracking-wider shadow-[3px_3px_0px_#000]">
-            ● 12 VECTOR MEMORIES SYNCED
+          <div className="bg-[#26150F] text-neo-green border-3 border-black px-3 py-1 text-[11px] font-mono font-bold uppercase tracking-wider shadow-[3px_3px_0px_#000] flex items-center gap-1.5">
+            <Brain className="w-3.5 h-3.5 stroke-[2.5]" />
+            <span>12 VECTOR MEMORIES SYNCED</span>
           </div>
-          <div className="bg-neo-red text-white border-3 border-black px-3 py-1 text-[11px] font-mono font-bold uppercase tracking-wider shadow-[3px_3px_0px_#000] rotate-1">
-            ⚡ 100% UNBIASED CLASH
+          <div className="bg-neo-red text-white border-3 border-black px-3 py-1 text-[11px] font-mono font-bold uppercase tracking-wider shadow-[3px_3px_0px_#000] rotate-1 flex items-center gap-1.5">
+            <Zap className="w-3.5 h-3.5 fill-white stroke-[2.5]" />
+            <span>100% UNBIASED CLASH</span>
           </div>
         </div>
 
@@ -288,8 +306,9 @@ export default function LandingPage() {
        * ────────────────────────────────────────────────────────── */}
       <section className="max-w-6xl mx-auto px-4 w-full mb-20 z-10">
         <div className="text-center mb-10">
-          <div className="inline-block bg-neo-yellow text-black border-3 border-black px-3.5 py-1 text-xs font-mono font-black uppercase tracking-widest shadow-[3px_3px_0px_#000] -rotate-1 mb-3">
-            ⚖️ THE THREE TRIBUNAL AGENTS
+          <div className="inline-flex items-center gap-1.5 bg-neo-yellow text-black border-3 border-black px-3.5 py-1 text-xs font-mono font-black uppercase tracking-widest shadow-[3px_3px_0px_#000] -rotate-1 mb-3">
+            <Scale className="w-3.5 h-3.5 stroke-[2.5]" />
+            <span>THE THREE TRIBUNAL AGENTS</span>
           </div>
           <h2 className="font-sans text-3xl sm:text-5xl font-black uppercase tracking-tight text-white">
             MEET YOUR PERSONAL COURT
@@ -456,6 +475,103 @@ export default function LandingPage() {
             <div className="mt-6 pt-3 border-t-2 border-black/40 font-mono text-[10px] text-neo-red font-bold flex items-center gap-1.5">
               <ShieldAlert className="w-3.5 h-3.5" />
               <span>Prevents reckless overcommitments</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ──────────────────────────────────────────────────────────
+       *  SECOND BRAIN INTEGRATION (OBSIDIAN, NOTION, LIFE LOGS)
+       * ────────────────────────────────────────────────────────── */}
+      <section className="max-w-6xl mx-auto px-4 w-full mb-20 z-10">
+        <div className="bg-[#1C100B] border-4 border-black shadow-[10px_10px_0px_#000] p-6 sm:p-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 border-b-4 border-black pb-6">
+            <div>
+              <span className="bg-neo-green text-black px-3 py-1 font-pixel text-xs font-black uppercase border-2 border-black shadow-[3px_3px_0px_#000] inline-flex items-center gap-1.5 -rotate-1 mb-3">
+                <Brain className="w-3.5 h-3.5 stroke-[2.5]" />
+                SECOND BRAIN ENGINE
+              </span>
+              <h2 className="font-sans text-2xl sm:text-4xl font-black uppercase text-white tracking-tight">
+                YOUR NOTION NOTES ARE DEAD. <br />
+                <span className="text-neo-yellow">YOUR COURTROOM IS ALIVE.</span>
+              </h2>
+            </div>
+            <div className="font-mono text-xs text-[#FFE885] max-w-md leading-relaxed font-bold">
+              Most second brains become digital graveyards of 400 unread Obsidian notes and Notion tables that never challenge your thinking. Courtroom connects your actual vaults directly into an aggressive, adversarial tribunal that cross-examines you before you make a terrible mistake.
+            </div>
+          </div>
+
+          {/* 16-Bit Second Brain Architecture Artwork */}
+          <div className="relative aspect-video w-full border-4 border-black shadow-[8px_8px_0px_#000] overflow-hidden bg-black mb-8 group">
+            <img
+              src="/second_brain_courtroom.jpg"
+              alt="Second Brain Courtroom Data Pipeline: Obsidian, Notion, Voice Memos to Courtroom"
+              className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
+              style={{ imageRendering: "pixelated" }}
+            />
+            {/* Live Pipeline Badge Overlay */}
+            <div className="absolute top-3 left-3 bg-[#180d09]/95 border-2 sm:border-3 border-black px-3 py-1.5 font-mono text-[10px] sm:text-xs text-white shadow-[3px_3px_0px_#000] flex items-center gap-2">
+              <span className="w-2.5 h-2.5 bg-neo-green border border-black animate-pulse" />
+              <span className="font-pixel text-[9px] text-neo-green font-black uppercase">
+                ACTIVE DATA PIPELINE: OBSIDIAN + NOTION + QDRANT
+              </span>
+            </div>
+          </div>
+
+          {/* 3 Second Brain Core Tenets */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div className="bg-[#26150F] border-3 border-black p-5 shadow-[4px_4px_0px_#000] flex flex-col justify-between">
+              <div>
+                <div className="w-9 h-9 border-2 border-black bg-neo-yellow text-black flex items-center justify-center font-black mb-3 shadow-[2px_2px_0px_#000]">
+                  <Scroll className="w-5 h-5 stroke-[2.5]" />
+                </div>
+                <h3 className="font-mono text-sm font-black uppercase text-white mb-2">
+                  Obsidian & Markdown Dossier
+                </h3>
+                <p className="font-sans text-xs text-[#FFF8E7] leading-relaxed">
+                  Directly subpoenas your living <code className="text-neo-yellow font-mono font-bold">user.md</code> dossier and Markdown vaults. Your declared life principles, past scars, and non-negotiables are admitted as sworn courtroom exhibits.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t-2 border-black font-mono text-[10px] text-neo-yellow uppercase font-bold flex items-center gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                <span>Zero Hallucinated Values</span>
+              </div>
+            </div>
+
+            <div className="bg-[#26150F] border-3 border-black p-5 shadow-[4px_4px_0px_#000] flex flex-col justify-between">
+              <div>
+                <div className="w-9 h-9 border-2 border-black bg-neo-green text-black flex items-center justify-center font-black mb-3 shadow-[2px_2px_0px_#000]">
+                  <Database className="w-5 h-5 stroke-[2.5]" />
+                </div>
+                <h3 className="font-mono text-sm font-black uppercase text-white mb-2">
+                  Notion & Vector Semantic Recall
+                </h3>
+                <p className="font-sans text-xs text-[#FFF8E7] leading-relaxed">
+                  Synchronizes with your Qdrant vector memory collection. Whenever you submit a dilemma, the court retrieves the exact historical moments you regretted hesitating or rushed in blindly.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t-2 border-black font-mono text-[10px] text-neo-green uppercase font-bold flex items-center gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                <span>Precedent-Backed Debate</span>
+              </div>
+            </div>
+
+            <div className="bg-[#26150F] border-3 border-black p-5 shadow-[4px_4px_0px_#000] flex flex-col justify-between">
+              <div>
+                <div className="w-9 h-9 border-2 border-black bg-neo-red text-white flex items-center justify-center font-black mb-3 shadow-[2px_2px_0px_#000]">
+                  <Zap className="w-5 h-5 fill-white stroke-[2.5]" />
+                </div>
+                <h3 className="font-mono text-sm font-black uppercase text-white mb-2">
+                  Part of Your Daily Life
+                </h3>
+                <p className="font-sans text-xs text-[#FFF8E7] leading-relaxed">
+                  Stop overthinking alone at 2 AM. Bring your daily micro and macro decisions—from changing careers to negotiating salary or buying tech gear—before the bench for swift, binding arbitration.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t-2 border-black font-mono text-[10px] text-neo-red uppercase font-bold flex items-center gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                <span>Instant Decision Closure</span>
+              </div>
             </div>
           </div>
         </div>
@@ -648,10 +764,10 @@ export default function LandingPage() {
        * ────────────────────────────────────────────────────────── */}
       <section className="max-w-4xl mx-auto px-4 w-full z-10">
         <div className="bg-neo-yellow text-black border-4 border-black p-8 sm:p-10 shadow-[8px_8px_0px_#000] text-center flex flex-col items-center gap-4">
-          <div className="w-16 h-16 border-3 border-black overflow-hidden bg-black shadow-[4px_4px_0px_#000]">
+          <div className="w-16 h-16 sm:w-20 sm:h-20 border-3 border-black overflow-hidden bg-black shadow-[4px_4px_0px_#000]">
             <img
-              src="/pixel_gavel_gold.jpg"
-              alt="Supreme Gavel"
+              src="/courtroom_brand_logo.jpg"
+              alt="Courtroom Official Crest"
               className="w-full h-full object-cover"
               style={{ imageRendering: "pixelated" }}
             />

@@ -204,21 +204,21 @@ export function CourtroomChamber({ activeTurnIndex, turns }: CourtroomChamberPro
     if (activeTurn.role === "advocate") {
       setActiveBanner({
         role: "advocate",
-        title: "✦ PRESENTING ARGUMENT ✦",
+        title: "PRESENTING ARGUMENT",
         subtitle: "Counsel for Opportunity Presents Case"
       });
       playSound("argument");
     } else if (activeTurn.role === "skeptic") {
       setActiveBanner({
         role: "skeptic",
-        title: "⚡ OBJECTION! ⚡",
+        title: "OBJECTION!",
         subtitle: "Counsel for Caution Intervenes"
       });
       playSound("objection");
     } else if (activeTurn.role === "judge") {
       setActiveBanner({
         role: "judge",
-        title: "⚖️ ORDER IN THE COURT! ⚖️",
+        title: "ORDER IN THE COURT!",
         subtitle: "The Supreme Bench Delivers the Ruling"
       });
       triggerGavel();
@@ -692,8 +692,14 @@ export function CourtroomChamber({ activeTurnIndex, turns }: CourtroomChamberPro
                   : "bg-neo-yellow text-black"
               }`}
             >
-              <div className="font-pixel text-sm sm:text-lg font-black uppercase tracking-wider text-center drop-shadow-[2px_2px_0px_rgba(0,0,0,0.5)]">
-                {activeBanner.title}
+              <div className="font-pixel text-sm sm:text-lg font-black uppercase tracking-wider text-center drop-shadow-[2px_2px_0px_rgba(0,0,0,0.5)] flex items-center justify-center gap-2">
+                {activeBanner.role === "advocate" && <Scale className="w-5 h-5 stroke-[2.5]" />}
+                {activeBanner.role === "skeptic" && <Zap className="w-5 h-5 fill-white stroke-[2.5]" />}
+                {activeBanner.role === "judge" && <Gavel className="w-5 h-5 stroke-[2.5]" />}
+                <span>{activeBanner.title}</span>
+                {activeBanner.role === "advocate" && <Scale className="w-5 h-5 stroke-[2.5]" />}
+                {activeBanner.role === "skeptic" && <Zap className="w-5 h-5 fill-white stroke-[2.5]" />}
+                {activeBanner.role === "judge" && <Gavel className="w-5 h-5 stroke-[2.5]" />}
               </div>
               <div className="font-mono text-[10px] sm:text-xs font-bold text-center mt-1 tracking-wider uppercase">
                 {activeBanner.subtitle}

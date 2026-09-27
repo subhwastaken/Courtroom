@@ -24,8 +24,8 @@ export function Navbar() {
         <Link href="/" className="flex items-center gap-3 group select-none">
           <div className="w-10 h-10 border-3 border-black overflow-hidden shadow-[3px_3px_0px_#000] group-hover:translate-x-[-1px] group-hover:translate-y-[-1px] group-hover:shadow-[4px_4px_0px_#FFE600] transition-all bg-[#120907] flex-shrink-0">
             <img
-              src="/pixel_court_badge.jpg"
-              alt="Supreme Court Seal"
+              src="/courtroom_brand_logo.jpg"
+              alt="Courtroom Official Crest"
               className="w-full h-full object-cover"
               style={{ imageRendering: "pixelated" }}
             />
