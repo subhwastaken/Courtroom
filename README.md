@@ -2,7 +2,7 @@
 
 <img src="./frontend/public/courtroom_brand_logo.jpg" alt="Courtroom Official Seal" width="220" style="image-rendering: pixelated; border: 4px solid black; box-shadow: 6px 6px 0px #000;" />
 
-# ⚖️ COURTROOM ⚖️
+# COURTROOM
 ### *Stop overthinking alone at 2 AM. Subpoena your personal history and put your life choices on trial.*
 
 [![Next.js](https://img.shields.io/badge/Next.js-14_App_Router-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
