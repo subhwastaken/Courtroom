@@ -22,3 +22,6 @@
 ## 🎙️ Stated Reflections & Mindsets
 
 - *"I've come to realize that my desire for autonomy is not just about avoiding micromanagement or bureaucratic red tape, but about creating space for self-directed learning, experimentation, and innovation. I must continue to prioritize my own growth and development, even in the face of uncertainty and adversity."*
+
+## Recent Statements (auto-appended from voice/text)
+- 2026-09-28: "OK should I have a coffee or not"

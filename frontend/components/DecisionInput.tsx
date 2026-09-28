@@ -34,23 +34,25 @@ export function DecisionInput({ onSubmit, disabled = false }: DecisionInputProps
   return (
     <div className="w-full max-w-3xl px-4 flex flex-col items-center gap-3.5 select-none">
       {/* Main Decision Form */}
-      <form onSubmit={handleSubmit} className="w-full relative flex items-center">
-        <input
-          type="text"
-          value={question}
-          onChange={(e) => setQuestion(e.target.value)}
-          placeholder="State your dilemma for the court (e.g. Should I accept this new offer?)..."
-          disabled={disabled}
-          className="w-full bg-[#1C100B] border-3 border-black shadow-[5px_5px_0px_#000] px-4 py-3.5 pr-32 text-xs sm:text-sm text-[#FFF8E7] placeholder-[#FFE885]/60 focus:outline-none focus:border-neo-yellow focus:shadow-[6px_6px_0px_#FFE600] font-mono transition-all"
-        />
+      <form onSubmit={handleSubmit} className="w-full flex flex-col sm:flex-row gap-2.5 items-stretch">
+        <div className="flex-1 relative">
+          <input
+            type="text"
+            value={question}
+            onChange={(e) => setQuestion(e.target.value)}
+            placeholder="State your dilemma (e.g. Should I accept this new offer?)..."
+            disabled={disabled}
+            className="w-full bg-[#1C100B] border-3 border-black shadow-[4px_4px_0px_#000] px-4 py-3 text-xs sm:text-sm text-[#FFF8E7] placeholder-[#FFE885]/60 focus:outline-none focus:border-neo-yellow focus:shadow-[5px_5px_0px_#FFE600] font-mono transition-all"
+          />
+        </div>
         <button
           type="submit"
           disabled={disabled || !question.trim()}
-          className="neo-btn absolute right-2 px-4 py-2 bg-neo-yellow text-black font-mono text-xs font-black uppercase tracking-wider border-2 border-black shadow-[3px_3px_0px_#000] hover:bg-amber-300 disabled:opacity-40 disabled:cursor-not-allowed transition-all flex items-center gap-1.5"
+          className="neo-btn px-5 py-3 bg-neo-yellow text-black font-mono text-xs sm:text-sm font-black uppercase tracking-wider border-3 border-black shadow-[4px_4px_0px_#000] hover:bg-amber-300 active:translate-x-[2px] active:translate-y-[2px] disabled:opacity-40 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2 flex-shrink-0 cursor-pointer"
         >
-          <Scale className="w-3.5 h-3.5 stroke-[2.5]" />
-          <span>Convene</span>
-          <ArrowRight className="w-3.5 h-3.5 stroke-[2.5]" />
+          <Scale className="w-4 h-4 stroke-[2.5]" />
+          <span>CONVENE</span>
+          <ArrowRight className="w-4 h-4 stroke-[2.5]" />
         </button>
       </form>
 

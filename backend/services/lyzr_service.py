@@ -123,13 +123,14 @@ Generate the {target_turns}-turn adversarial courtroom debate as JSON."""
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt}
         ],
-        "temperature": 0.25,
-        "max_tokens": 1800,
+        "response_format": {"type": "json_object"},
+        "temperature": 0.2,
+        "max_tokens": 1400,
     }
 
     try:
-        print(f"[NVIDIA NIM] Generating dynamic {target_turns}-turn debate via {model}...")
-        async with httpx.AsyncClient(timeout=25.0) as client:
+        print(f"[NVIDIA NIM] Generating dynamic {target_turns}-turn debate via {model} (JSON mode)...")
+        async with httpx.AsyncClient(timeout=5.0) as client:
             resp = await client.post(NIM_BASE_URL, headers=headers, json=payload)
             resp.raise_for_status()
             raw_text = resp.json()["choices"][0]["message"]["content"].strip()
@@ -141,7 +142,8 @@ Generate the {target_turns}-turn adversarial courtroom debate as JSON."""
                 if "turns" in parsed and len(parsed["turns"]) > 0:
                     return parsed
     except Exception as e:
-        print(f"[NVIDIA NIM] Debate generation error: {e}. Falling back to grounded dynamic engine.")
+        err_msg = str(e) or repr(e)
+        print(f"[NVIDIA NIM] Debate generation error: {err_msg}. Falling back to grounded dynamic engine.")
     return None
 
 def _generate_grounded_dynamic_debate(
