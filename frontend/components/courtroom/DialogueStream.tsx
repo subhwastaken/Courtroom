@@ -109,11 +109,14 @@ export function DialogueStream({
                       <span
                         className={`text-[9px] px-2 py-0.5 font-bold uppercase tracking-wider ${meta.tagColor}`}
                       >
-                        {meta.roleTitle}
+                        {turn.role === "advocate"
+                          ? "Advocate Argument"
+                          : turn.role === "skeptic"
+                          ? "Skeptic Objection"
+                          : idx === turns.length - 1
+                          ? "Final Binding Ruling"
+                          : "Judicial Direction"}
                       </span>
-                    </div>
-                    <div className="text-[10px] text-[#FFE885] font-mono mt-0.5 font-bold">
-                      Courtroom Stage {idx + 1} of 3
                     </div>
                   </div>
                 </div>
@@ -137,6 +140,18 @@ export function DialogueStream({
                 <p className="text-xs sm:text-sm text-[#FFF8E7] font-sans leading-relaxed">
                   &ldquo;{turn.content}&rdquo;
                 </p>
+
+                {/* One-Line Actionable Directive (After Verdict) */}
+                {turn.actionable_decree && (
+                  <div className="mt-2.5 p-2 bg-neo-yellow text-black border-2 border-black font-mono text-xs font-black shadow-[2px_2px_0px_#000] flex items-center gap-2">
+                    <span className="px-1.5 py-0.5 bg-black text-neo-yellow font-pixel text-[8px] uppercase tracking-wider shrink-0">
+                      ACTION DIRECTIVE
+                    </span>
+                    <span className="leading-tight font-bold">
+                      {turn.actionable_decree}
+                    </span>
+                  </div>
+                )}
               </div>
 
               {/* Grounded Evidence / Precedent Footnotes */}

@@ -1,67 +1,68 @@
 <div align="center">
 
-<img src="./frontend/public/courtroom_brand_logo.jpg" alt="Courtroom Official Crest" width="160" style="image-rendering: pixelated;" />
+<img src="./frontend/public/courtroom_brand_logo.jpg" alt="Courtroom Official Seal" width="220" style="image-rendering: pixelated; border: 4px solid black; box-shadow: 6px 6px 0px #000;" />
 
-# COURTROOM
-### *Stop overthinking alone at 2 AM. Put your life decisions on trial before your own history.*
+# ⚖️ COURTROOM ⚖️
+### *Stop overthinking alone at 2 AM. Subpoena your personal history and put your life choices on trial.*
 
-[![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-14_App_Router-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688?style=for-the-badge&logo=fastapi)](https://fastapi.tiangolo.com/)
+[![NVIDIA NIM](https://img.shields.io/badge/NVIDIA_NIM-Llama_3.2-76B900?style=for-the-badge&logo=nvidia)](https://developer.nvidia.com/nim)
 [![Qdrant](https://img.shields.io/badge/Qdrant-Vector_DB-DC2626?style=for-the-badge&logo=qdrant)](https://qdrant.tech/)
-[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python)](https://python.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
 
 <br />
 
-> *"Your Obsidian graph has 900 nodes. Your Notion workspace has 40 databases. And yet, you still spent 45 minutes standing in your kitchen at midnight debating whether to reply to a Slack message."*
+> *"Your Obsidian graph has 1,200 nodes. Your Notion workspace has 47 color-coded databases. And yet, you still spent 45 minutes standing in your kitchen at midnight arguing with the microwave over whether to buy a $6 cold brew."*
 
 </div>
 
 ---
 
 <div align="center">
-  <img src="./frontend/public/second_brain_courtroom.jpg" alt="Second Brain Courtroom Pipeline" width="100%" style="image-rendering: pixelated; border: 4px solid black;" />
+  <img src="./frontend/public/second_brain_courtroom.jpg" alt="Second Brain Courtroom Pipeline" width="100%" style="image-rendering: pixelated; border: 4px solid black; box-shadow: 8px 8px 0px #000;" />
 </div>
 
 ---
 
-## The Problem: The "Second Brain" Graveyard
+## 🏛️ The Problem: Your Second Brain is in a Coma
 
-Be honest with yourself for thirty seconds.
+Be completely honest with yourself for thirty seconds.
 
-You watched 14 YouTube productivity gurus talk about Tiago Forte’s PARA method in front of a warm-toned bookshelf. You downloaded Obsidian. You installed 27 community plugins, configured Dataview, and spent an entire Sunday evening creating a graph view that looks like a dying galaxy.
+You watched 19 YouTube productivity influencers talk about Tiago Forte's PARA method in front of a warm-toned bookshelf with an aesthetic plant. You downloaded Obsidian. You installed 34 community plugins, spent three days configuring Dataview queries, and built a knowledge graph that looks like a dying constellation.
 
-You have:
-- A Notion page titled *"Core Life Values & Non-Negotiables (2022)"* that hasn't been opened since the Obama administration.
-- A voice memo folder with 400 audio files called *"New Recording 87"* where you talk about career goals while breathing heavily into your iPhone microphone.
-- An Obsidian vault full of insightful retrospective notes you swore you would read before making major life choices.
+You currently possess:
+- A Notion page titled **"Core Life Principles & Sacred Boundaries (2022 Revised)"** that has accumulated more digital dust than an abandoned GeoCities site.
+- An Apple Voice Memos directory with 300 audio files called **"New Recording 74"** where you ramble about career autonomy while breathing directly into your microphone on a windy walk.
+- An Obsidian vault crammed with retrospective essays you swore you would re-read before making any major life pivot.
 
-**And what actually happens when a real crisis strikes?**
-- *"Should I quit my corporate job to go full-time on an unvalidated AI wrapper?"*
-- *"Should I part ways with my non-technical cofounder who hasn't pushed a commit since May?"*
-- *"Should I buy an $800 espresso machine when I have $43 in my checking account?"*
+**And what actually happens when an actual life crossroads strikes?**
+- *"Should I quit my stable job to build an unvalidated AI wrapper?"*
+- *"Should I sign this lease in Manhattan or stay in my mom's basement and hoard runway?"*
+- *"Should I buy an $800 espresso machine when I have $23 in my checking account and owe taxes?"*
 
-Do you consult your Obsidian graph? **No.**
-You consult the microwave clock. You scroll Reddit threads from 2017. You ask ChatGPT, which immediately acts like a cowardly sycophant:
+Do you consult your Obsidian graph? **Of course you don't.**  
+You stare at your ceiling. You scroll Reddit threads from 2018. You open ChatGPT and ask it for advice, to which it responds with the spine of a jellyfish:
 
-> *"That is a deeply personal and nuanced question! Here are 7 pros and 7 cons. Remember to drink water and follow your heart! :)"*
+> *"That is a deeply personal and nuanced question! Here are 7 arbitrary pros and 7 arbitrary cons. Remember to stay hydrated and follow your passion! 🌸✨"*
 
-**ChatGPT doesn't know you.** It doesn't know you spent six months depressed in 2021 because you hesitated on an offer. It doesn't know that every time you work on weekends you burn out and stop speaking to your friends.
+**ChatGPT doesn't know you.**  
+It doesn't know you spent six months burned out in 2023 because you said yes to every client. It doesn't know that every time you work on a Sunday you turn into a miserable gremlin. It doesn't remember your painful regrets.
 
-Your second brain is dead. It's a digital cemetery of good intentions.
+Your Second Brain isn't an engine. It's a digital graveyard of good intentions.
 
 ---
 
-## The Solution: The Active Adversarial Courtroom
+## ⚡ The Solution: The Adversarial Judicial Tribunal
 
-**Courtroom** takes your dormant Second Brain (your Markdown dossier, vector memory bank, voice notes, and past outcomes) and connects it to a **16-bit retro adversarial tribunal**.
+**Courtroom** takes your dormant Second Brain—your Markdown dossier, vector memory bank, voice notes, and past committed decisions—and hooks it up to an **adversarial 16-bit retro courtroom tribunal**.
 
-Instead of a passive note you stare at, your actual history is **subpoenaed into court** by three autonomous AI agents with zero chill:
+Instead of a static note you passively ignore, your actual history is **subpoenaed into court** by three autonomous AI agents who will happily roast your hypocrisy and hold you accountable to your own past words:
 
 ```
                       ┌────────────────────────────────────┐
                       │    YOUR REAL DILEMMA / CASE        │
-                      │  "Should I accept the Seed Round?" │
+                      │  "Should I accept this job offer?" │
                       └─────────────────┬──────────────────┘
                                         │
                        [ Subpoena Historical Records ]
@@ -69,7 +70,7 @@ Instead of a passive note you stare at, your actual history is **subpoenaed into
                                         ▼
                       ┌────────────────────────────────────┐
                       │        QDRANT VECTOR MEMORY        │
-                      │  • Past Burnouts & Scars           │
+                      │  • Past Burnouts & Career Scars    │
                       │  • Stated Values in user.md        │
                       │  • Regrets of Hesitation           │
                       └─────────────────┬──────────────────┘
@@ -82,8 +83,9 @@ Instead of a passive note you stare at, your actual history is **subpoenaed into
         │                      │◄─── CROSS-EX ───►│                      │
         │ "Exhibit A: In 2021  │                  │ "Objection! In 2023  │
         │ you wrote that play- │                  │ you burned out from  │
-        │ ing it safe ruined   │                  │ investor pressure!   │
-        │ your momentum!"      │                  │ Runway is 4 months!" │
+        │ ing it safe cost you │                  │ 70h sprints! This    │
+        │ your best years!"    │                  │ gig has weekend on-  │
+        │                      │                  │ call duty!"          │
         └──────────┬───────────┘                  └──────────┬───────────┘
                    │                                         │
                    └────────────────────┬────────────────────┘
@@ -93,8 +95,8 @@ Instead of a passive note you stare at, your actual history is **subpoenaed into
                       │         THE CHIEF JUSTICE          │
                       │     Supreme Arbiter of History     │
                       │                                    │
-                      │ "The bench has deliberated.        │
-                      │  GAVEL SLAMS: VERDICT BINDING."    │
+                      │ "The bench has heard enough.       │
+                      │  *GAVEL SLAMS*: VERDICT BINDING."  │
                       └─────────────────┬──────────────────┘
                                         │
                       ┌─────────────────▼──────────────────┐
@@ -104,131 +106,136 @@ Instead of a passive note you stare at, your actual history is **subpoenaed into
                       └────────────────────────────────────┘
 ```
 
-### 1. The Advocate (Counsel for Opportunity)
-- **Role**: Builds the offensive case FOR taking aggressive action, expanding, and leaping.
-- **Weapon**: Scours your memory archive for moments where hesitation cost you momentum, quotes your core ambitions, and refuses to let you stay comfortable.
-- *"Your Honor, the defendant wrote on October 4th that their biggest regret was waiting 2 years too long to build. Hesitation is the only real death!"*
+---
 
-### 2. The Skeptic (Counsel for Caution)
-- **Role**: Protects your financial runway, mental stability, and boundaries.
-- **Weapon**: Cites your painful past burnouts, financial traps, and impulse decisions that blew up in your face.
-- *"OBJECTION! In Q3 2022, the defendant swore they would never accept a role with weekend on-call duty again after losing sleep and personal health. This offer violates their explicit boundary!"*
+## 👥 The Judicial Bench
 
-### 3. The Chief Justice (Supreme Arbiter of History)
-- **Role**: Weighs both arguments against your explicit `user.md` constitutional dossier.
-- **Weapon**: Strikes the golden gavel, issues a decisive ruling, and delivers binding judicial recommendations.
+| Character | Title | Portrait | Philosophy & Strategy |
+| :--- | :--- | :---: | :--- |
+| **The Advocate** | Counsel for Opportunity | <img src="./frontend/public/pixel_advocate_portrait.jpg" width="90" style="image-rendering:pixelated; border:2px solid black;" /> | **Pure offense.** Scours your memory archive for moments where hesitation destroyed momentum. Quotes your stated ambitions back at you and refuses to let you shrink into comfortable mediocrity. |
+| **The Skeptic** | Counsel for Caution | <img src="./frontend/public/pixel_skeptic_portrait.jpg" width="90" style="image-rendering:pixelated; border:2px solid black;" /> | **Pure defense.** The guardian of your financial runway, sleep hygiene, and mental stability. Cites your previous burnouts and impulse spending blow-ups as legal precedent to stop you from making stupid moves. |
+| **The Chief Justice** | Supreme Arbiter of History | <img src="./frontend/public/pixel_judge_portrait.jpg" width="90" style="image-rendering:pixelated; border:2px solid black;" /> | **Uncompromising impartiality.** Weighs both sides directly against your `user.md` constitutional baseline. Slams the golden gavel and hands down a binding, actionable verdict. |
 
 ---
 
-## The Dual-Engine Experience: 16-Bit Retro Chamber & 2D RPG Plan
+## 🔥 What's New & Upgraded
 
-We believe serious life decisions shouldn't feel like filling out an insurance claim. Courtroom is built with rich **16-bit retro neo-brutalist aesthetics**:
+### 1. 🧠 Dynamic Deliberation Engine (Zero Artificial Turn Limits)
+- In the past, bad debate engines forced you through a rigid 6-turn marathon even if you just asked *"Should I get a cup of coffee"*.
+- **Courtroom now adapts dynamically**:
+  - Micro-dilemmas (*"Should I buy running shoes"*) resolve in **3–4 swift, razor-sharp turns**.
+  - Existential quandaries (*"Should I drop out / leave my partner / sell my company"*) escalate into **up to 12 turns of intense adversarial cross-examination**.
+  - Clutter-free UI: No tacky *"Turn 0 / 6"* progress bars breaking the theatrical illusion.
 
-| 3D Pixel Courtroom Chamber | 2D Nintendo RPG Judicial Map |
+### 2. ⚡ NVIDIA NIM Ultra-Fast Constitution Synthesis
+- Powered by NVIDIA NIM (`meta/llama-3.2-11b-vision-instruct` / Llama 3 family).
+- **The Brain-Dump Translator**: Vent a chaotic, unformatted 3-sentence confession:
+  > *"I refuse to work weekends, have 6 months savings runway, deeply regret turning down an AI startup last year, and value autonomy above all else."*
+- Click **"Synthesize Dossier"** and NVIDIA NIM instantly extracts structured constitutional articles, formats them into `user.md`, and vectors them into Qdrant in parallel.
+
+### 3. 📜 Living Dossier Subpoena Station (`user.md`)
+- Direct visual inspection and editing of your identity file:
+  - **Structured View**: Neat categories for Core Life Values, Non-Negotiable Boundaries, Stated Regrets, and Historical Baselines.
+  - **Raw Markdown View**: Full text viewer with real-time byte counters and 1-click clipboard copy.
+  - **Direct Disk Persistence**: Edits save straight to `backend/data/user.md`.
+
+### 4. 💬 Pixel-Art Non-Intrusive Speech Chamber
+- Re-architected dialogue system: speech bubbles **never cover or clip character sprites**.
+- Dedicated high-contrast docket feed with retro pixel typography and sound-synthesized click cues.
+
+---
+
+## 🕹️ Visual Tour: 3D Chamber & 2D RPG Plan
+
+| 3D Pixel Courtroom Chamber | 2D Judicial RPG Plan |
 | :---: | :---: |
-| <img src="./frontend/public/courtroom_pixel_reference.jpg" width="100%" style="image-rendering: pixelated; border: 3px solid black;" /> | <img src="./frontend/public/courtroom_2d_rpg_plan.jpg" width="100%" style="image-rendering: pixelated; border: 3px solid black;" /> |
-| *Real-time animated sprites, speaker spotlights, wall sconce lighting, and dynamic camera zoom.* | *Top-down 16-bit RPG plan with interactive counsel tables, witness box, and retro dialogue engine.* |
+| <img src="./frontend/public/courtroom_pixel_reference.jpg" width="100%" style="image-rendering: pixelated; border: 3px solid black; box-shadow: 4px 4px 0px #000;" /> | <img src="./frontend/public/courtroom_2d_rpg_plan.jpg" width="100%" style="image-rendering: pixelated; border: 3px solid black; box-shadow: 4px 4px 0px #000;" /> |
+| *Real-time animated sprites, speaker spotlights, sconce lighting, and dynamic camera angles.* | *Top-down 16-bit RPG plan with interactive counsel tables, witness stand, and docket transcript.* |
 
 ---
 
-## How Courtroom Actually Integrates into Your Daily Second Brain
-
-Courtroom is not a gimmick. It is an **executable decision engine** that sits on top of your existing life data:
-
-### 1. The Living Constitutional Dossier (`backend/data/user.md`)
-Your core identity is kept in a plain, human-readable Markdown file. No proprietary lock-in. You define:
-- Your non-negotiables (e.g. *"I will not work weekends for an employer"*).
-- Your financial baselines (runway, debt, lifestyle floor).
-- Your past major regrets and inflection points.
-
-### 2. The Vector Memory Bank (Qdrant)
-Every journal entry, past career decision, or voice recording is converted into dense semantic vectors (`sentence-transformers/all-MiniLM-L6-v2` or OpenAI). When you pose a question, the court performs **cosine similarity vector retrieval** to subpoena the 5 most relevant life memories to use as evidence.
-
-### 3. Ambient & Voice Ingestion (Omi / Browser Mic)
-Walking your dog or driving your car? Speak your dilemma into the built-in browser microphone or send an audio payload via webhook. The courtroom transcribes it and convenes the trial immediately.
-
-### 4. Closing the Loop (Continuous Learning)
-Once the Chief Justice hands down a ruling, you log what you actually decided. That choice is instantly appended to `user.md` and upserted back into Qdrant. **The courtroom remembers how your previous trials played out.**
-
----
-
-## Quick Start
+## 🚀 Quick Start Guide
 
 ### Prerequisites
-- Node.js 18+ & npm
-- Python 3.10+
+- **Node.js 18+** & `npm`
+- **Python 3.10+**
+- (Optional) NVIDIA NIM API Key or Lyzr Agent Studio credentials for hosted LLM acceleration.
 
-### 1. Launch the FastAPI Backend
+### 1. Clone & Configure Backend
 
 ```bash
-cd backend
+git clone https://github.com/subhwastaken/Courtroom.git
+cd Courtroom/backend
 
-# Use the pre-configured virtual environment or create a new one
+# Create and activate virtual environment
 python3 -m venv venv
 source venv/bin/activate
+
+# Install dependencies
 pip install -r requirements.txt
 
-# Run the backend
-uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+# Configure your environment variables
+cp .env.example .env
+```
+
+*(Edit `backend/.env` to configure your preferred embedding provider, Qdrant cluster, or NVIDIA NIM API key).*
+
+### 2. Launch the Backend Server
+
+```bash
+python3 -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
 Verify backend health:
 ```bash
 curl http://localhost:8000/api/v1/health
-# {"status":"healthy","system":"Courtroom Mode Backend","memories_synced":8}
-```
-
-### 2. Seed Initial Memories (Starter Data)
-
-Populate your local Qdrant collection with starter life memories, regrets, and career milestones:
-```bash
-cd seed
-python3 seed_memories.py
+# {"status":"healthy","system":"Courtroom Mode Backend","memories_synced":229}
 ```
 
 ### 3. Launch the Next.js Frontend
 
 ```bash
-cd frontend
+cd ../frontend
 npm install
 npm run dev
 ```
 
-Visit **`http://localhost:3000`** in your browser:
-- **`/`** — Neo-Brutalist Landing Page & Second Brain Pipeline Showcase.
-- **`/courtroom`** — The 16-bit Judicial Chamber with live 3D & 2D views.
-- **`/profile`** — Living Identity Dossier (`user.md`) & Vector Memory Search Explorer.
+Open **`http://localhost:3000`** in your browser:
+- **`/`** — The Neo-Brutalist Landing Page & Architecture Pipeline.
+- **`/courtroom`** — The Live Judicial Chamber. Enter any dilemma and bang the gavel!
+- **`/profile`** — The Living Identity Dossier (`user.md`) & Vector Memory Subpoena Tool.
 
 ---
 
-## Architecture & Tech Stack
+## 🏗️ Architecture & Tech Stack
 
 ```
 Courtroom/
 ├── backend/
 │   ├── api/             # FastAPI routers (decision, memory, profile, voice)
-│   ├── services/        # Qdrant vector engine, Embeddings, Multi-Agent workflow
-│   ├── data/            # Living profile (user.md) & local Qdrant storage
-│   └── main.py          # FastAPI application entrypoint
+│   ├── services/        # NVIDIA NIM synthesis, Qdrant vector engine, Embeddings
+│   ├── data/            # Living profile (user.md) & local Qdrant memory storage
+│   └── main.py          # FastAPI application entrypoint with CORS security
 ├── frontend/
 │   ├── app/             # Next.js 14 App Router (landing, courtroom, profile)
-│   ├── components/      # Neo-Brutalist UI, CourtroomChamber, CourtroomPlan2D
-│   ├── public/          # 16-bit retro sprites, maps, and official crest logo
-│   └── lib/             # API client & sound effects engine
+│   ├── components/      # Neo-Brutalist CourtroomChamber, DialogueStream, Gavel
+│   ├── public/          # 16-bit retro sprites, seals, badges, and brand logos
+│   └── lib/             # Resilient API client & sound effects engine
 ├── seed/
-│   └── seed_memories.py # Starter dataset generator for vector DB
+│   └── seed_memories.py # Vector database memory seeder
 └── README.md
 ```
 
-- **Frontend**: Next.js 14, React 18, Tailwind CSS, Lucide React (zero emojis), Canvas particle engine, Web Audio API sound synthesis.
-- **Backend**: FastAPI, Pydantic, Python 3.10+.
-- **Vector Database**: Qdrant (`user_memories` dense collection).
-- **Multi-Agent Orchestration**: Lyzr Agent Studio / Local Grounded Fallback.
+- **Frontend**: Next.js 14 (App Router), React 18, Tailwind CSS, Lucide icons, Canvas scanlines, Web Audio API sound synthesis.
+- **Backend**: FastAPI, Pydantic v2, Python 3.10+.
+- **Synthesis & LLM**: NVIDIA NIM API (`meta/llama-3.2-11b-vision-instruct`), Lyzr Agent Cloud fallback.
+- **Vector Database**: Qdrant Cloud / Local Vector Engine.
 - **Embeddings**: `sentence-transformers` (`all-MiniLM-L6-v2`) with OpenAI embedding support.
 
 ---
 
-## License
+## 📜 Legal Disclaimer & License
 
-MIT License. Crafted with care by Subharup Nandi.
-Stop overthinking alone. Let your memories speak before the bench.
+Courtroom verdicts are legally binding on your conscience only. We accept no responsibility if The Skeptic prevents you from buying a customized mechanical keyboard or if The Advocate convinces you to quit your job and live in a yurt.
+
+Released under the **MIT License**. Crafted with precision by **Subharup Nandi**.

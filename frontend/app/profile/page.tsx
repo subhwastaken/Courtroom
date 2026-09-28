@@ -1,16 +1,28 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { fetchProfile, updateProfile, searchMemories } from "@/lib/api";
+import { fetchProfile, updateProfile, searchMemories, synthesizeProfile } from "@/lib/api";
 import { MemoryItem, ProfileResponse } from "@/lib/types";
-import { User, FileText, Search, Database, Save, CheckCircle2, Sparkles, BookOpen, Quote, ArrowRight } from "lucide-react";
+import { User, FileText, Search, Database, Save, CheckCircle2, Sparkles, BookOpen, Quote, ArrowRight, Zap, Cpu, RefreshCw, AlertCircle, Copy, Code } from "lucide-react";
 import { playClickSound } from "@/lib/sounds";
 
 export default function ProfilePage() {
   const [profile, setProfile] = useState<ProfileResponse | null>(null);
   const [markdown, setMarkdown] = useState<string>("");
+  const [profileLoading, setProfileLoading] = useState<boolean>(true);
+  const [profileError, setProfileError] = useState<string | null>(null);
   const [editing, setEditing] = useState<boolean>(false);
   const [saving, setSaving] = useState<boolean>(false);
   const [savedSuccess, setSavedSuccess] = useState<boolean>(false);
+  const [viewTab, setViewTab] = useState<"sections" | "raw">("sections");
+  const [copied, setCopied] = useState<boolean>(false);
+
+  // NVIDIA NIM Synthesizer state
+  const [synthInput, setSynthInput] = useState<string>("");
+  const [synthMode, setSynthMode] = useState<"replace" | "append">("replace");
+  const [synthSyncQdrant, setSynthSyncQdrant] = useState<boolean>(true);
+  const [synthesizing, setSynthesizing] = useState<boolean>(false);
+  const [synthSuccess, setSynthSuccess] = useState<string | null>(null);
+  const [synthError, setSynthError] = useState<string | null>(null);
 
   // Semantic search tool state
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -22,12 +34,17 @@ export default function ProfilePage() {
   }, []);
 
   async function loadProfileData() {
+    setProfileLoading(true);
+    setProfileError(null);
     try {
       const data = await fetchProfile();
       setProfile(data);
-      setMarkdown(data.raw_markdown);
-    } catch (err) {
+      setMarkdown(data.raw_markdown || "");
+    } catch (err: any) {
       console.error("Failed to load profile:", err);
+      setProfileError(err?.message || "Failed to load user dossier from disk.");
+    } finally {
+      setProfileLoading(false);
     }
   }
 
@@ -46,6 +63,43 @@ export default function ProfilePage() {
       setSaving(false);
     }
   }
+
+  async function handleSynthesize(e?: React.FormEvent, overrideText?: string) {
+    if (e) e.preventDefault();
+    const textToProcess = overrideText || synthInput;
+    if (!textToProcess.trim()) return;
+
+    setSynthesizing(true);
+    setSynthSuccess(null);
+    setSynthError(null);
+    playClickSound();
+
+    try {
+      const res = await synthesizeProfile(
+        textToProcess.trim(),
+        synthMode,
+        "Subharup",
+        synthSyncQdrant
+      );
+      setMarkdown(res.raw_markdown);
+      setSynthSuccess(
+        `Synthesized with ${res.provider} (${res.model}) — ${res.extracted_memories_count} points extracted (${res.memory_count} total memories in Qdrant).`
+      );
+      if (!overrideText) setSynthInput("");
+      await loadProfileData();
+    } catch (err: any) {
+      console.error("Synthesis failed:", err);
+      setSynthError(err.message || "Failed to synthesize dossier");
+    } finally {
+      setSynthesizing(false);
+    }
+  }
+
+  const PRESET_THOUGHTS = [
+    "I refuse to work on weekends, have 6 months savings runway, regret turning down an AI startup last year, and value autonomy above all else.",
+    "Burned out in 2023 from 70hr sprints. Now health and 8h sleep are non-negotiable. I want high-upside equity, not comfortable mediocrity.",
+    "Solo engineer with $30k savings. Boundary: no meetings before 1 PM. Regret staying 6 months too long at my previous corporate job."
+  ];
 
   async function handleSearch(e: React.FormEvent) {
     e.preventDefault();
@@ -109,16 +163,187 @@ export default function ProfilePage() {
         {/* ──────────────────────────────────────────────────────────
          *  LEFT 2 COLS: user.md DOSSIER EDITOR / VIEWER
          * ────────────────────────────────────────────────────────── */}
-        <div className="lg:col-span-2 space-y-4">
+        <div className="lg:col-span-2 space-y-6">
+          {/* ──────────────────────────────────────────────────────────
+           *  NVIDIA NIM NATURAL LANGUAGE SYNTHESIZER
+           * ────────────────────────────────────────────────────────── */}
+          <div className="bg-[#1C100B] border-4 border-black shadow-[8px_8px_0px_#000] overflow-hidden">
+            {/* Header bar */}
+            <div className="bg-neo-yellow border-b-4 border-black px-4 py-2.5 flex flex-wrap items-center justify-between gap-2 text-black font-mono text-xs">
+              <div className="flex items-center gap-2 font-black uppercase">
+                <Zap className="w-4 h-4 fill-black stroke-[2.5]" />
+                <span>NVIDIA NIM • Natural Language Dossier Synthesizer</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] px-2 py-0.5 bg-black text-neo-yellow font-bold uppercase border border-black shadow-[1px_1px_0px_#000]">
+                  Llama-3.2-11B Ultra Fast
+                </span>
+              </div>
+            </div>
+
+            <div className="p-5 space-y-4 font-mono text-xs">
+              <div>
+                <p className="text-xs text-[#FFF8E7] leading-relaxed font-sans">
+                  Don&apos;t want to write a structured 100-line Markdown constitution? Type 1-2 raw thoughts or informal sentences.
+                  NVIDIA NIM will automatically deduce your core values, non-negotiable boundaries, stated regrets, and baselines into a rigorous dossier.
+                </p>
+              </div>
+
+              {/* Input Form */}
+              <form onSubmit={(e) => handleSynthesize(e)} className="space-y-3">
+                <div className="relative">
+                  <textarea
+                    rows={3}
+                    value={synthInput}
+                    onChange={(e) => setSynthInput(e.target.value)}
+                    placeholder="e.g. I refuse to work on weekends, I have 6 months savings runway, I regret turning down an AI startup last year, and I value intellectual freedom above all else."
+                    className="w-full bg-[#26150F] border-3 border-black p-3 text-xs text-[#FFF8E7] placeholder-[#FFE885]/60 focus:outline-none focus:border-neo-yellow font-mono shadow-[3px_3px_0px_#000] resize-y"
+                  />
+                </div>
+
+                {/* Preset Chips */}
+                <div className="space-y-1.5">
+                  <span className="text-[10px] text-[#FFE885] font-bold uppercase tracking-wider block">
+                    Quick Preset Prompts (Click to Fill &amp; Run):
+                  </span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {PRESET_THOUGHTS.map((preset, idx) => (
+                      <button
+                        key={idx}
+                        type="button"
+                        onClick={() => {
+                          setSynthInput(preset);
+                          handleSynthesize(undefined, preset);
+                        }}
+                        className="px-2.5 py-1 bg-[#26150F] border border-black text-[#FFF8E7] hover:bg-neo-yellow hover:text-black font-mono text-[10px] transition-colors text-left"
+                      >
+                        ⚡ Preset #{idx + 1}: &ldquo;{preset.slice(0, 48)}...&rdquo;
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Action Controls */}
+                <div className="pt-2 flex flex-wrap items-center justify-between gap-3 border-t-2 border-black/80">
+                  <div className="flex flex-wrap items-center gap-3">
+                    {/* Mode Toggle */}
+                    <div className="flex items-center gap-1 bg-[#26150F] border-2 border-black p-0.5">
+                      <button
+                        type="button"
+                        onClick={() => setSynthMode("replace")}
+                        className={`px-2.5 py-1 font-mono text-[10px] uppercase font-black transition-all ${
+                          synthMode === "replace"
+                            ? "bg-neo-yellow text-black shadow-[1px_1px_0px_#000]"
+                            : "text-[#FFF8E7] hover:text-neo-yellow"
+                        }`}
+                        title="Rebuild the complete user.md dossier from this thought"
+                      >
+                        Full Dossier Build
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setSynthMode("append")}
+                        className={`px-2.5 py-1 font-mono text-[10px] uppercase font-black transition-all ${
+                          synthMode === "append"
+                            ? "bg-neo-green text-black shadow-[1px_1px_0px_#000]"
+                            : "text-[#FFF8E7] hover:text-neo-green"
+                        }`}
+                        title="Append & merge this thought into existing dossier sections"
+                      >
+                        Append &amp; Merge
+                      </button>
+                    </div>
+
+                    {/* Sync to Qdrant Checkbox */}
+                    <label className="flex items-center gap-1.5 cursor-pointer text-[11px] text-[#FFE885] font-bold">
+                      <input
+                        type="checkbox"
+                        checked={synthSyncQdrant}
+                        onChange={(e) => setSynthSyncQdrant(e.target.checked)}
+                        className="accent-neo-yellow w-3.5 h-3.5 cursor-pointer"
+                      />
+                      <span>Sync memories to Qdrant Cloud</span>
+                    </label>
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={synthesizing || !synthInput.trim()}
+                    className="neo-btn px-4 py-2 bg-neo-yellow text-black font-black uppercase text-xs border-2 border-black shadow-[3px_3px_0px_#000] flex items-center gap-1.5 disabled:opacity-40"
+                  >
+                    {synthesizing ? (
+                      <>
+                        <RefreshCw className="w-3.5 h-3.5 animate-spin text-black stroke-[3]" />
+                        <span>Synthesizing...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Zap className="w-3.5 h-3.5 fill-black stroke-[2.5]" />
+                        <span>Synthesize Dossier</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+              </form>
+
+              {/* Feedback Banners */}
+              {synthSuccess && (
+                <div className="p-3 bg-neo-green text-black border-2 border-black font-mono text-xs font-black flex items-center gap-2 shadow-[2px_2px_0px_#000]">
+                  <CheckCircle2 className="w-4 h-4 stroke-[2.5] flex-shrink-0" />
+                  <span>{synthSuccess}</span>
+                </div>
+              )}
+
+              {synthError && (
+                <div className="p-3 bg-neo-red text-white border-2 border-black font-mono text-xs font-black flex items-center gap-2 shadow-[2px_2px_0px_#000]">
+                  <AlertCircle className="w-4 h-4 stroke-[2.5] flex-shrink-0" />
+                  <span>{synthError}</span>
+                </div>
+              )}
+            </div>
+          </div>
+
           <div className="bg-[#1C100B] border-4 border-black shadow-[8px_8px_0px_#000] overflow-hidden">
             {/* Window Title Bar */}
-            <div className="bg-neo-yellow border-b-4 border-black px-4 py-2.5 flex items-center justify-between text-black font-mono text-xs">
+            <div className="bg-neo-yellow border-b-4 border-black px-4 py-2.5 flex flex-wrap items-center justify-between gap-2 text-black font-mono text-xs">
               <div className="flex items-center gap-2 font-black uppercase">
                 <FileText className="w-4 h-4 stroke-[2.5]" />
                 <span>USER_DOSSIER.MD [CONFIDENTIAL RECORD]</span>
+                <span className="text-[10px] px-2 py-0.5 bg-black text-[#FFE885] font-mono font-bold lowercase border border-black hidden sm:inline-block">
+                  backend/data/user.md
+                </span>
               </div>
 
+              {/* View Switcher & Action Controls */}
               <div className="flex items-center gap-2">
+                {!editing && (
+                  <div className="flex items-center bg-[#26150F] border-2 border-black p-0.5">
+                    <button
+                      type="button"
+                      onClick={() => setViewTab("sections")}
+                      className={`px-2 py-0.5 font-mono text-[10px] uppercase font-bold transition-all ${
+                        viewTab === "sections"
+                          ? "bg-neo-yellow text-black shadow-[1px_1px_0px_#000]"
+                          : "text-[#FFF8E7] hover:text-neo-yellow"
+                      }`}
+                    >
+                      Sections View
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setViewTab("raw")}
+                      className={`px-2 py-0.5 font-mono text-[10px] uppercase font-bold transition-all flex items-center gap-1 ${
+                        viewTab === "raw"
+                          ? "bg-neo-green text-black shadow-[1px_1px_0px_#000]"
+                          : "text-[#FFF8E7] hover:text-neo-green"
+                      }`}
+                    >
+                      <Code className="w-3 h-3" />
+                      Raw user.md View
+                    </button>
+                  </div>
+                )}
+
                 {editing ? (
                   <>
                     <button
@@ -141,7 +366,10 @@ export default function ProfilePage() {
                   </>
                 ) : (
                   <button
-                    onClick={() => setEditing(true)}
+                    onClick={() => {
+                      setEditing(true);
+                      setViewTab("raw");
+                    }}
                     className="neo-btn px-3 py-1 bg-black text-neo-yellow border-2 border-black font-black uppercase text-[10px] shadow-[2px_2px_0px_#000]"
                   >
                     Edit Dossier
@@ -153,20 +381,82 @@ export default function ProfilePage() {
             {savedSuccess && (
               <div className="p-3 bg-neo-green text-black border-b-3 border-black font-mono text-xs font-black flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 stroke-[2.5]" />
-                <span>Dossier successfully updated on disk and indexed to Qdrant memory.</span>
+                <span>Dossier successfully updated on disk (backend/data/user.md) and indexed to Qdrant memory.</span>
               </div>
             )}
 
             {/* Document Content */}
             <div className="p-6">
-              {editing ? (
-                <textarea
-                  value={markdown}
-                  onChange={(e) => setMarkdown(e.target.value)}
-                  rows={20}
-                  className="w-full bg-[#120907] border-3 border-black p-4 font-mono text-xs text-[#FFF8E7] leading-relaxed focus:outline-none focus:border-neo-yellow shadow-[4px_4px_0px_#000]"
-                />
+              {profileLoading ? (
+                <div className="p-10 text-center space-y-4 font-mono bg-[#120907] border-3 border-black shadow-[4px_4px_0px_#000]">
+                  <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-[#26150F] border-2 border-black text-neo-yellow text-xs font-bold uppercase shadow-[2px_2px_0px_#000]">
+                    <RefreshCw className="w-4 h-4 animate-spin text-neo-yellow" />
+                    <span>Loading User Dossier (user.md)...</span>
+                  </div>
+                  <p className="text-white/60 text-xs">Connecting to identity archive & vector index...</p>
+                </div>
+              ) : profileError ? (
+                <div className="p-6 bg-[#26150F] border-3 border-neo-red space-y-4 font-mono text-center shadow-[4px_4px_0px_#000]">
+                  <div className="flex items-center justify-center gap-2 text-neo-red font-black text-sm">
+                    <AlertCircle className="w-5 h-5 stroke-[2.5]" />
+                    <span>COULD NOT CONNECT TO DOSSIER RECORD</span>
+                  </div>
+                  <p className="text-xs text-white/70 max-w-md mx-auto">{profileError}</p>
+                  <button
+                    onClick={() => loadProfileData()}
+                    className="neo-btn px-4 py-2 bg-neo-yellow text-black border-2 border-black font-pixel text-xs uppercase font-black shadow-[3px_3px_0px_#000] inline-flex items-center gap-2 cursor-pointer"
+                  >
+                    <RefreshCw className="w-3.5 h-3.5" />
+                    <span>Retry Loading Dossier</span>
+                  </button>
+                </div>
+              ) : editing ? (
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-[11px] text-[#FFE885] font-mono">
+                    <span>Editing raw markdown — changes persist directly to <code className="bg-black px-1.5 py-0.5 text-neo-yellow">data/user.md</code>:</span>
+                    <span>{markdown.split("\n").length} lines</span>
+                  </div>
+                  <textarea
+                    value={markdown}
+                    onChange={(e) => setMarkdown(e.target.value)}
+                    rows={22}
+                    className="w-full bg-[#120907] border-3 border-black p-4 font-mono text-xs text-[#FFF8E7] leading-relaxed focus:outline-none focus:border-neo-yellow shadow-[4px_4px_0px_#000] resize-y"
+                  />
+                </div>
+              ) : viewTab === "raw" ? (
+                /* RAW MARKDOWN FILE VIEW */
+                <div className="space-y-3 font-mono">
+                  <div className="flex items-center justify-between bg-[#120907] border-2 border-black px-3 py-2 text-[11px] text-[#FFE885]">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 bg-neo-green rounded-full inline-block" />
+                      <span className="font-bold">user.md</span>
+                      <span className="text-white/40">|</span>
+                      <span className="text-white/70">{markdown.split("\n").length} lines</span>
+                      <span className="text-white/40">|</span>
+                      <span className="text-white/70">{markdown.length} bytes</span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        navigator.clipboard.writeText(markdown);
+                        setCopied(true);
+                        setTimeout(() => setCopied(false), 2000);
+                      }}
+                      className="px-2.5 py-1 bg-[#26150F] hover:bg-neo-yellow hover:text-black border border-black text-[#FFF8E7] font-bold text-[10px] uppercase flex items-center gap-1.5 transition-colors shadow-[1px_1px_0px_#000]"
+                    >
+                      <Copy className="w-3 h-3" />
+                      <span>{copied ? "Copied to Clipboard!" : "Copy user.md"}</span>
+                    </button>
+                  </div>
+
+                  <div className="bg-[#120907] border-3 border-black p-4 shadow-[4px_4px_0px_#000] overflow-x-auto max-h-[600px] overflow-y-auto">
+                    <pre className="font-mono text-xs text-[#FFF8E7] leading-relaxed whitespace-pre-wrap selection:bg-neo-yellow selection:text-black">
+                      {markdown || "No content found in user.md"}
+                    </pre>
+                  </div>
+                </div>
               ) : (
+                /* SECTIONS STRUCTURED VIEW */
                 <div className="space-y-6 font-mono">
                   {profile?.sections && Object.keys(profile.sections).length > 0 ? (
                     Object.entries(profile.sections).map(([sectionTitle, items], idx) => (
@@ -178,23 +468,29 @@ export default function ProfilePage() {
                           <span className="w-2 h-2 bg-neo-yellow border border-black inline-block" />
                           {sectionTitle}
                         </h3>
-                        <ul className="space-y-2 pl-2">
-                          {items.map((item, iIdx) => (
-                            <li
-                              key={iIdx}
-                              className="text-xs text-[#FFF8E7] font-sans leading-relaxed flex items-start gap-2"
-                            >
-                              <span className="text-neo-green font-bold">▶</span>
-                              <span>{item}</span>
-                            </li>
-                          ))}
-                        </ul>
+                        {items && items.length > 0 ? (
+                          <ul className="space-y-2 pl-2">
+                            {items.map((item, iIdx) => (
+                              <li
+                                key={iIdx}
+                                className="text-xs text-[#FFF8E7] font-sans leading-relaxed flex items-start gap-2"
+                              >
+                                <span className="text-neo-green font-bold flex-shrink-0">▶</span>
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : (
+                          <p className="text-xs text-white/50 italic pl-2">No items recorded in this section.</p>
+                        )}
                       </div>
                     ))
                   ) : (
-                    <pre className="font-mono text-xs text-[#FFF8E7] whitespace-pre-wrap">
-                      {markdown}
-                    </pre>
+                    <div className="bg-[#120907] border-3 border-black p-4 shadow-[4px_4px_0px_#000]">
+                      <pre className="font-mono text-xs text-[#FFF8E7] whitespace-pre-wrap">
+                        {markdown || "No sections or content found in user.md"}
+                      </pre>
+                    </div>
                   )}
                 </div>
               )}

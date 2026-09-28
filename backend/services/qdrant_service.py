@@ -16,7 +16,7 @@ def get_client() -> QdrantClient:
         
         if url:
             print(f"[Qdrant] Connecting to remote Qdrant at {url}")
-            _client = QdrantClient(url=url, api_key=api_key or None)
+            _client = QdrantClient(url=url, api_key=api_key or None, check_compatibility=False)
         else:
             storage_path = os.path.join(os.path.dirname(__file__), "..", "data", "qdrant_storage")
             os.makedirs(storage_path, exist_ok=True)

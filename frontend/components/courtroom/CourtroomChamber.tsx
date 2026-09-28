@@ -202,31 +202,34 @@ export function CourtroomChamber({ activeTurnIndex, turns }: CourtroomChamberPro
 
     // Dramatic Ace Attorney style Comic Banner
     if (activeTurn.role === "advocate") {
+      const isRebuttal = activeTurnIndex > 3;
       setActiveBanner({
         role: "advocate",
-        title: "PRESENTING ARGUMENT",
-        subtitle: "Counsel for Opportunity Presents Case"
+        title: isRebuttal ? "REBUTTAL ARGUMENT" : "PRESENTING ARGUMENT",
+        subtitle: isRebuttal ? "Counsel for Opportunity Responds" : "Counsel for Opportunity Presents Case"
       });
       playSound("argument");
     } else if (activeTurn.role === "skeptic") {
+      const isCounter = activeTurnIndex > 3;
       setActiveBanner({
         role: "skeptic",
-        title: "OBJECTION!",
-        subtitle: "Counsel for Caution Intervenes"
+        title: isCounter ? "COUNTER OBJECTION!" : "OBJECTION!",
+        subtitle: isCounter ? "Counsel for Caution Rebuts" : "Counsel for Caution Intervenes"
       });
       playSound("objection");
     } else if (activeTurn.role === "judge") {
+      const isFinalRuling = activeTurnIndex >= turns.length;
       setActiveBanner({
         role: "judge",
-        title: "ORDER IN THE COURT!",
-        subtitle: "The Supreme Bench Delivers the Ruling"
+        title: isFinalRuling ? "FINAL VERDICT!" : "ORDER IN THE COURT!",
+        subtitle: isFinalRuling ? "The Supreme Bench Delivers Binding Ruling" : "The Bench Directs Counsel"
       });
       triggerGavel();
     }
 
     const bannerTimeout = setTimeout(() => {
       setActiveBanner(null);
-    }, 1100);
+    }, 1200);
 
     // Typewriter effect for dialogue
     setDisplayedText("");
@@ -581,8 +584,8 @@ export function CourtroomChamber({ activeTurnIndex, turns }: CourtroomChamberPro
               style={{ imageRendering: "pixelated" }}
             />
 
-            {/* Supreme Ruling Badge */}
-            {activeRole === "judge" && (
+            {/* Supreme Ruling Badge (only when not actively displaying dialogue bubble) */}
+            {activeRole === "judge" && !displayedText && (
               <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-[#231508]/95 px-2.5 py-1 rounded border border-amber-400/80 shadow-[0_0_15px_rgba(234,179,8,0.4)] whitespace-nowrap">
                 <Gavel className="w-3 h-3 text-amber-300 animate-bounce" />
                 <span className="text-[9px] font-mono text-amber-200 font-bold uppercase tracking-wider">
@@ -593,27 +596,27 @@ export function CourtroomChamber({ activeTurnIndex, turns }: CourtroomChamberPro
           </div>
 
           {/* ──────────────────────────────────────────────────────────
-           *  SPEECH BUBBLE OVERLAYS (COMPACT COMIC BALLOONS SAFELY POSITIONED ABOVE FACES)
+           *  SPEECH BUBBLE OVERLAYS (COMPACT RETRO COMIC BALLOONS SAFELY CLEAR OF FACES & TOOLBAR)
            * ────────────────────────────────────────────────────────── */}
           {activeRole === "advocate" && (
             <div
               className="absolute z-20 pointer-events-none transition-all duration-300"
-              style={{ left: "3%", top: "2%", maxWidth: "28%" }}
+              style={{ left: "14%", top: "20%", maxWidth: "30%" }}
             >
-              <div className="relative bg-[#0d2215]/95 border-2 border-black shadow-[3px_3px_0px_#05F196] px-2.5 py-1.5 text-[#FFF8E7] flex flex-col gap-1 max-w-[210px] sm:max-w-[240px]">
+              <div className="relative bg-[#0d2215]/95 border-2 border-black shadow-[2px_2px_0px_#05F196] px-2 py-1 text-[#FFF8E7] flex flex-col gap-0.5 max-w-[190px] sm:max-w-[210px]">
                 <div className="flex items-center justify-between pb-0.5 border-b border-neo-green/30">
-                  <span className="font-pixel text-[8px] font-black uppercase tracking-wider text-neo-green flex items-center gap-1">
-                    <Scale className="w-2.5 h-2.5 text-neo-green stroke-[2.5]" />
-                    THE ADVOCATE
+                  <span className="font-pixel text-[7px] font-black uppercase tracking-wider text-neo-green flex items-center gap-1">
+                    <Scale className="w-2 h-2 text-neo-green stroke-[2.5]" />
+                    {activeTurnIndex > 3 ? "ADVOCATE REBUTTAL" : "THE ADVOCATE"}
                   </span>
                   <span className="w-1.5 h-1.5 bg-neo-green border border-black animate-ping" />
                 </div>
-                <p className="font-sans text-[10px] sm:text-[11px] leading-tight text-[#FFF8E7] line-clamp-2 font-bold">
+                <p className="font-sans text-[9px] sm:text-[9.5px] leading-tight text-[#FFF8E7] line-clamp-2 font-bold break-words">
                   &ldquo;{displayedText}&rdquo;
                 </p>
-                {/* Compact tail pointing down toward Advocate */}
+                {/* Tail pointing down-left toward Advocate */}
                 <div
-                  className="absolute -bottom-1.5 left-10 w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[6px] border-t-black"
+                  className="absolute -bottom-1 left-6 w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-t-[5px] border-t-black"
                 />
               </div>
             </div>
@@ -622,22 +625,22 @@ export function CourtroomChamber({ activeTurnIndex, turns }: CourtroomChamberPro
           {activeRole === "skeptic" && (
             <div
               className="absolute z-20 pointer-events-none transition-all duration-300"
-              style={{ right: "3%", top: "2%", maxWidth: "28%" }}
+              style={{ right: "14%", top: "20%", maxWidth: "30%" }}
             >
-              <div className="relative bg-[#280c14]/95 border-2 border-black shadow-[3px_3px_0px_#E52521] px-2.5 py-1.5 text-[#FFF8E7] flex flex-col gap-1 max-w-[210px] sm:max-w-[240px]">
+              <div className="relative bg-[#280c14]/95 border-2 border-black shadow-[2px_2px_0px_#E52521] px-2 py-1 text-[#FFF8E7] flex flex-col gap-0.5 max-w-[190px] sm:max-w-[210px]">
                 <div className="flex items-center justify-between pb-0.5 border-b border-neo-red/30">
-                  <span className="font-pixel text-[8px] font-black uppercase tracking-wider text-neo-red flex items-center gap-1">
-                    <ShieldAlert className="w-2.5 h-2.5 text-neo-red stroke-[2.5]" />
-                    THE SKEPTIC
+                  <span className="font-pixel text-[7px] font-black uppercase tracking-wider text-neo-red flex items-center gap-1">
+                    <ShieldAlert className="w-2 h-2 text-neo-red stroke-[2.5]" />
+                    {activeTurnIndex > 3 ? "SKEPTIC COUNTER" : "THE SKEPTIC"}
                   </span>
                   <span className="w-1.5 h-1.5 bg-neo-red border border-black animate-ping" />
                 </div>
-                <p className="font-sans text-[10px] sm:text-[11px] leading-tight text-[#FFF8E7] line-clamp-2 font-bold">
+                <p className="font-sans text-[9px] sm:text-[9.5px] leading-tight text-[#FFF8E7] line-clamp-2 font-bold break-words">
                   &ldquo;{displayedText}&rdquo;
                 </p>
-                {/* Compact tail pointing down toward Skeptic */}
+                {/* Tail pointing down-right toward Skeptic */}
                 <div
-                  className="absolute -bottom-1.5 right-10 w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[6px] border-t-black"
+                  className="absolute -bottom-1 right-6 w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-t-[5px] border-t-black"
                 />
               </div>
             </div>
@@ -646,34 +649,24 @@ export function CourtroomChamber({ activeTurnIndex, turns }: CourtroomChamberPro
           {activeRole === "judge" && (
             <div
               className="absolute z-20 pointer-events-none transition-all duration-300 -translate-x-1/2"
-              style={{ left: "50%", top: "1.5%", maxWidth: "30%" }}
+              style={{ left: "50%", top: "50%", maxWidth: "32%" }}
             >
-              <div className="relative bg-[#1c1508]/95 border-2 border-black shadow-[3px_3px_0px_#FFE600] px-2.5 py-1.5 text-[#FFF8E7] flex flex-col gap-1 max-w-[220px] sm:max-w-[250px]">
+              <div className="relative bg-[#1c1508]/95 border-2 border-black shadow-[2px_2px_0px_#FFE600] px-2 py-1 text-[#FFF8E7] flex flex-col gap-0.5 max-w-[210px] sm:max-w-[230px]">
+                {/* Compact tail pointing UP toward Chief Justice (bench plaque style) */}
+                <div
+                  className="absolute -top-1 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-b-[5px] border-b-black"
+                />
                 <div className="flex items-center justify-between pb-0.5 border-b border-neo-yellow/30">
-                  <span className="font-pixel text-[8px] font-black uppercase tracking-wider text-neo-yellow flex items-center gap-1">
-                    <Gavel className="w-2.5 h-2.5 text-neo-yellow stroke-[2.5]" />
-                    CHIEF JUSTICE
+                  <span className="font-pixel text-[7px] font-black uppercase tracking-wider text-neo-yellow flex items-center gap-1">
+                    <Gavel className="w-2 h-2 text-neo-yellow stroke-[2.5]" />
+                    {activeTurnIndex >= turns.length ? "FINAL RULING" : "CHIEF JUSTICE"}
                   </span>
                   <span className="w-1.5 h-1.5 bg-neo-yellow border border-black animate-ping" />
                 </div>
-                <p className="font-sans text-[10px] sm:text-[11px] leading-tight text-[#FFF8E7] line-clamp-2 font-bold">
-                  &ldquo;{displayedText}&rdquo;
+                <p className="font-sans text-[9px] sm:text-[9.5px] leading-tight text-[#FFF8E7] line-clamp-2 font-bold break-words">
+                  &ldquo;{displayedText.includes("VERDICT:") ? displayedText.split("REASONING:")[0].replace("VERDICT:", "").trim() : displayedText}&rdquo;
                 </p>
-                {/* Compact tail pointing down toward Judge */}
-                <div
-                  className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[6px] border-t-black"
-                />
               </div>
-            </div>
-          )}
-
-          {/* Ambient idle notice when waiting for deliberation */}
-          {!activeRole && (
-            <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-[#180d09]/95 border-3 border-black px-4 py-1.5 shadow-[4px_4px_0px_#000] flex items-center gap-2 pointer-events-none">
-              <span className="w-2.5 h-2.5 bg-neo-yellow border border-black animate-pulse" />
-              <span className="font-pixel text-[9px] text-[#FFF8E7] font-black uppercase tracking-widest">
-                CHAMBER ASSEMBLED • 2 ADVOCATES & 1 BENCH JUDGE
-              </span>
             </div>
           )}
         </div>

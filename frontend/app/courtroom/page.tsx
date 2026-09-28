@@ -42,7 +42,7 @@ export default function CourtroomPage() {
     setActiveTurn(0);
     setIsReplaying(true);
 
-    const baseDelay = 2200 / currentSpeed;
+    let cumulativeDelay = 600 / currentSpeed;
 
     res.turns.forEach((turn, i) => {
       const t = setTimeout(() => {
@@ -51,8 +51,14 @@ export default function CourtroomPage() {
         if (i === res.turns.length - 1) {
           setIsReplaying(false);
         }
-      }, (i + 1) * baseDelay);
+      }, cumulativeDelay);
       timeoutsRef.current.push(t);
+
+      // Conversational reading duration so each bubble stays visible
+      // before the next agent interjects
+      const readingDuration =
+        Math.max(2800, Math.min(4800, turn.content.length * 26)) / currentSpeed;
+      cumulativeDelay += readingDuration;
     });
   };
 
@@ -105,81 +111,37 @@ export default function CourtroomPage() {
 
   const currentPhase = loading
     ? "Deliberating..."
-    : activeTurn === 1
-    ? "Advocate Opening Argument"
-    : activeTurn === 2
-    ? "Skeptic Direct Rebuttal"
-    : activeTurn >= 3
+    : !result || activeTurn === 0
+    ? "Chamber Standby"
+    : activeTurn >= result.turns.length
     ? "Judicial Ruling Delivered"
-    : "Chamber Standby";
+    : (() => {
+        const curTurn = result.turns[activeTurn - 1];
+        if (!curTurn) return "Chamber Standby";
+        const roleLabel =
+          curTurn.role === "advocate"
+            ? "Advocate Point"
+            : curTurn.role === "skeptic"
+            ? "Skeptic Objection"
+            : "Chief Justice Direction";
+        return roleLabel;
+      })();
 
   return (
     <div className="relative min-h-[calc(100vh-3.5rem)] flex flex-col justify-between overflow-x-hidden pb-16 bg-[#120907]">
-      {/* Top Courtroom Header Banner */}
-      <div className="w-full bg-[#180d09] border-b-4 border-black px-4 py-3 shadow-[0_4px_0px_#000]">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
-          {/* Logo & Subtitle */}
-          <div className="flex items-center gap-3.5">
-            <div className="w-11 h-11 border-3 border-black overflow-hidden bg-black shadow-[3px_3px_0px_#000] flex-shrink-0">
-              <img
-                src="/pixel_court_badge.jpg"
-                alt="Courtroom Seal"
-                className="w-full h-full object-cover"
-                style={{ imageRendering: "pixelated" }}
-              />
-            </div>
-            <div>
-              <div className="font-mono text-sm font-black uppercase tracking-widest text-white flex items-center gap-2">
-                <span>Chamber of Personal Conscience</span>
-                <span className="text-[10px] px-2 py-0.5 bg-neo-yellow text-black border-2 border-black font-bold shadow-[2px_2px_0px_#000] -rotate-1">
-                  COURT IN SESSION
-                </span>
-              </div>
-              <div className="text-[11px] font-mono text-[#FFE885] font-bold">
-                Adversarial Deliberation Engine • Grounded in Living Personal History
-              </div>
-            </div>
-          </div>
-
-          {/* View Mode Switcher: 16-Bit Chamber vs 2D RPG Floor Plan */}
-          <div className="flex items-center gap-1.5 bg-[#26150F] border-3 border-black p-1 shadow-[3px_3px_0px_#000] font-mono text-xs">
-            <button
-              onClick={() => setViewMode("3d")}
-              className={`flex items-center gap-1.5 px-3 py-1.5 border-2 border-black font-black uppercase transition-all ${
-                viewMode === "3d"
-                  ? "bg-neo-yellow text-black shadow-[2px_2px_0px_#000] translate-x-[-1px] translate-y-[-1px]"
-                  : "bg-transparent text-[#FFF8E7] hover:text-neo-yellow"
-              }`}
-            >
-              <Scale className="w-3.5 h-3.5" />
-              <span>16-Bit Chamber</span>
-            </button>
-
-            <button
-              onClick={() => setViewMode("2d")}
-              className={`flex items-center gap-1.5 px-3 py-1.5 border-2 border-black font-black uppercase transition-all ${
-                viewMode === "2d"
-                  ? "bg-neo-green text-black shadow-[2px_2px_0px_#000] translate-x-[-1px] translate-y-[-1px]"
-                  : "bg-transparent text-[#FFF8E7] hover:text-neo-green"
-              }`}
-            >
-              <Layers className="w-3.5 h-3.5" />
-              <span>2D RPG Plan</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
       {/* Live Judicial Session Stats & Ticker Bar */}
       <CourtroomStatsTicker
         phase={currentPhase}
         utterancesCount={activeTurn}
+        totalTurns={result?.turns.length}
         citedCount={totalCitations}
         syncedCount={syncedCount}
         speed={speed}
         onSpeedChange={handleSpeedChange}
         onReplay={result ? handleReplay : undefined}
         isReplaying={isReplaying}
+        viewMode={viewMode}
+        onViewModeChange={setViewMode}
       />
 
       {/* Main Collaboration Chamber Layout */}
@@ -204,6 +166,18 @@ export default function CourtroomPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           {/* Left Column (7 cols): 16-bit Front Chamber or 2D Nintendo RPG Plan */}
           <div className="lg:col-span-7 flex flex-col gap-4">
+            <div className="flex items-center justify-between border-b-2 border-black pb-2 font-mono text-xs">
+              <span className="text-white font-bold uppercase tracking-wider flex items-center gap-1.5">
+                <Scale className="w-3.5 h-3.5 text-neo-yellow" />
+                Chamber of Conscience
+                <span className="text-[9px] px-1.5 py-0.5 bg-neo-yellow text-black border border-black font-black uppercase ml-1 shadow-[1px_1px_0px_#000]">
+                  {viewMode === "3d" ? "16-Bit View" : "2D RPG Map"}
+                </span>
+              </span>
+              <span className="text-[#FFE885] text-[11px] font-mono font-bold">
+                Active Tribunal
+              </span>
+            </div>
             <div className="relative">
               {viewMode === "3d" ? (
                 <CourtroomChamber
@@ -219,10 +193,11 @@ export default function CourtroomPage() {
             </div>
 
             {/* Verdict Gavel Banner when Ruling Lands */}
-            {result && activeTurn >= 3 && (
+            {result && activeTurn >= result.turns.length && (
               <VerdictGavel
                 verdict={result.verdict}
                 citations={result.verdict_citations}
+                decree={result.actionable_decree}
               />
             )}
           </div>
@@ -235,7 +210,7 @@ export default function CourtroomPage() {
                 Judicial Deliberation Stream
               </span>
               <span className="text-[#FFE885] text-[11px] font-mono font-bold">
-                {activeTurn} / {result?.turns.length || 3} Turns
+                {result ? (activeTurn >= result.turns.length ? "Ruling Finalized" : "Adversarial Hearing") : "Tribunal Ready"}
               </span>
             </div>
 
@@ -274,7 +249,7 @@ export default function CourtroomPage() {
         </div>
 
         {/* Closed-Loop Decision Outcome Prompt */}
-        {result && activeTurn >= 3 && (
+        {result && activeTurn >= result.turns.length && (
           <OutcomePrompt
             question={result.question}
             onLog={handleLoggedOutcome}

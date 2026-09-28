@@ -1,4 +1,6 @@
 import os
+os.environ["USE_TF"] = "0"
+os.environ["TRANSFORMERS_NO_TF"] = "1"
 from typing import List
 import numpy as np
 

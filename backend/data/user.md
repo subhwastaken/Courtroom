@@ -1,39 +1,24 @@
-# Subharup Nandi — Personal Dossier & Living Profile
+# Subharup — Personal Dossier & Living Profile
 *Updated automatically through Courtroom Mode deliberation, voice logs, and committed outcomes.*
 
----
-
 ## 🧭 Core Life Values & Priorities
-1. **Autonomy & Intellectual Freedom > Corporate Hierarchy:** Deep intrinsic need to control daily engineering focus and architecture decisions rather than executing top-down bureaucratic tickets.
-2. **Health, Rest & Deep Sleep:** Physical stamina and mental sanity are the primary assets; long-term burnout is catastrophic and non-recoverable through mere financial compensation.
-3. **Financial Growth & Equity Upside:** Prefers high-leverage opportunities, ownership, and equity over comfortable corporate mediocrity, provided baseline family security is preserved.
-4. **Family & Geographic Closeness:** Firm commitment to remain physically near family within the next 2-year window.
 
----
+- **Autonomy Above All Else:** I prioritize autonomy in all aspects of my life, valuing independence and self-governance. This means making choices that allow me to maintain control over my time, work, and decisions. I accept tradeoffs in stability and security for the freedom to pursue my passions and interests. What matters intrinsically is the ability to make choices that align with my values and goals.
 
 ## 🚫 Non-Negotiable Boundaries
-- **No Uncapped Weekend On-Call:** Never accept recurring 24/7 or weekend production firefighting that fragments personal relationships and recuperation.
-- **No Endless "Playing It Safe":** Recognize that fear of failure has previously paralyzed major career leaps; hesitation must be actively checked by calculated boldness.
-- **Direct Accountability Over Politics:** Refuse to stay in environments where impact is measured by office politics rather than demonstrable engineering velocity and shipped systems.
 
----
+- **Weekend Work Boundary:** I strictly refuse to work on weekends, recognizing the importance of rest, relaxation, and rejuvenation. This boundary is non-negotiable, as I understand the impact of burnout and the need for a healthy work-life balance. I will not compromise on this boundary, even in the face of urgent deadlines or demanding expectations.
 
 ## ⏳ Stated Regrets & Pain Points
-- *"I regret not negotiating my previous compensation package aggressively when I held all the leverage."* (Logged: 2025-03-02)
-- *"I regret staying at a stagnant company 6 months longer than I should have purely out of comfort."* (Logged: 2025-04-18)
-- *"I regret trading my physical workout routine and weekends for a manager's arbitrary sprint deadline."* (Logged: 2025-08-11)
 
----
+- *"I regret turning down the AI startup last year because I was hesitant to take a risk on an unproven opportunity. I've since learned that sometimes the greatest rewards come from embracing uncertainty and taking bold bets on myself and my abilities."*
 
-## 📜 Historical Decisions & Outcomes
-- **2025-03-10:** Turned down early-stage remote AI role for established corporate stability $\rightarrow$ *Outcome: Felt trapped within 4 months, deeply regretted safe choice.*
-- **2025-06-14:** Accepted a structured pay compromise in exchange for strictly protected 40-hour workweeks $\rightarrow$ *Outcome: Deep satisfaction with mental clarity, creative energy restored.*
-- **2025-11-22:** Refused an uncompensated team leadership promotion $\rightarrow$ *Outcome: Successfully protected engineering flow state without uncredited burnout.*
-- **2026-09-27:** Dilemma: *"Should I take a high-paying role that requires weekend on-call?"* $\rightarrow$ *Outcome: Declined weekend on-call offer, successfully negotiated flexible weekday consulting hours.*
+## 📜 Historical Decisions & Baselines
 
----
+- **2023 AI Startup Opportunity:** I was offered a role at an AI startup but turned it down due to uncertainty about the company's prospects. *Outcome: I missed an opportunity to join a pioneering organization and gain experience in a rapidly evolving field. Lesson learned: I must be more willing to take calculated risks and step outside my comfort zone to achieve growth and success.*
 
-## 🎙️ Recent Voice Reflections & Statements (Ambient Ingest)
-- **2025-09-20 [Omi Voice]:** *"I don't want another job where I'm constantly on call every single weekend. It destroys my peace."*
-- **2026-02-14 [Omi Voice]:** *"I am tired of playing it safe and watching other builders take bold bets. I need to back myself when the opportunity is real."*
-- **2026-05-30 [Omi Voice]:** *"Whenever I prioritize my sleep and health, my output is 10x higher. I can never sacrifice that again."*
+- **6-Month Savings Runway:** I've established a 6-month savings runway, providing me with financial security and the freedom to pursue opportunities that align with my values and goals. *Outcome: I've created a safety net that allows me to focus on high-impact work and make choices that prioritize my well-being and happiness.*
+
+## 🎙️ Stated Reflections & Mindsets
+
+- *"I've come to realize that my desire for autonomy is not just about avoiding micromanagement or bureaucratic red tape, but about creating space for self-directed learning, experimentation, and innovation. I must continue to prioritize my own growth and development, even in the face of uncertainty and adversity."*

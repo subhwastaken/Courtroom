@@ -45,17 +45,28 @@ backend/data/vector_cache/
 .env
 .env*.local
 backend/.env
+backend/.env.local
 frontend/.env
 frontend/.env.local
+*.env
+!backend/.env.example
+!frontend/.env.example
 
-# OS files
+# OS files & macOS metadata (AppleDouble on external drives)
 .DS_Store
 .DS_Store?
 ._*
+**/.DS_Store
+**/._*
+__MACOSX/
+**/.AppleDouble
+**/.LSOverride
 .Spotlight-V100
 .Trashes
 ehthumbs.db
 Thumbs.db
+Icon\r\r
+*.icloud
 
 # IDE & Editor files
 .vscode/

@@ -7,10 +7,11 @@ import { playGavelStrikeSound } from "@/lib/sounds";
 interface VerdictGavelProps {
   verdict: string;
   citations: string[];
+  decree?: string;
   onLogOutcomeClick?: () => void;
 }
 
-export function VerdictGavel({ verdict, citations, onLogOutcomeClick }: VerdictGavelProps) {
+export function VerdictGavel({ verdict, citations, decree, onLogOutcomeClick }: VerdictGavelProps) {
   useEffect(() => {
     // Play sound and trigger confetti on mount
     playGavelStrikeSound();
@@ -65,6 +66,18 @@ export function VerdictGavel({ verdict, citations, onLogOutcomeClick }: VerdictG
             <h2 className="text-base sm:text-xl md:text-2xl font-black text-white tracking-tight leading-snug font-sans">
               &ldquo;{verdict}&rdquo;
             </h2>
+
+            {/* Direct Actionable One-Line Decree */}
+            {decree && (
+              <div className="mt-3.5 p-3 bg-neo-yellow text-black border-2 border-black font-mono text-xs font-black shadow-[3px_3px_0px_#000] flex items-center gap-2.5">
+                <span className="px-2 py-0.5 bg-black text-neo-yellow font-pixel text-[8px] uppercase tracking-wider shrink-0">
+                  ACTION DECREE
+                </span>
+                <span className="leading-snug">
+                  {decree}
+                </span>
+              </div>
+            )}
           </div>
         </div>
 
