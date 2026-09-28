@@ -83,7 +83,7 @@ export default function ProfilePage() {
       );
       setMarkdown(res.raw_markdown);
       setSynthSuccess(
-        `Synthesized with ${res.provider} (${res.model}) — ${res.extracted_memories_count} points extracted (${res.memory_count} total memories in Qdrant).`
+        `Personal constitution updated — ${res.extracted_memories_count} points extracted (${res.memory_count} total memories in Qdrant).`
       );
       if (!overrideText) setSynthInput("");
       await loadProfileData();
@@ -172,11 +172,11 @@ export default function ProfilePage() {
             <div className="bg-neo-yellow border-b-4 border-black px-4 py-2.5 flex flex-wrap items-center justify-between gap-2 text-black font-mono text-xs">
               <div className="flex items-center gap-2 font-black uppercase">
                 <Zap className="w-4 h-4 fill-black stroke-[2.5]" />
-                <span>NVIDIA NIM • Natural Language Dossier Synthesizer</span>
+                <span>Living Constitution Synthesizer</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-[10px] px-2 py-0.5 bg-black text-neo-yellow font-bold uppercase border border-black shadow-[1px_1px_0px_#000]">
-                  Llama-3.2-11B Ultra Fast
+                  Neural Parser Active
                 </span>
               </div>
             </div>
@@ -184,8 +184,8 @@ export default function ProfilePage() {
             <div className="p-5 space-y-4 font-mono text-xs">
               <div>
                 <p className="text-xs text-[#FFF8E7] leading-relaxed font-sans">
-                  Don&apos;t want to write a structured 100-line Markdown constitution? Type 1-2 raw thoughts or informal sentences.
-                  NVIDIA NIM will automatically deduce your core values, non-negotiable boundaries, stated regrets, and baselines into a rigorous dossier.
+                  Don&apos;t want to manually draft a structured Markdown constitution? Type 1-2 raw thoughts or informal statements.
+                  The reasoning engine will automatically deduce your core values, non-negotiable boundaries, stated regrets, and baselines into a rigorous dossier.
                 </p>
               </div>
 
